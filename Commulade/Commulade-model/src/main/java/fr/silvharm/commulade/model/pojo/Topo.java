@@ -4,7 +4,7 @@ import java.time.LocalDate;
 
 public class Topo {
 	
-	private int id;
+	private Integer id;
 	private LocalDate editionDate;
 	private String description, name;
 	
@@ -15,7 +15,7 @@ public class Topo {
 	 * @param editionDate
 	 * @param description
 	 */
-	public Topo(int id, String name, LocalDate editionDate, String description) {
+	public Topo(Integer id, String name, LocalDate editionDate, String description) {
 		this.id = id;
 		this.name = name;
 		this.editionDate = editionDate;
@@ -26,7 +26,7 @@ public class Topo {
 	/**
 	 * @return the id
 	 */
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
 	
@@ -35,7 +35,7 @@ public class Topo {
 	 * @param id
 	 *           the id to set
 	 */
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 	

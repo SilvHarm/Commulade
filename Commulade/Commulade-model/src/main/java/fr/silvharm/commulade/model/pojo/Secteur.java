@@ -3,7 +3,7 @@ package fr.silvharm.commulade.model.pojo;
 
 public class Secteur {
 	
-	private int id, siteId;
+	private Integer id, siteId;
 	private String name;
 	
 	
@@ -12,7 +12,7 @@ public class Secteur {
 	 * @param name
 	 * @param siteId
 	 */
-	public Secteur(int id, String name, int siteId) {
+	public Secteur(Integer id, String name, Integer siteId) {
 		this.id = id;
 		this.name = name;
 		this.siteId = siteId;
@@ -22,7 +22,7 @@ public class Secteur {
 	/**
 	 * @return the id
 	 */
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
 	
@@ -31,7 +31,7 @@ public class Secteur {
 	 * @param id
 	 *           the id to set
 	 */
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 	
@@ -39,7 +39,7 @@ public class Secteur {
 	/**
 	 * @return the siteId
 	 */
-	public int getSiteId() {
+	public Integer getSiteId() {
 		return siteId;
 	}
 	
@@ -48,7 +48,7 @@ public class Secteur {
 	 * @param siteId
 	 *           the siteId to set
 	 */
-	public void setSiteId(int siteId) {
+	public void setSiteId(Integer siteId) {
 		this.siteId = siteId;
 	}
 	

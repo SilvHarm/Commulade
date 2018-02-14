@@ -4,7 +4,7 @@ import java.time.LocalDate;
 
 public class Site {
 	
-	private int id;
+	private Integer id;
 	private LocalDate date;
 	private String name, pathIndication, photoName, place;
 	
@@ -17,7 +17,7 @@ public class Site {
 	 * @param place
 	 * @param pathIndication
 	 */
-	public Site(int id, String name, LocalDate date, String photoName, String place, String pathIndication) {
+	public Site(Integer id, String name, LocalDate date, String photoName, String place, String pathIndication) {
 		this.id = id;
 		this.name = name;
 		this.date = date;
@@ -30,7 +30,7 @@ public class Site {
 	/**
 	 * @return the id
 	 */
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
 	
@@ -39,7 +39,7 @@ public class Site {
 	 * @param id
 	 *           the id to set
 	 */
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 	

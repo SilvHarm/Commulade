@@ -3,7 +3,8 @@ package fr.silvharm.commulade.model.pojo;
 
 public class Longueur {
 	
-	private int height, id, nombrePoints, previousLongueurId, voieId;
+	private int height, nombrePoints;
+	private Integer id, previousLongueurId, voieId;
 	private String cotation;
 	
 	
@@ -15,7 +16,8 @@ public class Longueur {
 	 * @param nombrePoints
 	 * @param cotation
 	 */
-	public Longueur(int id, int voieId, int previousLongueurId, int height, int nombrePoints, String cotation) {
+	public Longueur(Integer id, Integer voieId, Integer previousLongueurId, int height, int nombrePoints,
+			String cotation) {
 		this.id = id;
 		this.voieId = voieId;
 		this.previousLongueurId = previousLongueurId;
@@ -45,7 +47,7 @@ public class Longueur {
 	/**
 	 * @return the id
 	 */
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
 	
@@ -54,7 +56,7 @@ public class Longueur {
 	 * @param id
 	 *           the id to set
 	 */
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 	
@@ -79,7 +81,7 @@ public class Longueur {
 	/**
 	 * @return the previousLongueurId
 	 */
-	public int getPreviousLongueurId() {
+	public Integer getPreviousLongueurId() {
 		return previousLongueurId;
 	}
 	
@@ -88,7 +90,7 @@ public class Longueur {
 	 * @param previousLongueurId
 	 *           the previousLongueurId to set
 	 */
-	public void setPreviousLongueurId(int previousLongueurId) {
+	public void setPreviousLongueurId(Integer previousLongueurId) {
 		this.previousLongueurId = previousLongueurId;
 	}
 	
@@ -96,7 +98,7 @@ public class Longueur {
 	/**
 	 * @return the voieId
 	 */
-	public int getVoieId() {
+	public Integer getVoieId() {
 		return voieId;
 	}
 	
@@ -105,7 +107,7 @@ public class Longueur {
 	 * @param voieId
 	 *           the voieId to set
 	 */
-	public void setVoieId(int voieId) {
+	public void setVoieId(Integer voieId) {
 		this.voieId = voieId;
 	}
 	
