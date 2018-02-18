@@ -4,10 +4,10 @@
 		http://www.springframework.org/schema/beans
 		http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-	<import resource="classpath:/webappContext.xml"/>
+	<import resource="classpath:fr/silvharm/commulade/webapp/webappContext.xml"/>
 
-	<import resource="classpath:/businessContext.xml"/>
+	<import resource="classpath:fr/silvharm/commulade/business/businessContext.xml"/>
 
-	<import resource="classpath:/consumerContext.xml"/>
+	<import resource="classpath:fr/silvharm/commulade/consumer/consumerContext.xml"/>
 
 </beans>
