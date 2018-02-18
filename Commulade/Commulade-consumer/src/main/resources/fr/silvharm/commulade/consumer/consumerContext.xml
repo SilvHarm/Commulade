@@ -4,4 +4,9 @@
 		http://www.springframework.org/schema/beans
 		http://www.springframework.org/schema/beans/spring-beans.xsd">
 
+	<bean id="abstractDaoImpl" class="fr.silvharm.commulade.consumer.impl.dao.AbstractDaoImpl"
+		abstract="true">
+		<property name="dataSource" ref="dataSourceCommulade"/>
+	</bean>
+
 </beans>
