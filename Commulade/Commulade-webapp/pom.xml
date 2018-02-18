@@ -56,6 +56,6 @@
 	</dependencies>
 
 	<build>
-		<finalName>Commulade-webapp</finalName>
+		<finalName>Commulade</finalName>
 	</build>
 </project>
