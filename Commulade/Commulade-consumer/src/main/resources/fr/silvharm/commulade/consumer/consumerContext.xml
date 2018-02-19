@@ -9,4 +9,17 @@
 		<property name="jdbcTemplate" ref="dataSourceCommulade"/>
 	</bean>
 
+
+	<bean id="commentDaoImpl" class="fr.silvharm.commulade.consumer.impl.dao.CommentDaoImpl"
+		parent="abstractDaoImpl"></bean>
+
+	<bean id="lendingTopoDaoImpl" class="fr.silvharm.commulade.consumer.impl.dao.LendingTopoDaoImpl"
+		parent="abstractDaoImpl"></bean>
+
+	<bean id="longueurDaoImpl" class="fr.silvharm.commulade.consumer.impl.dao.LongueurDaoImpl"
+		parent="abstractDaoImpl"></bean>
+
+	<bean id="messageDaoImpl" class="fr.silvharm.commulade.consumer.impl.dao.MessageDaoImpl"
+		parent="abstractDaoImpl"></bean>
+
 </beans>
