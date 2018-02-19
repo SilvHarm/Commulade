@@ -7,6 +7,10 @@ public class User {
 	private String password, username;
 	
 	
+	public User() {
+	}
+	
+	
 	/**
 	 * @param id
 	 * @param username

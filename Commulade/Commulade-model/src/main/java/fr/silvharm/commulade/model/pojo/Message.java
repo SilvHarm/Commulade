@@ -10,6 +10,10 @@ public class Message {
 	private String content, subject;
 	
 	
+	public Message() {
+	}
+	
+	
 	/**
 	 * @param id
 	 * @param receiverId

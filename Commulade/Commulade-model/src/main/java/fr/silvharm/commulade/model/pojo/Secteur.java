@@ -7,6 +7,10 @@ public class Secteur {
 	private String name;
 	
 	
+	public Secteur() {
+	}
+	
+	
 	/**
 	 * @param id
 	 * @param name

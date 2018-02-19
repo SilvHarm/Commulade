@@ -8,6 +8,10 @@ public class LendingTopo {
 	private LocalDate lendingEnd, lendingStart;
 	
 	
+	public LendingTopo() {
+	}
+	
+	
 	/**
 	 * @param id
 	 * @param topoOwnedId

@@ -9,6 +9,10 @@ public class Site {
 	private String name, pathIndication, photoName, place;
 	
 	
+	public Site() {
+	}
+	
+	
 	/**
 	 * @param id
 	 * @param name

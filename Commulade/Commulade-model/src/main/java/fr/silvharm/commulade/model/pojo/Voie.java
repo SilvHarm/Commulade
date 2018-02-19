@@ -7,6 +7,10 @@ public class Voie {
 	private String name;
 	
 	
+	public Voie() {
+	}
+	
+	
 	/**
 	 * @param id
 	 * @param name
