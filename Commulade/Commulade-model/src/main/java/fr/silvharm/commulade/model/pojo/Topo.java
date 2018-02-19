@@ -9,6 +9,10 @@ public class Topo {
 	private String description, name;
 	
 	
+	public Topo() {
+	}
+	
+	
 	/**
 	 * @param id
 	 * @param name

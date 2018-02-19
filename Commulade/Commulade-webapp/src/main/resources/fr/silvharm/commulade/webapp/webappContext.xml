@@ -4,4 +4,8 @@
 		http://www.springframework.org/schema/beans
 		http://www.springframework.org/schema/beans/spring-beans.xsd">
 
+	<bean id="dataSourceCommulade" class="org.springframework.jndi.JndiObjectFactoryBean">
+		<property name="jndiName" value="java:comp/env/jdbc/DB_COMMULADE"/>
+	</bean>
+
 </beans>

@@ -8,6 +8,10 @@ public class Longueur {
 	private String cotation;
 	
 	
+	public Longueur() {
+	}
+	
+	
 	/**
 	 * @param id
 	 * @param voieId
