@@ -2,40 +2,22 @@ package fr.silvharm.commulade.consumer.impl.dao;
 
 import javax.sql.DataSource;
 
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 
 public abstract class AbstractDaoImpl {
 	
-	private DataSource dataSource;
+	protected NamedParameterJdbcTemplate jdbcTemplate;
 	
 	
 	/**
+	 * Create the NamedParameterJdbcTemplate that will be used to make query to the
+	 * database
+	 * 
 	 * @param dataSource
-	 *           the dataSource to set
+	 *           the dataSource used to create jdbcTemplate
 	 */
-	public void setDataSource(DataSource dataSource) {
-		this.dataSource = dataSource;
-	}
-	
-	
-	/**
-	 * Get a JdbcTemplate to make query to the database
-	 * 
-	 * @return a new JdbcTemplate
-	 */
-	protected JdbcTemplate getJdbcTemplate() {
-		return new JdbcTemplate(dataSource);
-	}
-	
-	
-	/**
-	 * Get a NamedParameterJdbcTemplate to make query to the database
-	 * 
-	 * @return a new NamedParameterJdbcTemplate
-	 */
-	protected NamedParameterJdbcTemplate getNamedParameterJdbcTemplate() {
-		return new NamedParameterJdbcTemplate(dataSource);
+	public void setJdbcTemplate(DataSource dataSource) {
+		jdbcTemplate = new NamedParameterJdbcTemplate(dataSource);
 	}
 	
 }

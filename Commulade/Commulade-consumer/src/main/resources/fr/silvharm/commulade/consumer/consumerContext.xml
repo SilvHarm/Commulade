@@ -6,7 +6,7 @@
 
 	<bean id="abstractDaoImpl" class="fr.silvharm.commulade.consumer.impl.dao.AbstractDaoImpl"
 		abstract="true">
-		<property name="dataSource" ref="dataSourceCommulade"/>
+		<property name="jdbcTemplate" ref="dataSourceCommulade"/>
 	</bean>
 
 </beans>
