@@ -4,18 +4,20 @@ package fr.silvharm.commulade.model.pojo;
 public class Secteur {
 	
 	private Integer id, siteId;
-	private String name;
+	private String name, photoName;
 	
 	
 	/**
 	 * @param id
 	 * @param name
 	 * @param siteId
+	 * @param photoName
 	 */
-	public Secteur(Integer id, String name, Integer siteId) {
+	public Secteur(Integer id, String name, Integer siteId, String photoName) {
 		this.id = id;
 		this.name = name;
 		this.siteId = siteId;
+		this.photoName = photoName;
 	}
 	
 	
@@ -67,6 +69,23 @@ public class Secteur {
 	 */
 	public void setName(String name) {
 		this.name = name;
+	}
+	
+	
+	/**
+	 * @return the photoName
+	 */
+	public String getPhotoName() {
+		return photoName;
+	}
+	
+	
+	/**
+	 * @param photoName
+	 *           the photoName to set
+	 */
+	public void setPhotoName(String photoName) {
+		this.photoName = photoName;
 	}
 	
 }
