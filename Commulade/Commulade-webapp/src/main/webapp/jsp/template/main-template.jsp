@@ -30,7 +30,9 @@
 <body>
 	<s:include value="/jsp/parts/header.jsp"></s:include>
 
-	<s:include value="/jsp/%{contentJsp}.jsp"></s:include>
+	<div id="mainContent">
+		<s:include value="/jsp/%{contentJsp}.jsp"></s:include>
+	</div>
 
 	<s:include value="/jsp/parts/footer.jsp"></s:include>
 </body>
