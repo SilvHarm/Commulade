@@ -4,26 +4,20 @@
 		http://www.springframework.org/schema/beans
 		http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-	<bean id="abstractDaoImpl" class="fr.silvharm.commulade.consumer.impl.dao.AbstractDaoImpl"
-		abstract="true">
+	<bean id="abstractDaoImpl" class="fr.silvharm.commulade.consumer.impl.dao.AbstractDaoImpl" abstract="true">
 		<property name="jdbcTemplate" ref="dataSourceCommulade"/>
 	</bean>
 
 
-	<bean id="commentDaoImpl" class="fr.silvharm.commulade.consumer.impl.dao.CommentDaoImpl"
-		parent="abstractDaoImpl"></bean>
+	<bean id="commentDaoImpl" class="fr.silvharm.commulade.consumer.impl.dao.CommentDaoImpl" parent="abstractDaoImpl"></bean>
 
-	<bean id="lendingTopoDaoImpl" class="fr.silvharm.commulade.consumer.impl.dao.LendingTopoDaoImpl"
-		parent="abstractDaoImpl"></bean>
+	<bean id="lendingTopoDaoImpl" class="fr.silvharm.commulade.consumer.impl.dao.LendingTopoDaoImpl" parent="abstractDaoImpl"></bean>
 
-	<bean id="longueurDaoImpl" class="fr.silvharm.commulade.consumer.impl.dao.LongueurDaoImpl"
-		parent="abstractDaoImpl"></bean>
+	<bean id="longueurDaoImpl" class="fr.silvharm.commulade.consumer.impl.dao.LongueurDaoImpl" parent="abstractDaoImpl"></bean>
 
-	<bean id="messageDaoImpl" class="fr.silvharm.commulade.consumer.impl.dao.MessageDaoImpl"
-		parent="abstractDaoImpl"></bean>
+	<bean id="messageDaoImpl" class="fr.silvharm.commulade.consumer.impl.dao.MessageDaoImpl" parent="abstractDaoImpl"></bean>
 
-	<bean id="secteurDaoImpl" class="fr.silvharm.commulade.consumer.impl.dao.SecteurDaoImpl"
-		parent="abstractDaoImpl"></bean>
+	<bean id="secteurDaoImpl" class="fr.silvharm.commulade.consumer.impl.dao.SecteurDaoImpl" parent="abstractDaoImpl"></bean>
 
 	<bean id="siteDaoImpl" class="fr.silvharm.commulade.consumer.impl.dao.SiteDaoImpl" parent="abstractDaoImpl"></bean>
 

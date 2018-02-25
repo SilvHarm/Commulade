@@ -1,0 +1,67 @@
+html, body {
+	height: 100%;
+}
+
+body {
+	background-color: black;
+	color: silver;
+	display: flex;
+	flex-direction: column;
+	font-family: andalus;
+	margin: 0;
+	min-width: 720px;
+	padding: 0;
+}
+
+#mainContent {
+	display: flex;
+	flex: 1 0 auto;
+	margin: auto;
+	text-align: center;
+	width: 80%;
+}
+
+/*
+=====================
+Header
+=====================
+*/
+header {
+	padding-bottom: 10px;
+	padding-top: 25px;
+	text-align: center;
+}
+
+.falseButtonHeader {
+	border: 2px solid silver;
+	margin-right: 5%;
+	padding: 10px;
+}
+
+.falseButtonHeader:nth-child(2n+1) {
+	border-radius: 40%;
+}
+
+.falseButtonHeader:link, .falseButtonHeader:visited {
+	color: silver;
+	text-decoration: none;
+}
+
+#topHrHeader {
+	margin-top: 30px;
+}
+
+/*
+=====================
+Footer
+=====================
+*/
+footer {
+	flex-shrink: 0;
+	text-align: center;
+	padding: 10px;
+}
+
+footer hr {
+	width: 60%;
+}
