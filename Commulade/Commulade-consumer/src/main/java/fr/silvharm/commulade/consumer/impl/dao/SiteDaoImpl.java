@@ -1,5 +1,8 @@
 package fr.silvharm.commulade.consumer.impl.dao;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 
@@ -41,6 +44,17 @@ public class SiteDaoImpl extends AbstractDaoImpl implements SiteDao {
 		vParams.addValue("id", id);
 		
 		return namedJdbcTemplate.queryForObject(vSQL, vParams, new BeanPropertyRowMapper<Site>(Site.class));
+	}
+	
+	
+	public List<Site> getAllSite() {
+		List<Site> list = new ArrayList<Site>();
+		
+		String vSQL = "SELECT * FROM " + TABLE_NAME + ";";
+		
+		list = jdbcTemplate.query(vSQL, new BeanPropertyRowMapper<Site>(Site.class));
+		
+		return list;
 	}
 	
 	

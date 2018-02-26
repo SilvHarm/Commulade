@@ -8,4 +8,11 @@
 		<property name="jndiName" value="java:comp/env/jdbc/DB_COMMULADE"/>
 	</bean>
 
+
+	<!-- Actions -->
+
+	<bean id="rechercheSiteAction" class="fr.silvharm.commulade.webapp.action.RechercheSiteAction">
+		<property name="siteInteractions" ref="siteInteractions"/>
+	</bean>
+
 </beans>

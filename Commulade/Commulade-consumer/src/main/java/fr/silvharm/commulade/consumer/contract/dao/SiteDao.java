@@ -1,5 +1,7 @@
 package fr.silvharm.commulade.consumer.contract.dao;
 
+import java.util.List;
+
 import fr.silvharm.commulade.model.pojo.Site;
 
 public interface SiteDao {
@@ -33,6 +35,14 @@ public interface SiteDao {
 	 * @return the Site associated to the id provided
 	 */
 	public Site findById(int id);
+	
+	
+	/**
+	 * Get all the Site in the database and return them in a List
+	 * 
+	 * @return a List containing all the Site of the database
+	 */
+	public List<Site> getAllSite();
 	
 	
 	/**
