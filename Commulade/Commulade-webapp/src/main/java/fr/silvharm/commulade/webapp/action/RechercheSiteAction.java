@@ -5,20 +5,20 @@ import java.util.List;
 import com.opensymphony.xwork2.ActionSupport;
 
 import fr.silvharm.commulade.business.SiteInteractions;
+import fr.silvharm.commulade.model.pojo.ConfigContainer;
 import fr.silvharm.commulade.model.pojo.Site;
 
 
 public class RechercheSiteAction extends ActionSupport {
 	
-	private String contentJsp = "recherche-site", css = null, js = null, title = "Recherche de Site";
-	
+	private ConfigContainer configContainer;
+	private List<Site> list;
 	private SiteInteractions siteInteractions;
+	private String contentJsp = "recherche-site", css = null, js = null, title = "Recherche de Site";
 	
 	
 	public String execute() {
-		List<Site> list = siteInteractions.getAllSite();
-		
-		System.out.println(list.size());
+		list = siteInteractions.getAllSite();
 		
 		return SUCCESS;
 	}
@@ -27,6 +27,15 @@ public class RechercheSiteAction extends ActionSupport {
 	/********************************
 	 * Getters & Setters
 	 *******************************/
+	
+	/**
+	 * @param configContainer
+	 *           the configContainer to set
+	 */
+	public void setConfigContainer(ConfigContainer configContainer) {
+		this.configContainer = configContainer;
+	}
+	
 	
 	/**
 	 * @return the contentJsp
@@ -49,6 +58,14 @@ public class RechercheSiteAction extends ActionSupport {
 	 */
 	public String getJs() {
 		return js;
+	}
+	
+	
+	/**
+	 * @return the list
+	 */
+	public List<Site> getList() {
+		return list;
 	}
 	
 	

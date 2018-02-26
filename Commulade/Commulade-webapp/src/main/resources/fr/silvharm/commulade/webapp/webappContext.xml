@@ -8,10 +8,16 @@
 		<property name="jndiName" value="java:comp/env/jdbc/DB_COMMULADE"/>
 	</bean>
 
+	<bean id="configContainer" class="fr.silvharm.commulade.model.pojo.ConfigContainer">
+		<property name="secteurPhotoPath" value="#{contextParameters.secteurPhotoPath}"/>
+		<property name="sitePhotoPath" value="#{contextParameters.sitePhotoPath}"/>
+	</bean>
+
 
 	<!-- Actions -->
 
 	<bean id="rechercheSiteAction" class="fr.silvharm.commulade.webapp.action.RechercheSiteAction">
+		<property name="configContainer" ref="configContainer"/>
 		<property name="siteInteractions" ref="siteInteractions"/>
 	</bean>
 
