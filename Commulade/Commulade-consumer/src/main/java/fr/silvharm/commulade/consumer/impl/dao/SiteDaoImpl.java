@@ -20,7 +20,7 @@ public class SiteDaoImpl extends AbstractDaoImpl implements SiteDao {
 		vParams.addValue("place", site.getPlace());
 		vParams.addValue("pathIndication", site.getPathIndication());
 		
-		jdbcTemplate.update(vSQL, vParams);
+		namedJdbcTemplate.update(vSQL, vParams);
 	}
 	
 	
@@ -30,7 +30,7 @@ public class SiteDaoImpl extends AbstractDaoImpl implements SiteDao {
 		MapSqlParameterSource vParams = new MapSqlParameterSource();
 		vParams.addValue("id", id);
 		
-		jdbcTemplate.update(vSQL, vParams);
+		namedJdbcTemplate.update(vSQL, vParams);
 	}
 	
 	
@@ -40,7 +40,7 @@ public class SiteDaoImpl extends AbstractDaoImpl implements SiteDao {
 		MapSqlParameterSource vParams = new MapSqlParameterSource();
 		vParams.addValue("id", id);
 		
-		return jdbcTemplate.queryForObject(vSQL, vParams, new BeanPropertyRowMapper<Site>(Site.class));
+		return namedJdbcTemplate.queryForObject(vSQL, vParams, new BeanPropertyRowMapper<Site>(Site.class));
 	}
 	
 	
@@ -57,7 +57,7 @@ public class SiteDaoImpl extends AbstractDaoImpl implements SiteDao {
 		vParams.addValue("pathIndication", site.getPathIndication());
 		vParams.addValue("id", site.getId());
 		
-		jdbcTemplate.update(vSQL, vParams);
+		namedJdbcTemplate.update(vSQL, vParams);
 	}
 	
 }

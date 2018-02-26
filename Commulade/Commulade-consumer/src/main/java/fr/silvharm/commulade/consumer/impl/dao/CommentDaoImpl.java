@@ -20,7 +20,7 @@ public class CommentDaoImpl extends AbstractDaoImpl implements CommentDao {
 		vParams.addValue("dateTime", comment.getDateTime());
 		vParams.addValue("comment", comment.getComment());
 		
-		jdbcTemplate.update(vSQL, vParams);
+		namedJdbcTemplate.update(vSQL, vParams);
 	}
 	
 	
@@ -30,7 +30,7 @@ public class CommentDaoImpl extends AbstractDaoImpl implements CommentDao {
 		MapSqlParameterSource vParams = new MapSqlParameterSource();
 		vParams.addValue("id", id);
 		
-		jdbcTemplate.update(vSQL, vParams);
+		namedJdbcTemplate.update(vSQL, vParams);
 	}
 	
 	
@@ -40,7 +40,7 @@ public class CommentDaoImpl extends AbstractDaoImpl implements CommentDao {
 		MapSqlParameterSource vParams = new MapSqlParameterSource();
 		vParams.addValue("id", id);
 		
-		return jdbcTemplate.queryForObject(vSQL, vParams, new BeanPropertyRowMapper<Comment>(Comment.class));
+		return namedJdbcTemplate.queryForObject(vSQL, vParams, new BeanPropertyRowMapper<Comment>(Comment.class));
 	}
 	
 	
@@ -56,7 +56,7 @@ public class CommentDaoImpl extends AbstractDaoImpl implements CommentDao {
 		vParams.addValue("comment", comment.getComment());
 		vParams.addValue("id", comment.getId());
 		
-		jdbcTemplate.update(vSQL, vParams);
+		namedJdbcTemplate.update(vSQL, vParams);
 	}
 	
 }

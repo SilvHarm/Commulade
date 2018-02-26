@@ -18,7 +18,7 @@ public class TopoDaoImpl extends AbstractDaoImpl implements TopoDao {
 		vParams.addValue("editionDate", topo.getEditionDate());
 		vParams.addValue("description", topo.getDescription());
 		
-		jdbcTemplate.update(vSQL, vParams);
+		namedJdbcTemplate.update(vSQL, vParams);
 	}
 	
 	
@@ -28,7 +28,7 @@ public class TopoDaoImpl extends AbstractDaoImpl implements TopoDao {
 		MapSqlParameterSource vParams = new MapSqlParameterSource();
 		vParams.addValue("id", id);
 		
-		jdbcTemplate.update(vSQL, vParams);
+		namedJdbcTemplate.update(vSQL, vParams);
 	}
 	
 	
@@ -38,7 +38,7 @@ public class TopoDaoImpl extends AbstractDaoImpl implements TopoDao {
 		MapSqlParameterSource vParams = new MapSqlParameterSource();
 		vParams.addValue("id", id);
 		
-		return jdbcTemplate.queryForObject(vSQL, vParams, new BeanPropertyRowMapper<Topo>(Topo.class));
+		return namedJdbcTemplate.queryForObject(vSQL, vParams, new BeanPropertyRowMapper<Topo>(Topo.class));
 	}
 	
 	
@@ -52,7 +52,7 @@ public class TopoDaoImpl extends AbstractDaoImpl implements TopoDao {
 		vParams.addValue("description", topo.getDescription());
 		vParams.addValue("id", topo.getId());
 		
-		jdbcTemplate.update(vSQL, vParams);
+		namedJdbcTemplate.update(vSQL, vParams);
 	}
 	
 }

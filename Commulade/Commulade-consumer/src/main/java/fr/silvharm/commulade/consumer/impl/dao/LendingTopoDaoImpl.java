@@ -19,7 +19,7 @@ public class LendingTopoDaoImpl extends AbstractDaoImpl implements LendingTopoDa
 		vParams.addValue("lendingStart", lendingTopo.getLendingStart());
 		vParams.addValue("lendingEnd", lendingTopo.getLendingEnd());
 		
-		jdbcTemplate.update(vSQL, vParams);
+		namedJdbcTemplate.update(vSQL, vParams);
 	}
 	
 	
@@ -29,7 +29,7 @@ public class LendingTopoDaoImpl extends AbstractDaoImpl implements LendingTopoDa
 		MapSqlParameterSource vParams = new MapSqlParameterSource();
 		vParams.addValue("id", id);
 		
-		jdbcTemplate.update(vSQL, vParams);
+		namedJdbcTemplate.update(vSQL, vParams);
 	}
 	
 	
@@ -39,7 +39,7 @@ public class LendingTopoDaoImpl extends AbstractDaoImpl implements LendingTopoDa
 		MapSqlParameterSource vParams = new MapSqlParameterSource();
 		vParams.addValue("id", id);
 		
-		return jdbcTemplate.queryForObject(vSQL, vParams, new BeanPropertyRowMapper<LendingTopo>(LendingTopo.class));
+		return namedJdbcTemplate.queryForObject(vSQL, vParams, new BeanPropertyRowMapper<LendingTopo>(LendingTopo.class));
 	}
 	
 	
@@ -55,7 +55,7 @@ public class LendingTopoDaoImpl extends AbstractDaoImpl implements LendingTopoDa
 		vParams.addValue("lendingEnd", lendingTopo.getLendingEnd());
 		vParams.addValue("id", lendingTopo.getId());
 		
-		jdbcTemplate.update(vSQL, vParams);
+		namedJdbcTemplate.update(vSQL, vParams);
 	}
 	
 }

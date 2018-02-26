@@ -18,7 +18,7 @@ public class SecteurDaoImpl extends AbstractDaoImpl implements SecteurDao {
 		vParams.addValue("siteId", secteur.getSiteId());
 		vParams.addValue("photoName", secteur.getPhotoName());
 		
-		jdbcTemplate.update(vSQL, vParams);
+		namedJdbcTemplate.update(vSQL, vParams);
 	}
 	
 	
@@ -28,7 +28,7 @@ public class SecteurDaoImpl extends AbstractDaoImpl implements SecteurDao {
 		MapSqlParameterSource vParams = new MapSqlParameterSource();
 		vParams.addValue("id", id);
 		
-		jdbcTemplate.update(vSQL, vParams);
+		namedJdbcTemplate.update(vSQL, vParams);
 	}
 	
 	
@@ -38,7 +38,7 @@ public class SecteurDaoImpl extends AbstractDaoImpl implements SecteurDao {
 		MapSqlParameterSource vParams = new MapSqlParameterSource();
 		vParams.addValue("id", id);
 		
-		return jdbcTemplate.queryForObject(vSQL, vParams, new BeanPropertyRowMapper<Secteur>(Secteur.class));
+		return namedJdbcTemplate.queryForObject(vSQL, vParams, new BeanPropertyRowMapper<Secteur>(Secteur.class));
 	}
 	
 	
@@ -52,7 +52,7 @@ public class SecteurDaoImpl extends AbstractDaoImpl implements SecteurDao {
 		vParams.addValue("photoName", secteur.getPhotoName());
 		vParams.addValue("id", secteur.getId());
 		
-		jdbcTemplate.update(vSQL, vParams);
+		namedJdbcTemplate.update(vSQL, vParams);
 	}
 	
 }
