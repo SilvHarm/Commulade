@@ -23,7 +23,7 @@ public class MessageDaoImpl extends AbstractDaoImpl implements MessageDao {
 		vParams.addValue("subject", message.getSubject());
 		vParams.addValue("content", message.getContent());
 		
-		jdbcTemplate.update(vSQL, vParams);
+		namedJdbcTemplate.update(vSQL, vParams);
 	}
 	
 	
@@ -33,7 +33,7 @@ public class MessageDaoImpl extends AbstractDaoImpl implements MessageDao {
 		MapSqlParameterSource vParams = new MapSqlParameterSource();
 		vParams.addValue("id", id);
 		
-		jdbcTemplate.update(vSQL, vParams);
+		namedJdbcTemplate.update(vSQL, vParams);
 	}
 	
 	
@@ -43,7 +43,7 @@ public class MessageDaoImpl extends AbstractDaoImpl implements MessageDao {
 		MapSqlParameterSource vParams = new MapSqlParameterSource();
 		vParams.addValue("id", id);
 		
-		return jdbcTemplate.queryForObject(vSQL, vParams, new BeanPropertyRowMapper<Message>(Message.class));
+		return namedJdbcTemplate.queryForObject(vSQL, vParams, new BeanPropertyRowMapper<Message>(Message.class));
 	}
 	
 	
@@ -62,7 +62,7 @@ public class MessageDaoImpl extends AbstractDaoImpl implements MessageDao {
 		vParams.addValue("content", message.getContent());
 		vParams.addValue("id", message.getId());
 		
-		jdbcTemplate.update(vSQL, vParams);
+		namedJdbcTemplate.update(vSQL, vParams);
 	}
 	
 }

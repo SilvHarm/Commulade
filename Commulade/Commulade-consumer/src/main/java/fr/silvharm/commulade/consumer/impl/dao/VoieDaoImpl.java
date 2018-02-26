@@ -17,7 +17,7 @@ public class VoieDaoImpl extends AbstractDaoImpl implements VoieDao {
 		vParams.addValue("name", voie.getName());
 		vParams.addValue("secteurId", voie.getSecteurId());
 		
-		jdbcTemplate.update(vSQL, vParams);
+		namedJdbcTemplate.update(vSQL, vParams);
 	}
 	
 	
@@ -27,7 +27,7 @@ public class VoieDaoImpl extends AbstractDaoImpl implements VoieDao {
 		MapSqlParameterSource vParams = new MapSqlParameterSource();
 		vParams.addValue("id", id);
 		
-		jdbcTemplate.update(vSQL, vParams);
+		namedJdbcTemplate.update(vSQL, vParams);
 	}
 	
 	
@@ -37,7 +37,7 @@ public class VoieDaoImpl extends AbstractDaoImpl implements VoieDao {
 		MapSqlParameterSource vParams = new MapSqlParameterSource();
 		vParams.addValue("id", id);
 		
-		return jdbcTemplate.queryForObject(vSQL, vParams, new BeanPropertyRowMapper<Voie>(Voie.class));
+		return namedJdbcTemplate.queryForObject(vSQL, vParams, new BeanPropertyRowMapper<Voie>(Voie.class));
 	}
 	
 	
@@ -50,7 +50,7 @@ public class VoieDaoImpl extends AbstractDaoImpl implements VoieDao {
 		vParams.addValue("secteurId", voie.getSecteurId());
 		vParams.addValue("id", voie.getId());
 		
-		jdbcTemplate.update(vSQL, vParams);
+		namedJdbcTemplate.update(vSQL, vParams);
 	}
 	
 }

@@ -21,7 +21,7 @@ public class LongueurDaoImpl extends AbstractDaoImpl implements LongueurDao {
 		vParams.addValue("nombrePoints", longueur.getNombrePoints());
 		vParams.addValue("cotation", longueur.getCotation());
 		
-		jdbcTemplate.update(vSQL, vParams);
+		namedJdbcTemplate.update(vSQL, vParams);
 	}
 	
 	
@@ -31,7 +31,7 @@ public class LongueurDaoImpl extends AbstractDaoImpl implements LongueurDao {
 		MapSqlParameterSource vParams = new MapSqlParameterSource();
 		vParams.addValue("id", id);
 		
-		jdbcTemplate.update(vSQL, vParams);
+		namedJdbcTemplate.update(vSQL, vParams);
 	}
 	
 	
@@ -41,7 +41,7 @@ public class LongueurDaoImpl extends AbstractDaoImpl implements LongueurDao {
 		MapSqlParameterSource vParams = new MapSqlParameterSource();
 		vParams.addValue("id", id);
 		
-		return jdbcTemplate.queryForObject(vSQL, vParams, new BeanPropertyRowMapper<Longueur>(Longueur.class));
+		return namedJdbcTemplate.queryForObject(vSQL, vParams, new BeanPropertyRowMapper<Longueur>(Longueur.class));
 	}
 	
 	
@@ -58,7 +58,7 @@ public class LongueurDaoImpl extends AbstractDaoImpl implements LongueurDao {
 		vParams.addValue("cotation", longueur.getCotation());
 		vParams.addValue("id", longueur.getId());
 		
-		jdbcTemplate.update(vSQL, vParams);
+		namedJdbcTemplate.update(vSQL, vParams);
 	}
 	
 }

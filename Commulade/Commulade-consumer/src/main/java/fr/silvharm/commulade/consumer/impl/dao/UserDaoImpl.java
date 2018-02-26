@@ -17,7 +17,7 @@ public class UserDaoImpl extends AbstractDaoImpl implements UserDao {
 		vParams.addValue("username", user.getUsername());
 		vParams.addValue("password", user.getPassword());
 		
-		jdbcTemplate.update(vSQL, vParams);
+		namedJdbcTemplate.update(vSQL, vParams);
 	}
 	
 	
@@ -27,7 +27,7 @@ public class UserDaoImpl extends AbstractDaoImpl implements UserDao {
 		MapSqlParameterSource vParams = new MapSqlParameterSource();
 		vParams.addValue("id", id);
 		
-		jdbcTemplate.update(vSQL, vParams);
+		namedJdbcTemplate.update(vSQL, vParams);
 	}
 	
 	
@@ -37,7 +37,7 @@ public class UserDaoImpl extends AbstractDaoImpl implements UserDao {
 		MapSqlParameterSource vParams = new MapSqlParameterSource();
 		vParams.addValue("id", id);
 		
-		return jdbcTemplate.queryForObject(vSQL, vParams, new BeanPropertyRowMapper<User>(User.class));
+		return namedJdbcTemplate.queryForObject(vSQL, vParams, new BeanPropertyRowMapper<User>(User.class));
 	}
 	
 	
@@ -50,7 +50,7 @@ public class UserDaoImpl extends AbstractDaoImpl implements UserDao {
 		vParams.addValue("password", user.getPassword());
 		vParams.addValue("id", user.getId());
 		
-		jdbcTemplate.update(vSQL, vParams);
+		namedJdbcTemplate.update(vSQL, vParams);
 	}
 	
 }
