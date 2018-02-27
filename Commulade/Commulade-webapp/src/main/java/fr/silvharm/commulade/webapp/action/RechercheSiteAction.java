@@ -14,7 +14,8 @@ public class RechercheSiteAction extends ActionSupport {
 	private ConfigContainer configContainer;
 	private List<Site> list;
 	private SiteInteractions siteInteractions;
-	private String contentJsp = "recherche-site", css = null, js = null, title = "Recherche de Site";
+	private String contentJsp = "recherche-site", css = "recherche-site", js = "recherche-site", photoPath,
+			title = "Recherche de Site";
 	
 	
 	public String execute() {
@@ -66,6 +67,14 @@ public class RechercheSiteAction extends ActionSupport {
 	 */
 	public List<Site> getList() {
 		return list;
+	}
+	
+	
+	/**
+	 * @return the photoPath
+	 */
+	public String getPhotoPath() {
+		return configContainer.getSitePhotoPath();
 	}
 	
 	

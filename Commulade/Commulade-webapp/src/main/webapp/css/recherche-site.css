@@ -1,0 +1,32 @@
+.aMainSite {
+	border: 1px solid silver;
+	border-radius: 3%;
+	color: silver;
+	display: inline-grid;
+	font-size: x-large;
+	margin: 0 0.9% 15px;
+	min-width: 150px;
+	padding: 10px;
+	text-align: center;
+	text-decoration: none;
+	width: 18%;
+}
+
+.siteImg {
+	height: 100%;
+	margin: auto;
+	max-width: 100%;
+}
+
+#searchCriteria {
+	
+}
+
+#siteContent {
+	font-size: 0;
+	width: 100%;
+}
+
+#noSiteFound {
+	margin: auto;
+}
