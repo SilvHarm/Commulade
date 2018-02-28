@@ -3,6 +3,7 @@ package fr.silvharm.commulade.business;
 import java.util.List;
 
 import fr.silvharm.commulade.consumer.impl.dao.SiteDaoImpl;
+import fr.silvharm.commulade.model.bean.SiteSearchFormBean;
 import fr.silvharm.commulade.model.pojo.Site;
 
 public class SiteInteractions {
@@ -17,6 +18,16 @@ public class SiteInteractions {
 	 */
 	public List<Site> getAllSite() {
 		return siteDao.getAllSite();
+	}
+	
+	
+	/**
+	 * 
+	 * @param formBean
+	 * @return a List containing all the Site that meet the search criteria
+	 */
+	public List<Site> getSearchSite(SiteSearchFormBean formBean) {
+		return siteDao.findBySearch(formBean);
 	}
 	
 	

@@ -16,15 +16,19 @@ public class RechercheSiteAction extends ActionSupport {
 	private List<Site> list;
 	private SiteInteractions siteInteractions;
 	private SiteSearchFormBean formBean;
-	private String contentJsp = "recherche-site", css = "recherche-site", js = "recherche-site", photoPath,
+	private String contentJsp = "recherche-site", css = "recherche-site", js = "recherche-site",
 			title = "Recherche de Site";
+	@SuppressWarnings("unused") // is used by struts in the jsp
+	private String photoPath;
 	
 	
 	public String execute() {
 		if (formBean != null) {
-			//To Do !
-			//To Do !
-			//To Do !
+			list = siteInteractions.getSearchSite(formBean);
+			
+			if (list.isEmpty()) {
+				list = null;
+			}
 		}
 		else {
 			list = siteInteractions.getAllSite();
