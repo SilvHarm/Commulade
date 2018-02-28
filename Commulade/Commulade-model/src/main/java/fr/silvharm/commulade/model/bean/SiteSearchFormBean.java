@@ -3,7 +3,7 @@ package fr.silvharm.commulade.model.bean;
 
 public class SiteSearchFormBean {
 	
-	private String maxHeight, minHeight, maxPointNumber, minPointNumber, minVoieNumber, siteName;
+	private String cotation, maxHeight, minHeight, maxPointNumber, minPointNumber, siteName;
 	
 	
 	public SiteSearchFormBean() {
@@ -20,13 +20,13 @@ public class SiteSearchFormBean {
 	 * @param minVoieNumber
 	 */
 	public SiteSearchFormBean(String siteName, String maxHeight, String minHeight, String maxPointNumber,
-			String minPointNumber, String minVoieNumber) {
+			String minPointNumber, String cotation) {
 		this.siteName = siteName;
 		this.maxHeight = maxHeight;
 		this.minHeight = minHeight;
 		this.maxPointNumber = maxPointNumber;
 		this.minPointNumber = minPointNumber;
-		this.minVoieNumber = minVoieNumber;
+		this.cotation = cotation;
 	}
 	
 	
@@ -99,19 +99,19 @@ public class SiteSearchFormBean {
 	
 	
 	/**
-	 * @return the minVoieNumber
+	 * @return the cotation
 	 */
-	public String getMinVoieNumber() {
-		return minVoieNumber;
+	public String getCotation() {
+		return cotation;
 	}
 	
 	
 	/**
-	 * @param minVoieNumber
-	 *           the minVoieNumber to set
+	 * @param cotation
+	 *           the cotation to set
 	 */
-	public void setMinVoieNumber(String minVoieNumber) {
-		this.minVoieNumber = minVoieNumber;
+	public void setCotation(String cotation) {
+		this.cotation = cotation;
 	}
 	
 	

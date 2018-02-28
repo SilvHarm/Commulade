@@ -4,11 +4,6 @@
 			<input id="siteName" name="formBean.siteName" type="text" maxlength="48" placeholder="Nom du site...">
 		</p>
 
-		<p>Minimum de voies :</p>
-		<p class="inputFormP">
-			<input class="numberInput" name="formBean.minVoieNumber" type="number" min="1" max="100" placeholder="min...">
-		</p>
-
 		<p>Hauteur :</p>
 		<p class="inputFormP">
 			<input class="numberInput" name="formBean.minHeight" type="number" min="1" max="99" placeholder="min..."> - <input
@@ -19,6 +14,11 @@
 		<p class="inputFormP">
 			<input class="numberInput" name="formBean.minPointNumber" type="number" min="1" max="99" placeholder="min..."> - <input
 				class="numberInput" name="formBean.maxPointNumber" type="number" min="2" max="100" placeholder="max...">
+		</p>
+
+		<p>Cotation :</p>
+		<p class="inputFormP">
+			<input class="numberInput" name="formBean.cotation" type="number" min="3" max="9" placeholder="3-9">
 		</p>
 
 		<button id="searchButton">Rechercher</button>
