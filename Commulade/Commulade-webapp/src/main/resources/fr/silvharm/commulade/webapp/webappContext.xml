@@ -18,7 +18,13 @@
 
 	<bean id="rechercheSiteAction" class="fr.silvharm.commulade.webapp.action.RechercheSiteAction">
 		<property name="configContainer" ref="configContainer"/>
+		<property name="formBean" ref="siteSearchFormBean"/>
 		<property name="siteInteractions" ref="siteInteractions"/>
 	</bean>
+
+
+	<!-- Beans -->
+
+	<bean id="siteSearchFormBean" class="fr.silvharm.commulade.model.bean.SiteSearchFormBean" scope="prototype"/>
 
 </beans>

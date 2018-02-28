@@ -13,6 +13,11 @@ body {
 	padding: 0;
 }
 
+/*
+=====================
+Template
+=====================
+*/
 #mainContent {
 	display: flex;
 	flex: 1 0 auto;
@@ -63,4 +68,23 @@ footer {
 
 footer hr {
 	width: 60%;
+}
+
+/*
+=====================
+Common
+=====================
+*/
+.autoMar {
+	margin: auto;
+}
+
+.noMar {
+	margin: 0px;
+}
+
+.resizeImg {
+	margin: auto;
+	max-height: 100%;
+	max-width: 100%;
 }

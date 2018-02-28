@@ -1,7 +1,7 @@
 <article>
-	<h5>Bienvenue sur</h5>
+	<h5 class="noMar">Bienvenue sur</h5>
 
-	<h1>
+	<h1 class="noMar">
 		<i>Commulade</i>
 	</h1>
 

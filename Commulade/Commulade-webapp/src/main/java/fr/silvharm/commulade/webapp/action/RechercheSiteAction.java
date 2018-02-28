@@ -5,6 +5,7 @@ import java.util.List;
 import com.opensymphony.xwork2.ActionSupport;
 
 import fr.silvharm.commulade.business.SiteInteractions;
+import fr.silvharm.commulade.model.bean.SiteSearchFormBean;
 import fr.silvharm.commulade.model.pojo.ConfigContainer;
 import fr.silvharm.commulade.model.pojo.Site;
 
@@ -14,12 +15,20 @@ public class RechercheSiteAction extends ActionSupport {
 	private ConfigContainer configContainer;
 	private List<Site> list;
 	private SiteInteractions siteInteractions;
+	private SiteSearchFormBean formBean;
 	private String contentJsp = "recherche-site", css = "recherche-site", js = "recherche-site", photoPath,
 			title = "Recherche de Site";
 	
 	
 	public String execute() {
-		list = siteInteractions.getAllSite();
+		if (formBean != null) {
+			//To Do !
+			//To Do !
+			//To Do !
+		}
+		else {
+			list = siteInteractions.getAllSite();
+		}
 		
 		return SUCCESS;
 	}
@@ -51,6 +60,23 @@ public class RechercheSiteAction extends ActionSupport {
 	 */
 	public String getCss() {
 		return css;
+	}
+	
+	
+	/**
+	 * @return the formBean
+	 */
+	public SiteSearchFormBean getFormBean() {
+		return formBean;
+	}
+	
+	
+	/**
+	 * @param formBean
+	 *           the formBean to set
+	 */
+	public void setFormBean(SiteSearchFormBean formBean) {
+		this.formBean = formBean;
 	}
 	
 	

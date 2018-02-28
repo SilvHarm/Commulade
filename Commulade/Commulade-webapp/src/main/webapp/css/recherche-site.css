@@ -1,3 +1,9 @@
+form {
+	display: flex;
+	flex-direction: column;
+	padding: 5%;
+}
+
 .aMainSite {
 	border: 1px solid silver;
 	border-radius: 3%;
@@ -12,21 +18,39 @@
 	width: 18%;
 }
 
-.siteImg {
-	height: 100%;
-	margin: auto;
-	max-width: 100%;
+.inputFormP {
+	margin-top: 0px;
+}
+
+.numberInput {
+	width: 5em;
+}
+
+#searchButton {
+	background-color: black;
+	border-color: #333;
+	border-radius: 10%;
+	color: #AAA;
+	cursor: pointer;
+	font-family: andalus;
+	font-size: large;
+	margin-top: 20px;
 }
 
 #searchCriteria {
-	
+	border-radius: 10%;
+	border-right: 1px solid #AAA;
+	max-width: 10%;
+	min-width: 200px;
+	padding: 10px;
 }
 
 #siteContent {
 	font-size: 0;
+	padding: 10px;
 	width: 100%;
 }
 
-#noSiteFound {
-	margin: auto;
+#siteName {
+	margin-top: 30px;
 }
