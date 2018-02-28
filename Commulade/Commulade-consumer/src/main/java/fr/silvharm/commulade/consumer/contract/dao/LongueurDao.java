@@ -6,7 +6,7 @@ public interface LongueurDao {
 	
 	final String TABLE_NAME = "longueur";
 	
-	final String ID = "id", VOIE_ID = "longueur_id", PREVIOUS_LONGUEUR_ID = "previous_longueur_id", HEIGHT = "height",
+	final String ID = "id", VOIE_ID = "voie_id", PREVIOUS_LONGUEUR_ID = "previous_longueur_id", HEIGHT = "height",
 			NOMBRE_POINTS = "nombre_points", COTATION = "cotation";
 	
 	
