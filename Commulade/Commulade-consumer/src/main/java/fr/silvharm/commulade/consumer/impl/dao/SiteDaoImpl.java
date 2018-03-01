@@ -56,7 +56,7 @@ public class SiteDaoImpl extends AbstractDaoImpl implements SiteDao {
 		
 		MapSqlParameterSource vParams = new MapSqlParameterSource();
 		
-		// we fill the request with the properties that aren't null
+		// we fill the request with the properties that aren't empty
 		
 		if (!formBean.getSiteName().isEmpty()) {
 			vSQL += NAME + " LIKE '%" + formBean.getSiteName() + "%' AND ";

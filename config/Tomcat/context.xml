@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context>
+	 
+	<Resource 
+		name="jdbc/DB_COMMULADE"
+		auth="Container"
+		type="javax.sql.DataSource"
+
+		url="jdbc:postgresql://localhost:5432/Commulade"
+		driverClassName="org.postgresql.Driver"
+		username="commulade"
+		password="commulade"
+	/>
+	 
+	<Parameter name="secteurPhotoPath" value="http://localhost:8080/photos/secteur/" override="false"/>
+	<Parameter name="sitePhotoPath" value="http://localhost:8080/photos/site/" override="false"/>
+	 
+</Context>
