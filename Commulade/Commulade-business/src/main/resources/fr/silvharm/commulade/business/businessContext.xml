@@ -4,7 +4,7 @@
 		http://www.springframework.org/schema/beans
 		http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-	<bean id="siteInteractions" class="fr.silvharm.commulade.business.SiteInteractions">
+	<bean id="siteInteractionsImpl" class="fr.silvharm.commulade.business.impl.SiteInteractionsImpl">
 		<property name="siteDao" ref="siteDaoImpl"/>
 	</bean>
 

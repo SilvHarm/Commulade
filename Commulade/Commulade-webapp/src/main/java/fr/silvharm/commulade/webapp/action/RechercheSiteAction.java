@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.opensymphony.xwork2.ActionSupport;
 
-import fr.silvharm.commulade.business.SiteInteractions;
+import fr.silvharm.commulade.business.contract.SiteInteractions;
 import fr.silvharm.commulade.model.bean.SiteSearchFormBean;
 import fr.silvharm.commulade.model.pojo.ConfigContainer;
 import fr.silvharm.commulade.model.pojo.Site;
@@ -26,8 +26,13 @@ public class RechercheSiteAction extends ActionSupport {
 		if (formBean != null) {
 			list = siteInteractions.getSearchSite(formBean);
 			
-			if (list.isEmpty()) {
+			// if no result found
+			if (list != null && list.isEmpty()) {
 				list = null;
+			}
+			// if formBean wasn't valid
+			else if (list == null) {
+				list = siteInteractions.getAllSite();
 			}
 		}
 		else {

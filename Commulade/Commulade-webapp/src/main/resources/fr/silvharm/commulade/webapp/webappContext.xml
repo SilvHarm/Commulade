@@ -16,15 +16,9 @@
 
 	<!-- Actions -->
 
-	<bean id="rechercheSiteAction" class="fr.silvharm.commulade.webapp.action.RechercheSiteAction">
+	<bean id="rechercheSiteAction" class="fr.silvharm.commulade.webapp.action.RechercheSiteAction" scope="prototype">
 		<property name="configContainer" ref="configContainer"/>
-		<property name="formBean" ref="siteSearchFormBean"/>
-		<property name="siteInteractions" ref="siteInteractions"/>
+		<property name="siteInteractions" ref="siteInteractionsImpl"/>
 	</bean>
-
-
-	<!-- Beans -->
-
-	<bean id="siteSearchFormBean" class="fr.silvharm.commulade.model.bean.SiteSearchFormBean" scope="prototype"/>
 
 </beans>
