@@ -1,5 +1,7 @@
 package fr.silvharm.commulade.consumer.impl.dao;
 
+import java.util.List;
+
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 
@@ -39,6 +41,20 @@ public class TopoDaoImpl extends AbstractDaoImpl implements TopoDao {
 		vParams.addValue("id", id);
 		
 		return namedJdbcTemplate.queryForObject(vSQL, vParams, new BeanPropertyRowMapper<Topo>(Topo.class));
+	}
+	
+	
+	public List<Topo> getAllTopo() {
+		String vSQL = "SELECT * FROM " + TABLE_NAME + ";";
+		
+		return jdbcTemplate.query(vSQL, new BeanPropertyRowMapper<Topo>(Topo.class));
+	}
+	
+	
+	public List<Topo> getByName(String name) {
+		String vSQL = "SELECT * FROM " + TABLE_NAME + " WHERE " + NAME + " LIKE '%" + name + "%';";
+		
+		return jdbcTemplate.query(vSQL, new BeanPropertyRowMapper<Topo>(Topo.class));
 	}
 	
 	

@@ -39,7 +39,7 @@ public interface SiteDao {
 	
 	
 	/**
-	 * Get from the database the Site whom the id is equal to the one provided
+	 * Get from the database the Sites who correspond to the search Form's criteria
 	 * 
 	 * @param formBean
 	 * @return a list containing all the Site that meet the search Form's criteria

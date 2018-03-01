@@ -8,4 +8,8 @@
 		<property name="siteDao" ref="siteDaoImpl"/>
 	</bean>
 
+	<bean id="topoInteractionsImpl" class="fr.silvharm.commulade.business.impl.TopoInteractionsImpl">
+		<property name="topoDao" ref="topoDaoImpl"/>
+	</bean>
+
 </beans>

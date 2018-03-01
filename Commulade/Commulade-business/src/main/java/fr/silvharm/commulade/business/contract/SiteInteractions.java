@@ -18,7 +18,7 @@ public interface SiteInteractions {
 	
 	/**
 	 * Call the appropriate method in the consumer module to get the Site in the
-	 * database that meets the search criteri
+	 * database that meets the search criteria
 	 * 
 	 * @param formBean
 	 * @return a List containing all the Site that meet the search criteria or null
