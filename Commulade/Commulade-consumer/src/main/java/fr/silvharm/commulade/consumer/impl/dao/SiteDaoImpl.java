@@ -5,7 +5,10 @@ import java.util.List;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 
+import fr.silvharm.commulade.consumer.contract.dao.LongueurDao;
+import fr.silvharm.commulade.consumer.contract.dao.SecteurDao;
 import fr.silvharm.commulade.consumer.contract.dao.SiteDao;
+import fr.silvharm.commulade.consumer.contract.dao.VoieDao;
 import fr.silvharm.commulade.model.bean.SiteSearchFormBean;
 import fr.silvharm.commulade.model.pojo.Site;
 
@@ -60,31 +63,31 @@ public class SiteDaoImpl extends AbstractDaoImpl implements SiteDao {
 		}
 		
 		if (!formBean.getMinHeight().isEmpty()) {
-			tempo += LongueurDaoImpl.HEIGHT + " > :minHeight AND ";
+			tempo += LongueurDao.HEIGHT + " > :minHeight AND ";
 			
 			vParams.addValue("minHeight", Integer.parseInt(formBean.getMinHeight()));
 		}
 		
 		if (!formBean.getMaxHeight().isEmpty()) {
-			tempo += LongueurDaoImpl.HEIGHT + " < :maxHeight AND ";
+			tempo += LongueurDao.HEIGHT + " < :maxHeight AND ";
 			
 			vParams.addValue("maxHeight", Integer.parseInt(formBean.getMaxHeight()));
 		}
 		
 		if (!formBean.getMinPointNumber().isEmpty()) {
-			tempo += LongueurDaoImpl.NOMBRE_POINTS + " > :minPointNumber AND ";
+			tempo += LongueurDao.NOMBRE_POINTS + " > :minPointNumber AND ";
 			
 			vParams.addValue("minPointNumber", Integer.parseInt(formBean.getMinPointNumber()));
 		}
 		
 		if (!formBean.getMaxPointNumber().isEmpty()) {
-			tempo += LongueurDaoImpl.NOMBRE_POINTS + " < :maxPointNumber AND ";
+			tempo += LongueurDao.NOMBRE_POINTS + " < :maxPointNumber AND ";
 			
 			vParams.addValue("maxPointNumber", Integer.parseInt(formBean.getMaxPointNumber()));
 		}
 		
 		if (!formBean.getCotation().isEmpty()) {
-			tempo += LongueurDaoImpl.COTATION + " LIKE '" + formBean.getCotation() + "%' ";
+			tempo += LongueurDao.COTATION + " LIKE '" + formBean.getCotation() + "%' ";
 		}
 		
 		
@@ -92,11 +95,11 @@ public class SiteDaoImpl extends AbstractDaoImpl implements SiteDao {
 		if (!tempo.isEmpty()) {
 			tempo = tempo.replaceAll(" AND $", "");
 			
-			vSQL += ID + " = ANY ( SELECT " + SecteurDaoImpl.SITE_ID + " FROM " + SecteurDaoImpl.TABLE_NAME + " WHERE "
-					+ SecteurDaoImpl.ID + " = ANY ( SELECT " + VoieDaoImpl.SECTEUR_ID + " FROM " + VoieDaoImpl.TABLE_NAME
-					+ " WHERE " + VoieDaoImpl.ID + " = ANY ( SELECT " + LongueurDaoImpl.VOIE_ID + " FROM "
-					+ LongueurDaoImpl.TABLE_NAME + " WHERE " + tempo + " GROUP BY " + LongueurDaoImpl.VOIE_ID
-					+ " ) GROUP BY " + VoieDaoImpl.SECTEUR_ID + " ) GROUP BY " + SecteurDaoImpl.SITE_ID + " )";
+			vSQL += ID + " = ANY ( SELECT " + SecteurDao.SITE_ID + " FROM " + SecteurDao.TABLE_NAME + " WHERE "
+					+ SecteurDao.ID + " = ANY ( SELECT " + VoieDao.SECTEUR_ID + " FROM " + VoieDao.TABLE_NAME + " WHERE "
+					+ VoieDao.ID + " = ANY ( SELECT " + LongueurDao.VOIE_ID + " FROM " + LongueurDao.TABLE_NAME + " WHERE "
+					+ tempo + " GROUP BY " + LongueurDao.VOIE_ID + " ) GROUP BY " + VoieDao.SECTEUR_ID + " ) GROUP BY "
+					+ SecteurDao.SITE_ID + " )";
 		}
 		else {
 			vSQL = vSQL.replaceAll("AND $", "");
