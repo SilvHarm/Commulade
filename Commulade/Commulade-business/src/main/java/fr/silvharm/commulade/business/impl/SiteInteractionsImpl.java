@@ -27,7 +27,7 @@ public class SiteInteractionsImpl implements SiteInteractions {
 		// if every properties are empty
 		if ((formBean.getSiteName() + formBean.getMinHeight() + formBean.getMaxHeight() + formBean.getMinPointNumber()
 				+ formBean.getMaxPointNumber() + formBean.getCotation()).isEmpty()) {
-			logger.info("All propertiesof the Form are empty");
+			logger.info("All properties of the Form are empty");
 			
 			return false;
 		}

@@ -1,27 +1,27 @@
 <aside id="searchCriteria">
-	<form action="recherche-site" method="post">
+	<form action="recherche-site" method="post" onsubmit="return validateForm();">
 		<p>
-			<input id="siteName" name="formBean.siteName" type="text" maxlength="48" placeholder="Nom du site..."
+			<input id="siteName" class="observe" name="formBean.siteName" type="text" maxlength="48" placeholder="Nom du site..."
 				value="<s:property value="formBean.siteName" />">
 		</p>
 
 		<p>Hauteur :</p>
 		<p class="inputFormP">
-			<input class="numberInput" name="formBean.minHeight" type="number" min="1" max="99" placeholder="min..."
-				value="<s:property value="formBean.minHeight" />"> - <input class="numberInput" name="formBean.maxHeight" type="number" min="2"
-				max="100" placeholder="max..." value="<s:property value="formBean.maxHeight" />">
+			<input class="numberInput observe" name="formBean.minHeight" type="number" min="1" max="99" placeholder="min..."
+				value="<s:property value="formBean.minHeight" />"> - <input class="numberInput observe" name="formBean.maxHeight" type="number"
+				min="2" max="100" placeholder="max..." value="<s:property value="formBean.maxHeight" />">
 		</p>
 
 		<p>Nombre de points :</p>
 		<p class="inputFormP">
-			<input class="numberInput" name="formBean.minPointNumber" type="number" min="1" max="99" placeholder="min..."
-				value="<s:property value="formBean.minPointNumber" />"> - <input class="numberInput" name="formBean.maxPointNumber"
+			<input class="numberInput observe" name="formBean.minPointNumber" type="number" min="1" max="99" placeholder="min..."
+				value="<s:property value="formBean.minPointNumber" />"> - <input class="numberInput observe" name="formBean.maxPointNumber"
 				type="number" min="2" max="100" placeholder="max..." value="<s:property value="formBean.maxPointNumber" />">
 		</p>
 
 		<p>Cotation :</p>
 		<p class="inputFormP">
-			<input class="numberInput" name="formBean.cotation" type="number" min="3" max="9" placeholder="3-9"
+			<input class="numberInput observe" name="formBean.cotation" type="number" min="3" max="9" placeholder="3-9"
 				value="<s:property value="formBean.cotation" />">
 		</p>
 
