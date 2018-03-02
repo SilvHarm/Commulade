@@ -16,7 +16,7 @@ public class RechercheSiteAction extends ActionSupport {
 	private List<Site> list;
 	private SiteInteractions siteInteractions;
 	private SiteSearchFormBean formBean;
-	private String contentJsp = "recherche-site", css = "recherche-site", js = "recherche-site",
+	private String contentJsp = "recherche-site", css = "recherche-site-topo", js = "recherche-site-topo",
 			title = "Recherche de Site";
 	@SuppressWarnings("unused") // is used by struts in the jsp
 	private String photoPath;

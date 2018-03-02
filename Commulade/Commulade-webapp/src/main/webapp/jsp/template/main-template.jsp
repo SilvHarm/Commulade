@@ -25,9 +25,6 @@
 <s:if test="css!=null">
 	<link rel="stylesheet" type="text/css" href="css/<s:property value="css" />.css" media="screen" />
 </s:if>
-<s:if test="js!=null">
-	<script src="js/<s:property value="js" />.js" async=false></script>
-</s:if>
 </head>
 <body>
 	<s:include value="/jsp/parts/header.jsp"></s:include>
@@ -37,5 +34,10 @@
 	</div>
 
 	<s:include value="/jsp/parts/footer.jsp"></s:include>
+
+	<%-- Script --%>
+	<s:if test="js!=null">
+		<script src="js/<s:property value="js" />.js" async=false></script>
+	</s:if>
 </body>
 </html>

@@ -9,9 +9,14 @@ public class TopoPresentationAction extends ActionSupport {
 	
 	
 	public String execute() {
+		
 		return SUCCESS;
 	}
 	
+	
+	/********************************
+	 * Getters & Setters
+	 *******************************/
 	
 	/**
 	 * @return the contentJsp

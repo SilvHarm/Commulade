@@ -18,6 +18,14 @@ form {
 	width: 18%;
 }
 
+.description {
+	font-size: initial;
+}
+
+.edition {
+	margin-bottom: 0px;
+}
+
 .inputFormP {
 	margin-top: 0px;
 }
