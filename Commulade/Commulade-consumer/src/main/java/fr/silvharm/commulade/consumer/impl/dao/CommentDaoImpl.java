@@ -15,7 +15,7 @@ public class CommentDaoImpl extends AbstractDaoImpl implements CommentDao {
 		
 		MapSqlParameterSource vParams = new MapSqlParameterSource();
 		vParams.addValue("user", comment.getUserId());
-		vParams.addValue("postType", comment.getPostTypeId());
+		vParams.addValue("postType", comment.getPostType());
 		vParams.addValue("postId", comment.getPostId());
 		vParams.addValue("dateTime", comment.getDateTime());
 		vParams.addValue("comment", comment.getComment());
@@ -50,7 +50,7 @@ public class CommentDaoImpl extends AbstractDaoImpl implements CommentDao {
 		
 		MapSqlParameterSource vParams = new MapSqlParameterSource();
 		vParams.addValue("user", comment.getUserId());
-		vParams.addValue("postType", comment.getPostTypeId());
+		vParams.addValue("postType", comment.getPostType());
 		vParams.addValue("postId", comment.getPostId());
 		vParams.addValue("dateTime", comment.getDateTime());
 		vParams.addValue("comment", comment.getComment());
