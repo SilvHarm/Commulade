@@ -16,6 +16,10 @@
 			<result name="success">/jsp/template/main-template.jsp</result>
 		</action>
 
+		<action name="recherche-topo" class="rechercheTopoAction" method="execute">
+			<result name="success">/jsp/template/main-template.jsp</result>
+		</action>
+
 		<action name="topo-presentation" class="fr.silvharm.commulade.webapp.action.TopoPresentationAction" method="execute">
 			<result name="success">/jsp/template/main-template.jsp</result>
 		</action>

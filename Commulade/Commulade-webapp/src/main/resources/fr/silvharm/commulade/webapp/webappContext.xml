@@ -21,4 +21,8 @@
 		<property name="siteInteractions" ref="siteInteractionsImpl"/>
 	</bean>
 
+	<bean id="rechercheTopoAction" class="fr.silvharm.commulade.webapp.action.RechercheTopoAction" scope="prototype">
+		<property name="topoInteractions" ref="topoInteractionsImpl"/>
+	</bean>
+
 </beans>

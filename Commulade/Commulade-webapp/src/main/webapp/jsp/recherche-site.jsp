@@ -34,6 +34,7 @@
 		<s:iterator value="list" var="var">
 			<a class="aMainSite" href="site/<s:property value="id" />">
 				<s:property value="name" />
+
 				<s:if test="#var.photoName != null">
 					<img class="resizeImg" alt="Aucune image disponible" src="<s:property value="%{photoPath}" /><s:property value="photoName" />">
 				</s:if>

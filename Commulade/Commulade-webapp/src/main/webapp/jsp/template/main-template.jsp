@@ -26,10 +26,10 @@
 	<link rel="stylesheet" type="text/css" href="css/<s:property value="css" />.css" media="screen" />
 </s:if>
 </head>
-<body>
+<body class="flexCol noMarPad">
 	<s:include value="/jsp/parts/header.jsp"></s:include>
 
-	<div id="mainContent">
+	<div id="mainContent" class="autoMar">
 		<s:include value="/jsp/%{contentJsp}.jsp"></s:include>
 	</div>
 

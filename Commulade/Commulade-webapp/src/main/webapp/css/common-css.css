@@ -3,14 +3,10 @@ html, body {
 }
 
 body {
-	background-color: black;
+	background-color: #222;
 	color: silver;
-	display: flex;
-	flex-direction: column;
 	font-family: andalus;
-	margin: 0;
 	min-width: 720px;
-	padding: 0;
 }
 
 /*
@@ -21,7 +17,6 @@ Template
 #mainContent {
 	display: flex;
 	flex: 1 0 auto;
-	margin: auto;
 	width: 90%;
 }
 
@@ -72,15 +67,29 @@ footer hr {
 
 /*
 =====================
-Common
+Common classes
 =====================
 */
 .autoMar {
 	margin: auto;
 }
 
+.flexCol {
+	display: flex;
+	flex-direction: column;
+}
+
 .noMar {
 	margin: 0px;
+}
+
+.noPad {
+	padding: 0;
+}
+
+.noMarPad {
+	margin: 0px;
+	padding: 0;
 }
 
 .resizeImg {
