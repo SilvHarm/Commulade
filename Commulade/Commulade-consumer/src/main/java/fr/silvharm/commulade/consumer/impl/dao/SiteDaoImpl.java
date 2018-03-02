@@ -50,6 +50,21 @@ public class SiteDaoImpl extends AbstractDaoImpl implements SiteDao {
 	}
 	
 	
+	public List<Site> findByListId(List<Integer> list) {
+		String vSQL = "SELECT * FROM " + TABLE_NAME + " WHERE " + ID + " = " + list.get(0);
+		
+		list.remove(0);
+		
+		for (Integer i : list) {
+			vSQL += " OR " + ID + " = " + i;
+		}
+		
+		vSQL += ";";
+		
+		return jdbcTemplate.query(vSQL, new BeanPropertyRowMapper<Site>(Site.class));
+	}
+	
+	
 	public List<Site> findBySearch(SiteSearchFormBean formBean) {
 		String vSQL = "SELECT * FROM " + TABLE_NAME + " WHERE ";
 		String tempo = "";

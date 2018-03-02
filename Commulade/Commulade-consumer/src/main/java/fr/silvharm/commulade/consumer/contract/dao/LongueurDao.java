@@ -1,5 +1,7 @@
 package fr.silvharm.commulade.consumer.contract.dao;
 
+import java.util.List;
+
 import fr.silvharm.commulade.model.pojo.Longueur;
 
 public interface LongueurDao {
@@ -33,6 +35,16 @@ public interface LongueurDao {
 	 * @return the Longueur associated to the id provided
 	 */
 	public Longueur findById(int id);
+	
+	
+	/**
+	 * Get from the database all the Longueur whom the id are equals to the ones
+	 * provided
+	 * 
+	 * @param list
+	 * @return the List of Longueur associated to the ids provided
+	 */
+	public List<Longueur> findByListVoieId(List<Integer> list);
 	
 	
 	/**

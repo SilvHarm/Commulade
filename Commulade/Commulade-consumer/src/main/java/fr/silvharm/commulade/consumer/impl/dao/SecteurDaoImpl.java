@@ -1,10 +1,13 @@
 package fr.silvharm.commulade.consumer.impl.dao;
 
+import java.util.List;
+
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 
 import fr.silvharm.commulade.consumer.contract.dao.SecteurDao;
 import fr.silvharm.commulade.model.pojo.Secteur;
+import fr.silvharm.commulade.model.pojo.Site;
 
 
 public class SecteurDaoImpl extends AbstractDaoImpl implements SecteurDao {
@@ -39,6 +42,21 @@ public class SecteurDaoImpl extends AbstractDaoImpl implements SecteurDao {
 		vParams.addValue("id", id);
 		
 		return namedJdbcTemplate.queryForObject(vSQL, vParams, new BeanPropertyRowMapper<Secteur>(Secteur.class));
+	}
+	
+	
+	public List<Secteur> findByListSiteId(List<Integer> list) {
+		String vSQL = "SELECT * FROM " + TABLE_NAME + " WHERE " + SITE_ID + " = " + list.get(0);
+		
+		list.remove(0);
+		
+		for (Integer i : list) {
+			vSQL += " OR " + SITE_ID + " = " + i;
+		}
+		
+		vSQL += ";";
+		
+		return jdbcTemplate.query(vSQL, new BeanPropertyRowMapper<Secteur>(Secteur.class));
 	}
 	
 	

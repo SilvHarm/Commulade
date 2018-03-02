@@ -3,6 +3,7 @@ package fr.silvharm.commulade.consumer.contract.dao;
 import java.util.List;
 
 import fr.silvharm.commulade.model.bean.SiteSearchFormBean;
+import fr.silvharm.commulade.model.pojo.Secteur;
 import fr.silvharm.commulade.model.pojo.Site;
 
 public interface SiteDao {
@@ -36,6 +37,16 @@ public interface SiteDao {
 	 * @return the Site associated to the id provided
 	 */
 	public Site findById(int id);
+	
+	
+	/**
+	 * Get from the database all the Site whom the id are equals to the ones
+	 * provided
+	 * 
+	 * @param list
+	 * @return a List of Site associated to the ids provided
+	 */
+	public List<Site> findByListId(List<Integer> list);
 	
 	
 	/**

@@ -1,9 +1,12 @@
 package fr.silvharm.commulade.consumer.impl.dao;
 
+import java.util.List;
+
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 
 import fr.silvharm.commulade.consumer.contract.dao.VoieDao;
+import fr.silvharm.commulade.model.pojo.Site;
 import fr.silvharm.commulade.model.pojo.Voie;
 
 
@@ -38,6 +41,21 @@ public class VoieDaoImpl extends AbstractDaoImpl implements VoieDao {
 		vParams.addValue("id", id);
 		
 		return namedJdbcTemplate.queryForObject(vSQL, vParams, new BeanPropertyRowMapper<Voie>(Voie.class));
+	}
+	
+	
+	public List<Voie> findByListSecteurId(List<Integer> list) {
+		String vSQL = "SELECT * FROM " + TABLE_NAME + " WHERE " + SECTEUR_ID + " = " + list.get(0);
+		
+		list.remove(0);
+		
+		for (Integer i : list) {
+			vSQL += " OR " + SECTEUR_ID + " = " + i;
+		}
+		
+		vSQL += ";";
+		
+		return jdbcTemplate.query(vSQL, new BeanPropertyRowMapper<Voie>(Voie.class));
 	}
 	
 	

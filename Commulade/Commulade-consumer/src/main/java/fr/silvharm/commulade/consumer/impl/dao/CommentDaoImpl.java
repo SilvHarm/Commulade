@@ -45,8 +45,8 @@ public class CommentDaoImpl extends AbstractDaoImpl implements CommentDao {
 	
 	
 	public void update(Comment comment) {
-		String vSQL = "UPDATE " + TABLE_NAME + " SET " + USER_ID + " = :user, " + POST_TYPE + " = :postType, "
-				+ POST_ID + " = :postId, " + DATE_TIME + " = :dateTime, " + COMMENT + " = :comment WHERE " + ID + " = :id;";
+		String vSQL = "UPDATE " + TABLE_NAME + " SET " + USER_ID + " = :user, " + POST_TYPE + " = :postType, " + POST_ID
+				+ " = :postId, " + DATE_TIME + " = :dateTime, " + COMMENT + " = :comment WHERE " + ID + " = :id;";
 		
 		MapSqlParameterSource vParams = new MapSqlParameterSource();
 		vParams.addValue("user", comment.getUserId());
