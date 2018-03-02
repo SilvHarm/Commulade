@@ -1,9 +1,11 @@
 package fr.silvharm.commulade.model.pojo;
 
+import java.util.List;
 
 public class Voie {
 	
 	private Integer id, secteurId;
+	private List<Longueur> listLongueur;
 	private String name;
 	
 	
@@ -15,11 +17,13 @@ public class Voie {
 	 * @param id
 	 * @param name
 	 * @param secteurId
+	 * @param listLongueur
 	 */
-	public Voie(Integer id, String name, Integer secteurId) {
+	public Voie(Integer id, String name, Integer secteurId, List<Longueur> listLongueur) {
 		this.id = id;
 		this.name = name;
 		this.secteurId = secteurId;
+		this.listLongueur = listLongueur;
 	}
 	
 	
@@ -54,6 +58,23 @@ public class Voie {
 	 */
 	public void setSecteurId(Integer secteurId) {
 		this.secteurId = secteurId;
+	}
+	
+	
+	/**
+	 * @return the listLongueur
+	 */
+	public List<Longueur> getListLongueur() {
+		return listLongueur;
+	}
+	
+	
+	/**
+	 * @param listLongueur
+	 *           the listLongueur to set
+	 */
+	public void setListLongueur(List<Longueur> listLongueur) {
+		this.listLongueur = listLongueur;
 	}
 	
 	
