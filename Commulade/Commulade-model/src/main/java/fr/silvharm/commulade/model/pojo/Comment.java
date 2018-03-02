@@ -4,7 +4,7 @@ import java.time.LocalDateTime;
 
 public class Comment {
 	
-	private Integer id, postId, postTypeId, userId;
+	private Integer id, postId, postType, userId;
 	private LocalDateTime dateTime;
 	private String comment;
 	
@@ -16,16 +16,16 @@ public class Comment {
 	/**
 	 * @param id
 	 * @param userId
-	 * @param postTypeId
+	 * @param postType
 	 * @param postId
 	 * @param dateTime
 	 * @param comment
 	 */
-	public Comment(Integer id, Integer userId, Integer postTypeId, Integer postId, LocalDateTime dateTime,
+	public Comment(Integer id, Integer userId, Integer postType, Integer postId, LocalDateTime dateTime,
 			String comment) {
 		this.id = id;
 		this.userId = userId;
-		this.postTypeId = postTypeId;
+		this.postType = postType;
 		this.postId = postId;
 		this.dateTime = dateTime;
 		this.comment = comment;
@@ -67,19 +67,19 @@ public class Comment {
 	
 	
 	/**
-	 * @return the postTypeId
+	 * @return the postType
 	 */
-	public Integer getPostTypeId() {
-		return postTypeId;
+	public Integer getPostType() {
+		return postType;
 	}
 	
 	
 	/**
-	 * @param postTypeId
-	 *           the postTypeId to set
+	 * @param postType
+	 *           the postType to set
 	 */
-	public void setPostTypeId(Integer postTypeId) {
-		this.postTypeId = postTypeId;
+	public void setPostType(Integer postType) {
+		this.postType = postType;
 	}
 	
 	

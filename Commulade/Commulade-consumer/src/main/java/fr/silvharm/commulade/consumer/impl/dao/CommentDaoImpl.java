@@ -10,7 +10,7 @@ import fr.silvharm.commulade.model.pojo.Comment;
 public class CommentDaoImpl extends AbstractDaoImpl implements CommentDao {
 	
 	public void create(Comment comment) {
-		String vSQL = "INSERT INTO " + TABLE_NAME + " (" + USER_ID + "," + POST_TYPE_ID + "," + POST_ID + "," + DATE_TIME
+		String vSQL = "INSERT INTO " + TABLE_NAME + " (" + USER_ID + "," + POST_TYPE + "," + POST_ID + "," + DATE_TIME
 				+ "," + COMMENT + ")" + " VALUES ( :user, :postType, :postId, :dateTime, :comment );";
 		
 		MapSqlParameterSource vParams = new MapSqlParameterSource();
@@ -45,7 +45,7 @@ public class CommentDaoImpl extends AbstractDaoImpl implements CommentDao {
 	
 	
 	public void update(Comment comment) {
-		String vSQL = "UPDATE " + TABLE_NAME + " SET " + USER_ID + " = :user, " + POST_TYPE_ID + " = :postType, "
+		String vSQL = "UPDATE " + TABLE_NAME + " SET " + USER_ID + " = :user, " + POST_TYPE + " = :postType, "
 				+ POST_ID + " = :postId, " + DATE_TIME + " = :dateTime, " + COMMENT + " = :comment WHERE " + ID + " = :id;";
 		
 		MapSqlParameterSource vParams = new MapSqlParameterSource();

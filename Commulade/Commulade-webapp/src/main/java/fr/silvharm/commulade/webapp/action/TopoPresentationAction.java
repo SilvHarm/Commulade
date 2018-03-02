@@ -5,7 +5,7 @@ import com.opensymphony.xwork2.ActionSupport;
 
 public class TopoPresentationAction extends ActionSupport {
 	
-	private String contentJsp = "topo-presentation", css = null, js = null, title = "Topos";
+	private String contentJsp = "topo-presentation", css = null, js = null, title = "Présenter un Topo";
 	
 	
 	public String execute() {

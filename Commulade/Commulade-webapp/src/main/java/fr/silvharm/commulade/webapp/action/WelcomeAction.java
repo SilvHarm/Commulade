@@ -13,6 +13,10 @@ public class WelcomeAction extends ActionSupport {
 	}
 	
 	
+	/********************************
+	 * Getters & Setters
+	 *******************************/
+	
 	/**
 	 * @return the contentJsp
 	 */
