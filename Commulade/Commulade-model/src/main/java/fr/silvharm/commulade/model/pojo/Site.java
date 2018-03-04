@@ -37,6 +37,20 @@ public class Site {
 	
 	
 	/**
+	 * Add the Secteur provided to listSecteur
+	 * 
+	 * @param item
+	 */
+	public void addItemToList(Secteur item) {
+		listSecteur.add(item);
+	}
+	
+	
+	/********************************
+	 * Getters & Setters
+	 *******************************/
+	
+	/**
 	 * @return the id
 	 */
 	public Integer getId() {

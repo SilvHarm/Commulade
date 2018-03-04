@@ -30,6 +30,20 @@ public class Secteur {
 	
 	
 	/**
+	 * Add the Voie provided to listVoie
+	 * 
+	 * @param item
+	 */
+	public void addItemToList(Voie item) {
+		listVoie.add(item);
+	}
+	
+	
+	/********************************
+	 * Getters & Setters
+	 *******************************/
+	
+	/**
 	 * @return the id
 	 */
 	public Integer getId() {

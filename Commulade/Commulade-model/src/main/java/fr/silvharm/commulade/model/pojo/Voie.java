@@ -28,6 +28,20 @@ public class Voie {
 	
 	
 	/**
+	 * Add the Longueur provided to listLongueur
+	 * 
+	 * @param item
+	 */
+	public void addItemToList(Longueur item) {
+		listLongueur.add(item);
+	}
+	
+	
+	/********************************
+	 * Getters & Setters
+	 *******************************/
+	
+	/**
 	 * @return the id
 	 */
 	public Integer getId() {

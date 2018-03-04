@@ -32,6 +32,20 @@ public class Topo {
 	
 	
 	/**
+	 * Add the Site provided to listSite
+	 * 
+	 * @param item
+	 */
+	public void addItemToList(Site item) {
+		listSite.add(item);
+	}
+	
+	
+	/********************************
+	 * Getters & Setters
+	 *******************************/
+	
+	/**
 	 * @return the id
 	 */
 	public Integer getId() {
