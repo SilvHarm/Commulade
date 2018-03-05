@@ -25,4 +25,9 @@
 		<property name="topoInteractions" ref="topoInteractionsImpl"/>
 	</bean>
 
+	<bean id="viewSiteAction" class="fr.silvharm.commulade.webapp.action.ViewSiteAction">
+		<property name="configContainer" ref="configContainer"/>
+		<property name="siteInteractions" ref="siteInteractionsImpl"/>
+	</bean>
+
 </beans>

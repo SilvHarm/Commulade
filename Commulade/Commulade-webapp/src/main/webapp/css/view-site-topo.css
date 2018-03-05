@@ -1,0 +1,36 @@
+.imgBord {
+	border: 1px solid silver;
+	border-radius: 1%;
+}
+
+.divSeek {
+	margin-bottom: 5px;
+	overflow: hidden;
+}
+
+.divImgSecteur {
+	text-align: center;
+	width: 20%;
+}
+
+.infDiv {
+	margin: 0px auto;
+}
+
+.infoTitle {
+	font-size: 120%;
+	text-decoration: underline;
+}
+
+.hSecObserver, .hVoieObserver {
+	cursor: pointer;
+	margin-top: 0px;
+}
+
+.spanLong {
+	margin-right: 30px;
+}
+
+#siteInfos {
+	width: 80%;
+}

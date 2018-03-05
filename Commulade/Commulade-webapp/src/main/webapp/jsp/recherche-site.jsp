@@ -25,7 +25,7 @@
 				value="<s:property value="formBean.cotation" />">
 		</p>
 
-		<button id="searchButton">Rechercher</button>
+		<button id="searchButton" class="hundWid">Rechercher</button>
 	</form>
 </aside>
 
