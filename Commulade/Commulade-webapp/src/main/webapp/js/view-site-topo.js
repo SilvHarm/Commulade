@@ -23,6 +23,7 @@ $('.hVoieObserver').click(function() {
  * Functions
  */
 function adaptHeight() {
+	$('.col-3').css('height', $('.col-3').css('width'));
 	$('.imgSecObs').css('height', $('body').width() * 0.15);
 }
 
