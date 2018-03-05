@@ -3,7 +3,6 @@ package fr.silvharm.commulade.consumer.contract.dao;
 import java.util.List;
 
 import fr.silvharm.commulade.model.bean.SiteSearchFormBean;
-import fr.silvharm.commulade.model.pojo.Secteur;
 import fr.silvharm.commulade.model.pojo.Site;
 
 public interface SiteDao {

@@ -7,7 +7,6 @@ import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 
 import fr.silvharm.commulade.consumer.contract.dao.SecteurDao;
 import fr.silvharm.commulade.model.pojo.Secteur;
-import fr.silvharm.commulade.model.pojo.Site;
 
 
 public class SecteurDaoImpl extends AbstractDaoImpl implements SecteurDao {

@@ -2,7 +2,6 @@ package fr.silvharm.commulade.consumer.contract.dao;
 
 import java.util.List;
 
-import fr.silvharm.commulade.model.pojo.Secteur;
 import fr.silvharm.commulade.model.pojo.Voie;
 
 public interface VoieDao {

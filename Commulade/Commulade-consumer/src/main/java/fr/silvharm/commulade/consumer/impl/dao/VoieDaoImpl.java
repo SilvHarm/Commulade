@@ -6,7 +6,6 @@ import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 
 import fr.silvharm.commulade.consumer.contract.dao.VoieDao;
-import fr.silvharm.commulade.model.pojo.Site;
 import fr.silvharm.commulade.model.pojo.Voie;
 
 

@@ -21,7 +21,8 @@ public interface SiteInteractions {
 	 * Site in the database whom the id is equal to the ones provided in the List
 	 * 
 	 * @param list
-	 * @return a List of Site whom the id are equal to ones provided
+	 * @return a List of Site whom the id are equal to the ones provided or null if
+	 *         none of them exist
 	 */
 	public List<Site> getListSite(List<Integer> list);
 	
@@ -42,7 +43,8 @@ public interface SiteInteractions {
 	 * database whom the id is equal to the one provided
 	 * 
 	 * @param id
-	 * @return a Site whom the id is equal to the one provided
+	 * @return a Site whom the id is equal to the one provided or null if it doesn't
+	 *         exist
 	 */
 	public Site getSite(int id);
 	

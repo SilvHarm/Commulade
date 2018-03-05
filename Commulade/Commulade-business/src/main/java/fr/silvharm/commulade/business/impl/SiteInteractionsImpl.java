@@ -116,34 +116,34 @@ public class SiteInteractionsImpl implements SiteInteractions {
 	
 	public List<Site> getListSite(List<Integer> list) {
 		List<Site> siteList = siteDao.findByListId(list);
-		
 		logger.info("siteList size: " + siteList.size());
 		
+		if (siteList.size() == 0) {
+			return null;
+		}
 		
-		List<Secteur> secteurList = new ArrayList<Secteur>();
+		
 		for (Site site : siteList) {
 			list.add(site.getId());
 		}
-		secteurList = secteurDao.findByListSiteId(list);
 		
+		List<Secteur> secteurList = secteurDao.findByListSiteId(list);
 		logger.info("secteurList size: " + secteurList.size());
 		
 		
-		List<Voie> voieList = new ArrayList<Voie>();
 		for (Secteur secteur : secteurList) {
 			list.add(secteur.getId());
 		}
-		voieList = voieDao.findByListSecteurId(list);
 		
+		List<Voie> voieList = voieDao.findByListSecteurId(list);
 		logger.info("voieList size: " + voieList.size());
 		
 		
-		List<Longueur> longueurList = new ArrayList<Longueur>();
 		for (Voie voie : voieList) {
 			list.add(voie.getId());
 		}
-		longueurList = longueurDao.findByListVoieId(list);
 		
+		List<Longueur> longueurList = longueurDao.findByListVoieId(list);
 		logger.info("longueurList size: " + longueurList.size());
 		
 		
@@ -162,10 +162,15 @@ public class SiteInteractionsImpl implements SiteInteractions {
 	
 	public Site getSite(int id) {
 		List<Integer> list = new ArrayList<Integer>();
-		
 		list.add(id);
 		
-		return getListSite(list).get(0);
+		List<Site> siteList = getListSite(list);
+		
+		if (siteList == null) {
+			return null;
+		}
+		
+		return siteList.get(0);
 	}
 	
 	

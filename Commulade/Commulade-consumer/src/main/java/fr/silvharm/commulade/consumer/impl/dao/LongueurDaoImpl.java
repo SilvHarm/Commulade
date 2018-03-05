@@ -7,7 +7,6 @@ import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 
 import fr.silvharm.commulade.consumer.contract.dao.LongueurDao;
 import fr.silvharm.commulade.model.pojo.Longueur;
-import fr.silvharm.commulade.model.pojo.Site;
 
 
 public class LongueurDaoImpl extends AbstractDaoImpl implements LongueurDao {
