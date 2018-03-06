@@ -28,6 +28,48 @@ public class SiteInteractionsImpl implements SiteInteractions {
 	
 	
 	/**
+	 * Take all the Site from the List and complete them by requesting all their
+	 * childs from the consumer module before letting the method mergeInListSite
+	 * fused them together
+	 * 
+	 * @param siteList
+	 * @return the List whom all the Site have seen their List filled
+	 */
+	private List<Site> completeSiteFromList(List<Site> siteList) {
+		logger.info("siteList size: " + siteList.size());
+		
+		List<Integer> list = new ArrayList<Integer>();
+		
+		
+		for (Site site : siteList) {
+			list.add(site.getId());
+		}
+		
+		List<Secteur> secteurList = secteurDao.findByListSiteId(list);
+		logger.info("secteurList size: " + secteurList.size());
+		
+		
+		for (Secteur secteur : secteurList) {
+			list.add(secteur.getId());
+		}
+		
+		List<Voie> voieList = voieDao.findByListSecteurId(list);
+		logger.info("voieList size: " + voieList.size());
+		
+		
+		for (Voie voie : voieList) {
+			list.add(voie.getId());
+		}
+		
+		List<Longueur> longueurList = longueurDao.findByListVoieId(list);
+		logger.info("longueurList size: " + longueurList.size());
+		
+		
+		return mergeInListSite(siteList, secteurList, voieList, longueurList);
+	}
+	
+	
+	/**
 	 * Verify if the form properties have the format expected, if not it's set them
 	 * to "" or just return null
 	 * 
@@ -114,40 +156,27 @@ public class SiteInteractionsImpl implements SiteInteractions {
 	}
 	
 	
-	public List<Site> getListSite(List<Integer> list) {
+	public List<Site> getListSiteByIdList(List<Integer> list) {
 		List<Site> siteList = siteDao.findByListId(list);
-		logger.info("siteList size: " + siteList.size());
+		
+		logger.info(siteList.size());
 		
 		if (siteList.size() == 0) {
 			return null;
 		}
 		
+		return completeSiteFromList(siteList);
+	}
+	
+	
+	public List<Site> getListSiteByTopoId(int topoId) {
+		List<Site> siteList = siteDao.getSiteListByTopoId(topoId);
 		
-		for (Site site : siteList) {
-			list.add(site.getId());
+		if (siteList.size() == 0) {
+			return null;
 		}
 		
-		List<Secteur> secteurList = secteurDao.findByListSiteId(list);
-		logger.info("secteurList size: " + secteurList.size());
-		
-		
-		for (Secteur secteur : secteurList) {
-			list.add(secteur.getId());
-		}
-		
-		List<Voie> voieList = voieDao.findByListSecteurId(list);
-		logger.info("voieList size: " + voieList.size());
-		
-		
-		for (Voie voie : voieList) {
-			list.add(voie.getId());
-		}
-		
-		List<Longueur> longueurList = longueurDao.findByListVoieId(list);
-		logger.info("longueurList size: " + longueurList.size());
-		
-		
-		return mergeInListSite(siteList, secteurList, voieList, longueurList);
+		return completeSiteFromList(siteList);
 	}
 	
 	
@@ -160,11 +189,11 @@ public class SiteInteractionsImpl implements SiteInteractions {
 	}
 	
 	
-	public Site getSite(int id) {
+	public Site getSiteById(int id) {
 		List<Integer> list = new ArrayList<Integer>();
 		list.add(id);
 		
-		List<Site> siteList = getListSite(list);
+		List<Site> siteList = getListSiteByIdList(list);
 		
 		if (siteList == null) {
 			return null;

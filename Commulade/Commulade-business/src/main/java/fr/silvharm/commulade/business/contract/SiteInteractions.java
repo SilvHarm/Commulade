@@ -24,7 +24,18 @@ public interface SiteInteractions {
 	 * @return a List of Site whom the id are equal to the ones provided or null if
 	 *         none of them exist
 	 */
-	public List<Site> getListSite(List<Integer> list);
+	public List<Site> getListSiteByIdList(List<Integer> list);
+	
+	
+	/**
+	 * Call the appropriate method in the consumer module to get a List of the all
+	 * Site in the database who are associated to the Topo id provided
+	 * 
+	 * @param topoId
+	 * @return a List of Site who are associated to the Topo's id provided or null
+	 *         if none of them exist
+	 */
+	public List<Site> getListSiteByTopoId(int topoId);
 	
 	
 	/**
@@ -46,6 +57,6 @@ public interface SiteInteractions {
 	 * @return a Site whom the id is equal to the one provided or null if it doesn't
 	 *         exist
 	 */
-	public Site getSite(int id);
+	public Site getSiteById(int id);
 	
 }

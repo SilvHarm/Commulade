@@ -66,6 +66,17 @@ public interface SiteDao {
 	
 	
 	/**
+	 * Get all the Site who are associated to the Topo whom the id have been
+	 * provided
+	 * 
+	 * @param topoId
+	 * @return a List containing all the Site associated to the Topo id provided or
+	 *         null if none exist
+	 */
+	public List<Site> getSiteListByTopoId(int topoId);
+	
+	
+	/**
 	 * Update the properties of the Site from the database, whom the id is equal to
 	 * the id of the Site provided, by the ones of the Site provided
 	 * 

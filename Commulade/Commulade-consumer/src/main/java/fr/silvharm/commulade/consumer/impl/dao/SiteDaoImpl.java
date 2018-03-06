@@ -8,6 +8,7 @@ import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import fr.silvharm.commulade.consumer.contract.dao.LongueurDao;
 import fr.silvharm.commulade.consumer.contract.dao.SecteurDao;
 import fr.silvharm.commulade.consumer.contract.dao.SiteDao;
+import fr.silvharm.commulade.consumer.contract.dao.SiteTopoDao;
 import fr.silvharm.commulade.consumer.contract.dao.VoieDao;
 import fr.silvharm.commulade.model.bean.SiteSearchFormBean;
 import fr.silvharm.commulade.model.pojo.Site;
@@ -131,6 +132,17 @@ public class SiteDaoImpl extends AbstractDaoImpl implements SiteDao {
 		String vSQL = "SELECT * FROM " + TABLE_NAME + ";";
 		
 		return jdbcTemplate.query(vSQL, new BeanPropertyRowMapper<Site>(Site.class));
+	}
+	
+	
+	public List<Site> getSiteListByTopoId(int topoId) {
+		String vSQL = "SELECT * FROM " + TABLE_NAME + " WHERE " + ID + " = ANY (SELECT (" + SiteTopoDao.SITE_ID
+				+ ") FROM " + SiteTopoDao.TABLE_NAME + " WHERE " + SiteTopoDao.TOPO_ID + " = :topoId);";
+		
+		MapSqlParameterSource vParams = new MapSqlParameterSource();
+		vParams.addValue("topoId", topoId);
+		
+		return namedJdbcTemplate.query(vSQL, vParams, new BeanPropertyRowMapper<Site>(Site.class));
 	}
 	
 	

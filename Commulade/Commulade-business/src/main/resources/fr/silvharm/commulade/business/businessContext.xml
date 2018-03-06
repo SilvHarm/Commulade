@@ -12,6 +12,7 @@
 	</bean>
 
 	<bean id="topoInteractionsImpl" class="fr.silvharm.commulade.business.impl.TopoInteractionsImpl">
+		<property name="siteInteractions" ref="siteInteractionsImpl"/>
 		<property name="topoDao" ref="topoDaoImpl"/>
 	</bean>
 
