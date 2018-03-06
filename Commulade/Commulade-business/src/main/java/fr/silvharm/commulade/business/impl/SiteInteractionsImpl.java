@@ -159,8 +159,6 @@ public class SiteInteractionsImpl implements SiteInteractions {
 	public List<Site> getListSiteByIdList(List<Integer> list) {
 		List<Site> siteList = siteDao.findByListId(list);
 		
-		logger.info(siteList.size());
-		
 		if (siteList.size() == 0) {
 			return null;
 		}

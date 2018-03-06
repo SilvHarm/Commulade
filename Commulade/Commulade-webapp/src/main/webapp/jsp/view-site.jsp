@@ -1,11 +1,15 @@
 <s:if test="site != null">
+	<s:set var="site" value="site" />
+</s:if>
+
+<s:if test="#site != null">
 	<div class="flexCol hundWid">
 		<div id="siteInfos" class="row centText infDiv">
 
-			<s:if test="site.photoName != null">
+			<s:if test="#site.photoName != null">
 				<div class="col-3 flexCol">
 					<img class="imgBord resizeImg" alt="Image introuvable"
-						src="<s:property value="%{sitePhotoPath}" /><s:property value="site.photoName" />">
+						src="<s:property value="%{sitePhotoPath}" /><s:property value="#site.photoName" />">
 				</div>
 			</s:if>
 			<s:else>
@@ -16,28 +20,28 @@
 
 			<div class="col-9">
 				<h1 class="noMar">
-					<s:property value="site.name" />
+					<s:property value="#site.name" />
 				</h1>
 
 				<p class="infoTitle">Date à partir de laquelle ces informations sont (censées être) correctes :</p>
 				<p>
-					<s:property value="site.date" />
+					<s:property value="#site.date" />
 				</p>
 
 				<p class="infoTitle">Emplacement :</p>
 				<p>
-					<s:property value="site.place" />
+					<s:property value="#site.place" />
 				</p>
 
 				<p class="infoTitle">Indications chemin :</p>
 				<p>
-					<s:property value="site.pathIndication" />
+					<s:property value="#site.pathIndication" />
 				</p>
 			</div>
 		</div>
 
 
-		<s:iterator value="site.listSecteur" var="var">
+		<s:iterator value="#site.listSecteur" var="var">
 			<hr class="hundWid">
 
 			<div class="centText divSeek">
