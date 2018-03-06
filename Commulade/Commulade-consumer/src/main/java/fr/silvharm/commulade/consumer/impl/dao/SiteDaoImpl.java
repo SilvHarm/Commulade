@@ -1,5 +1,6 @@
 package fr.silvharm.commulade.consumer.impl.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
@@ -16,18 +17,26 @@ import fr.silvharm.commulade.model.pojo.Site;
 
 public class SiteDaoImpl extends AbstractDaoImpl implements SiteDao {
 	
-	public void create(Site site) {
+	public int create(Site site) {
+		List<Site> list = new ArrayList<Site>();
+		list.add(site);
+		
+		return createList(list).get(0);
+	}
+	
+	
+	public List<Integer> createList(List<Site> siteList) {
 		String vSQL = "INSERT INTO " + TABLE_NAME + " (" + NAME + "," + DATE + "," + PHOTO_NAME + "," + PLACE + ","
-				+ PATH_INDICATION + ")" + " VALUES ( :name, :date, :photoName, :place, :pathIndication );";
+				+ PATH_INDICATION + ") VALUES ";
 		
-		MapSqlParameterSource vParams = new MapSqlParameterSource();
-		vParams.addValue("name", site.getName());
-		vParams.addValue("date", site.getDate());
-		vParams.addValue("photoName", site.getPhotoName());
-		vParams.addValue("place", site.getPlace());
-		vParams.addValue("pathIndication", site.getPathIndication());
+		for (Site site : siteList) {
+			vSQL += "('" + site.getName() + "','" + site.getDate() + "','" + site.getPhotoName() + "','" + site.getPlace()
+					+ "','" + site.getPathIndication() + "'),";
+		}
 		
-		namedJdbcTemplate.update(vSQL, vParams);
+		vSQL = vSQL.replaceAll(",$", ";");
+		
+		return jdbcTemplate.query(vSQL, new BeanPropertyRowMapper<Integer>(Integer.class));
 	}
 	
 	

@@ -15,8 +15,18 @@ public interface SecteurDao {
 	 * Insert the provided Secteur in the database
 	 * 
 	 * @param secteur
+	 * @return the id of the Secteur that was inserted
 	 */
-	public void create(Secteur secteur);
+	public int create(Secteur secteur);
+	
+	
+	/**
+	 * Insert the provided List of Secteur in the database
+	 * 
+	 * @param secteurList
+	 * @return a List containing the id of the Secteur that were inserted
+	 */
+	public List<Integer> createList(List<Secteur> secteurList);
 	
 	
 	/**

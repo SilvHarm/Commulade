@@ -1,5 +1,6 @@
 package fr.silvharm.commulade.consumer.impl.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
@@ -11,16 +12,24 @@ import fr.silvharm.commulade.model.pojo.Secteur;
 
 public class SecteurDaoImpl extends AbstractDaoImpl implements SecteurDao {
 	
-	public void create(Secteur secteur) {
-		String vSQL = "INSERT INTO " + TABLE_NAME + " (" + NAME + "," + SITE_ID + "," + PHOTO_NAME + ")"
-				+ " VALUES ( :name, :siteId, :photoName );";
+	public int create(Secteur secteur) {
+		List<Secteur> list = new ArrayList<Secteur>();
+		list.add(secteur);
 		
-		MapSqlParameterSource vParams = new MapSqlParameterSource();
-		vParams.addValue("name", secteur.getName());
-		vParams.addValue("siteId", secteur.getSiteId());
-		vParams.addValue("photoName", secteur.getPhotoName());
+		return createList(list).get(0);
+	}
+	
+	
+	public List<Integer> createList(List<Secteur> secteurList) {
+		String vSQL = "INSERT INTO " + TABLE_NAME + " (" + NAME + "," + SITE_ID + "," + PHOTO_NAME + ") VALUES ";
 		
-		namedJdbcTemplate.update(vSQL, vParams);
+		for (Secteur secteur : secteurList) {
+			vSQL += "('" + secteur.getName() + "'," + secteur.getSiteId() + ",'" + secteur.getPhotoName() + "'),";
+		}
+		
+		vSQL = vSQL.replaceAll(",$", ";");
+		
+		return jdbcTemplate.query(vSQL, new BeanPropertyRowMapper<Integer>(Integer.class));
 	}
 	
 	

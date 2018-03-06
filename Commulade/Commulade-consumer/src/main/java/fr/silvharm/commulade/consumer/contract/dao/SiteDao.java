@@ -17,8 +17,18 @@ public interface SiteDao {
 	 * Insert the provided Site in the database
 	 * 
 	 * @param site
+	 * @return the id of the Site that was inserted
 	 */
-	public void create(Site site);
+	public int create(Site site);
+	
+	
+	/**
+	 * Insert the provided List of Site in the database
+	 * 
+	 * @param siteList
+	 * @return a List containing the id of the Site that were inserted
+	 */
+	public List<Integer> createList(List<Site> siteList);
 	
 	
 	/**

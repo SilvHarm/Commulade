@@ -1,5 +1,6 @@
 package fr.silvharm.commulade.consumer.impl.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
@@ -17,16 +18,24 @@ public class TopoDaoImpl extends AbstractDaoImpl implements TopoDao {
 	private static final Logger logger = LogManager.getLogger();
 	
 	
-	public void create(Topo topo) {
-		String vSQL = "INSERT INTO " + TABLE_NAME + " (" + NAME + "," + EDITION_DATE + "," + DESCRIPTION + ")"
-				+ " VALUES ( :name, :editionDate, :description );";
+	public int create(Topo topo) {
+		List<Topo> list = new ArrayList<Topo>();
+		list.add(topo);
 		
-		MapSqlParameterSource vParams = new MapSqlParameterSource();
-		vParams.addValue("name", topo.getName());
-		vParams.addValue("editionDate", topo.getEditionDate());
-		vParams.addValue("description", topo.getDescription());
+		return createList(list).get(0);
+	}
+	
+	
+	public List<Integer> createList(List<Topo> topoList) {
+		String vSQL = "INSERT INTO " + TABLE_NAME + " (" + NAME + "," + EDITION_DATE + "," + DESCRIPTION + ") VALUES ";
 		
-		namedJdbcTemplate.update(vSQL, vParams);
+		for (Topo topo : topoList) {
+			vSQL += "('" + topo.getName() + "','" + topo.getEditionDate() + "','" + topo.getDescription() + "'),";
+		}
+		
+		vSQL = vSQL.replaceAll(",$", ";");
+		
+		return jdbcTemplate.query(vSQL, new BeanPropertyRowMapper<Integer>(Integer.class));
 	}
 	
 	

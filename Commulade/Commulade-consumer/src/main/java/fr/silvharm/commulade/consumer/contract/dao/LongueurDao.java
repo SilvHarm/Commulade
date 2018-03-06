@@ -16,8 +16,18 @@ public interface LongueurDao {
 	 * Insert the provided Longueur in the database
 	 * 
 	 * @param longueur
+	 * @return the id of the Longueur that was inserted
 	 */
-	public void create(Longueur longueur);
+	public int create(Longueur longueur);
+	
+	
+	/**
+	 * Insert the provided List of Longueur in the database
+	 * 
+	 * @param longueurList
+	 * @return a List containing the id of the Longueur that were inserted
+	 */
+	public List<Integer> createList(List<Longueur> longueurList);
 	
 	
 	/**

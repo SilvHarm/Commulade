@@ -1,5 +1,6 @@
 package fr.silvharm.commulade.consumer.impl.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
@@ -11,15 +12,24 @@ import fr.silvharm.commulade.model.pojo.Voie;
 
 public class VoieDaoImpl extends AbstractDaoImpl implements VoieDao {
 	
-	public void create(Voie voie) {
-		String vSQL = "INSERT INTO " + TABLE_NAME + " (" + NAME + "," + SECTEUR_ID + ")"
-				+ " VALUES ( :name, :secteurId );";
+	public int create(Voie voie) {
+		List<Voie> list = new ArrayList<Voie>();
+		list.add(voie);
 		
-		MapSqlParameterSource vParams = new MapSqlParameterSource();
-		vParams.addValue("name", voie.getName());
-		vParams.addValue("secteurId", voie.getSecteurId());
+		return createList(list).get(0);
+	}
+	
+	
+	public List<Integer> createList(List<Voie> voieList) {
+		String vSQL = "INSERT INTO " + TABLE_NAME + " (" + NAME + "," + SECTEUR_ID + ")" + " VALUES ";
 		
-		namedJdbcTemplate.update(vSQL, vParams);
+		for (Voie voie : voieList) {
+			vSQL += "('" + voie.getName() + "'," + voie.getSecteurId() + "),";
+		}
+		
+		vSQL = vSQL.replaceAll(",$", ";");
+		
+		return jdbcTemplate.query(vSQL, new BeanPropertyRowMapper<Integer>(Integer.class));
 	}
 	
 	

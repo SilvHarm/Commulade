@@ -1,5 +1,6 @@
 package fr.silvharm.commulade.consumer.impl.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
@@ -11,19 +12,26 @@ import fr.silvharm.commulade.model.pojo.Longueur;
 
 public class LongueurDaoImpl extends AbstractDaoImpl implements LongueurDao {
 	
-	public void create(Longueur longueur) {
+	public int create(Longueur longueur) {
+		List<Longueur> list = new ArrayList<Longueur>();
+		list.add(longueur);
+		
+		return createList(list).get(0);
+	}
+	
+	
+	public List<Integer> createList(List<Longueur> longueurList) {
 		String vSQL = "INSERT INTO " + TABLE_NAME + " (" + VOIE_ID + "," + PREVIOUS_LONGUEUR_ID + "," + HEIGHT + ","
-				+ NOMBRE_POINTS + "," + COTATION + ")"
-				+ " VALUES ( :voieId, :previousLongueurId, :height, :nombrePoints, :cotation );";
+				+ NOMBRE_POINTS + "," + COTATION + ") VALUES ";
 		
-		MapSqlParameterSource vParams = new MapSqlParameterSource();
-		vParams.addValue("voieId", longueur.getVoieId());
-		vParams.addValue("previousLongueurId", longueur.getPreviousLongueurId());
-		vParams.addValue("height", longueur.getHeight());
-		vParams.addValue("nombrePoints", longueur.getNombrePoints());
-		vParams.addValue("cotation", longueur.getCotation());
+		for (Longueur longueur : longueurList) {
+			vSQL += "(" + longueur.getVoieId() + "," + longueur.getPreviousLongueurId() + "," + longueur.getHeight() + ","
+					+ longueur.getNombrePoints() + ",'" + longueur.getCotation() + "'),";
+		}
 		
-		namedJdbcTemplate.update(vSQL, vParams);
+		vSQL = vSQL.replaceAll(",$", ";");
+		
+		return jdbcTemplate.query(vSQL, new BeanPropertyRowMapper<Integer>(Integer.class));
 	}
 	
 	

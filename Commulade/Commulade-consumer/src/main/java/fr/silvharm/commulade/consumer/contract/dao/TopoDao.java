@@ -15,8 +15,18 @@ public interface TopoDao {
 	 * Insert the provided Topo in the database
 	 * 
 	 * @param topo
+	 * @return the id of the Topo that was inserted
 	 */
-	public void create(Topo topo);
+	public int create(Topo topo);
+	
+	
+	/**
+	 * Insert the provided List of Topo in the database
+	 * 
+	 * @param topoList
+	 * @return a List containing the id of the Topo that were inserted
+	 */
+	public List<Integer> createList(List<Topo> topoList);
 	
 	
 	/**

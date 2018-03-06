@@ -15,8 +15,18 @@ public interface VoieDao {
 	 * Insert the provided Voie in the database
 	 * 
 	 * @param voie
+	 * @return the id of the Voie that was inserted
 	 */
-	public void create(Voie voie);
+	public int create(Voie voie);
+	
+	
+	/**
+	 * Insert the provided List of Voie in the database
+	 * 
+	 * @param voieList
+	 * @return a List containing the id of the Voie that were inserted
+	 */
+	public List<Integer> createList(List<Voie> voieList);
 	
 	
 	/**
