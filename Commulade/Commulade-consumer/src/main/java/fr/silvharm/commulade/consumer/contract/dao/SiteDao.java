@@ -39,6 +39,16 @@ public interface SiteDao {
 	
 	
 	/**
+	 * Get from the database all the Site whom the id are equals to the ones
+	 * provided
+	 * 
+	 * @param list
+	 * @return a List of Site associated to the ids provided
+	 */
+	public List<Site> findByListId(List<Integer> list);
+	
+	
+	/**
 	 * Get from the database the Sites who correspond to the search Form's criteria
 	 * 
 	 * @param formBean
@@ -53,6 +63,17 @@ public interface SiteDao {
 	 * @return a List containing all the Site of the database
 	 */
 	public List<Site> getAllSite();
+	
+	
+	/**
+	 * Get all the Site who are associated to the Topo whom the id have been
+	 * provided
+	 * 
+	 * @param topoId
+	 * @return a List containing all the Site associated to the Topo id provided or
+	 *         null if none exist
+	 */
+	public List<Site> getSiteListByTopoId(int topoId);
 	
 	
 	/**

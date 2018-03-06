@@ -1,10 +1,12 @@
 package fr.silvharm.commulade.model.pojo;
 
 import java.time.LocalDate;
+import java.util.List;
 
 public class Site {
 	
 	private Integer id;
+	private List<Secteur> listSecteur;
 	private LocalDate date;
 	private String name, pathIndication, photoName, place;
 	
@@ -20,16 +22,33 @@ public class Site {
 	 * @param photoName
 	 * @param place
 	 * @param pathIndication
+	 * @param listSecteur
 	 */
-	public Site(Integer id, String name, LocalDate date, String photoName, String place, String pathIndication) {
+	public Site(Integer id, String name, LocalDate date, String photoName, String place, String pathIndication,
+			List<Secteur> listSecteur) {
 		this.id = id;
 		this.name = name;
 		this.date = date;
 		this.photoName = photoName;
 		this.place = place;
 		this.pathIndication = pathIndication;
+		this.listSecteur = listSecteur;
 	}
 	
+	
+	/**
+	 * Add the Secteur provided to listSecteur
+	 * 
+	 * @param item
+	 */
+	public void addItemToList(Secteur item) {
+		listSecteur.add(item);
+	}
+	
+	
+	/********************************
+	 * Getters & Setters
+	 *******************************/
 	
 	/**
 	 * @return the id
@@ -45,6 +64,23 @@ public class Site {
 	 */
 	public void setId(Integer id) {
 		this.id = id;
+	}
+	
+	
+	/**
+	 * @return the listSecteur
+	 */
+	public List<Secteur> getListSecteur() {
+		return listSecteur;
+	}
+	
+	
+	/**
+	 * @param listSecteur
+	 *           the listSecteur to set
+	 */
+	public void setListSecteur(List<Secteur> listSecteur) {
+		this.listSecteur = listSecteur;
 	}
 	
 	

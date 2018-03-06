@@ -1,5 +1,5 @@
 /*
- * When window size change, the elements of the class "aMainSite" will their height adjusted to their new width
+ * When window size change, the elements of the class "aMainSite" will have their height adjusted to be equal to new width
  */
 window.onload = adaptHeight();
 

@@ -74,9 +74,17 @@ Common classes
 	margin: auto;
 }
 
+.centText {
+	text-align: center;
+}
+
 .flexCol {
 	display: flex;
 	flex-direction: column;
+}
+
+.hundWid {
+	width: 100%;
 }
 
 .noMar {

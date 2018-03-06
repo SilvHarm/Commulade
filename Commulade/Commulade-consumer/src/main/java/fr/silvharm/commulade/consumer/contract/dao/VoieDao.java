@@ -1,5 +1,7 @@
 package fr.silvharm.commulade.consumer.contract.dao;
 
+import java.util.List;
+
 import fr.silvharm.commulade.model.pojo.Voie;
 
 public interface VoieDao {
@@ -32,6 +34,16 @@ public interface VoieDao {
 	 * @return the Voie associated to the id provided
 	 */
 	public Voie findById(int id);
+	
+	
+	/**
+	 * Get from the database all the Voie whom the id are equals to the ones
+	 * provided
+	 * 
+	 * @param list
+	 * @return a List of Voie associated to the ids provided
+	 */
+	public List<Voie> findByListSecteurId(List<Integer> list);
 	
 	
 	/**

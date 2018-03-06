@@ -1,5 +1,7 @@
 package fr.silvharm.commulade.consumer.contract.dao;
 
+import java.util.List;
+
 import fr.silvharm.commulade.model.pojo.Secteur;
 
 public interface SecteurDao {
@@ -32,6 +34,16 @@ public interface SecteurDao {
 	 * @return the Secteur associated to the id provided
 	 */
 	public Secteur findById(int id);
+	
+	
+	/**
+	 * Get from the database all the Secteur whom the id are equals to the ones
+	 * provided
+	 * 
+	 * @param list
+	 * @return a List of Secteur associated to the ids provided
+	 */
+	public List<Secteur> findByListSiteId(List<Integer> list);
 	
 	
 	/**

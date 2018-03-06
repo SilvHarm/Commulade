@@ -6,9 +6,13 @@
 
 	<bean id="siteInteractionsImpl" class="fr.silvharm.commulade.business.impl.SiteInteractionsImpl">
 		<property name="siteDao" ref="siteDaoImpl"/>
+		<property name="secteurDao" ref="secteurDaoImpl"/>
+		<property name="voieDao" ref="voieDaoImpl"/>
+		<property name="longueurDao" ref="longueurDaoImpl"/>
 	</bean>
 
 	<bean id="topoInteractionsImpl" class="fr.silvharm.commulade.business.impl.TopoInteractionsImpl">
+		<property name="siteInteractions" ref="siteInteractionsImpl"/>
 		<property name="topoDao" ref="topoDaoImpl"/>
 	</bean>
 

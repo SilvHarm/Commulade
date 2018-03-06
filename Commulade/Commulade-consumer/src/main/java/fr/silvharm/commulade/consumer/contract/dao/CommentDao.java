@@ -6,8 +6,8 @@ public interface CommentDao {
 	
 	final String TABLE_NAME = "comment";
 	
-	final String ID = "id", USER_ID = "user_id", POST_TYPE = "post_type", POST_ID = "post_id",
-			DATE_TIME = "date_time", COMMENT = "comment";
+	final String ID = "id", USER_ID = "user_id", POST_TYPE = "post_type", POST_ID = "post_id", DATE_TIME = "date_time",
+			COMMENT = "comment";
 	
 	
 	/**

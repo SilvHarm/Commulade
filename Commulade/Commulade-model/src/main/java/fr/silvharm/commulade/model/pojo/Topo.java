@@ -1,10 +1,12 @@
 package fr.silvharm.commulade.model.pojo;
 
 import java.time.LocalDate;
+import java.util.List;
 
 public class Topo {
 	
 	private Integer id;
+	private List<Site> listSite;
 	private LocalDate editionDate;
 	private String description, name;
 	
@@ -18,14 +20,30 @@ public class Topo {
 	 * @param name
 	 * @param editionDate
 	 * @param description
+	 * @param listSite
 	 */
-	public Topo(Integer id, String name, LocalDate editionDate, String description) {
+	public Topo(Integer id, String name, LocalDate editionDate, String description, List<Site> listSite) {
 		this.id = id;
 		this.name = name;
 		this.editionDate = editionDate;
 		this.description = description;
+		this.listSite = listSite;
 	}
 	
+	
+	/**
+	 * Add the Site provided to listSite
+	 * 
+	 * @param item
+	 */
+	public void addItemToList(Site item) {
+		listSite.add(item);
+	}
+	
+	
+	/********************************
+	 * Getters & Setters
+	 *******************************/
 	
 	/**
 	 * @return the id
@@ -41,6 +59,23 @@ public class Topo {
 	 */
 	public void setId(Integer id) {
 		this.id = id;
+	}
+	
+	
+	/**
+	 * @return the listSite
+	 */
+	public List<Site> getListSite() {
+		return listSite;
+	}
+	
+	
+	/**
+	 * @param listSite
+	 *           the listSite to set
+	 */
+	public void setListSite(List<Site> listSite) {
+		this.listSite = listSite;
 	}
 	
 	

@@ -19,7 +19,7 @@
 
 <%-- Common --%>
 <link rel="stylesheet" type="text/css" href="css/common-css.css" media="screen" />
-<script src="js/common-js.js" async=false></script>
+<script src="js/common-js.js"></script>
 
 <%-- Page --%>
 <s:if test="css!=null">
@@ -37,7 +37,7 @@
 
 	<%-- Script --%>
 	<s:if test="js!=null">
-		<script src="js/<s:property value="js" />.js" async=false></script>
+		<script src="js/<s:property value="js" />.js"></script>
 	</s:if>
 </body>
 </html>

@@ -1,5 +1,7 @@
 package fr.silvharm.commulade.consumer.impl.dao;
 
+import java.util.List;
+
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 
@@ -42,6 +44,21 @@ public class LongueurDaoImpl extends AbstractDaoImpl implements LongueurDao {
 		vParams.addValue("id", id);
 		
 		return namedJdbcTemplate.queryForObject(vSQL, vParams, new BeanPropertyRowMapper<Longueur>(Longueur.class));
+	}
+	
+	
+	public List<Longueur> findByListVoieId(List<Integer> list) {
+		String vSQL = "SELECT * FROM " + TABLE_NAME + " WHERE " + VOIE_ID + " = " + list.get(0);
+		
+		list.remove(0);
+		
+		for (Integer i : list) {
+			vSQL += " OR " + VOIE_ID + " = " + i;
+		}
+		
+		vSQL += ";";
+		
+		return jdbcTemplate.query(vSQL, new BeanPropertyRowMapper<Longueur>(Longueur.class));
 	}
 	
 	
