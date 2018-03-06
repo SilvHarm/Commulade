@@ -2,6 +2,9 @@ package fr.silvharm.commulade.consumer.impl.dao;
 
 import java.util.List;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 
@@ -10,6 +13,9 @@ import fr.silvharm.commulade.model.pojo.Topo;
 
 
 public class TopoDaoImpl extends AbstractDaoImpl implements TopoDao {
+	
+	private static final Logger logger = LogManager.getLogger();
+	
 	
 	public void create(Topo topo) {
 		String vSQL = "INSERT INTO " + TABLE_NAME + " (" + NAME + "," + EDITION_DATE + "," + DESCRIPTION + ")"
@@ -40,7 +46,16 @@ public class TopoDaoImpl extends AbstractDaoImpl implements TopoDao {
 		MapSqlParameterSource vParams = new MapSqlParameterSource();
 		vParams.addValue("id", id);
 		
-		return namedJdbcTemplate.queryForObject(vSQL, vParams, new BeanPropertyRowMapper<Topo>(Topo.class));
+		try {
+			return namedJdbcTemplate.queryForObject(vSQL, vParams, new BeanPropertyRowMapper<Topo>(Topo.class));
+		}
+		catch (DataAccessException e) {
+			logger.info("The Topo researched doesn't exist in the database");
+			
+			return null;
+		}
+		
+		
 	}
 	
 	

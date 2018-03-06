@@ -31,7 +31,7 @@ public interface TopoDao {
 	 * Get from the database the Topo whom the id is equal to the one provided
 	 * 
 	 * @param id
-	 * @return the Topo associated to the id provided
+	 * @return the Topo associated to the id provided or null if it doesn't exist
 	 */
 	public Topo findById(int id);
 	
