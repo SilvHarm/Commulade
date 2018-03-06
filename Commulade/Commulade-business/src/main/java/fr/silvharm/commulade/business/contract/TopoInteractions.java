@@ -36,4 +36,13 @@ public interface TopoInteractions {
 	 */
 	public List<Topo> getTopoByName(String topoName);
 	
+	
+	/**
+	 * Verify if there is one or more Site whom the Date is more recent than the
+	 * Topo Date
+	 * 
+	 * @param topo
+	 * @return true if there is no Site more recent or false
+	 */
+	public Boolean isUpToDate(Topo topo);
 }

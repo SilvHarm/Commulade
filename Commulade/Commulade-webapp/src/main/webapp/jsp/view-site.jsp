@@ -3,7 +3,7 @@
 </s:if>
 
 <s:if test="#site != null">
-	<div class="flexCol hundWid">
+	<div class="divSeek flexCol hundWid">
 		<div id="siteInfos" class="row centText infDiv">
 
 			<s:if test="#site.photoName != null">
@@ -19,7 +19,7 @@
 			</s:else>
 
 			<div class="col-9">
-				<h1 class="noMar">
+				<h1 class="hSiteObserver noMar">
 					<s:property value="#site.name" />
 				</h1>
 

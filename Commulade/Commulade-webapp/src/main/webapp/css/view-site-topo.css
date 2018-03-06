@@ -27,10 +27,18 @@
 	margin-top: 0px;
 }
 
+.siteSeparator {
+	color: crimson;
+}
+
 .spanLong {
 	margin-right: 30px;
 }
 
 #siteInfos {
 	width: 80%;
+}
+
+#warning {
+	color: crimson;
 }

@@ -1,5 +1,7 @@
+var parent;
 /*
- * When window size change, the elements of the class "imgSecteur" will have their height adjusted to be equal to new width
+ * When window size change, the elements of the class "imgSecteur" will have
+ * their height adjusted to be equal to new width
  */
 window.onload = adaptHeight();
 
@@ -11,6 +13,14 @@ $(window).resize(function() {
  * When an element of one the classes is clicked, it will either hide or reveal
  * the rest of their parent
  */
+if ($('.hSiteObserver').length > 1) {
+	$('.hSiteObserver').css('cursor', 'pointer');
+
+	$('.hSiteObserver').click(function() {
+		siteHideAndSeek(this);
+	});
+}
+
 $('.hSecObserver').click(function() {
 	secHideAndSeek(this);
 });
@@ -27,9 +37,8 @@ function adaptHeight() {
 	$('.imgSecObs').css('height', $('body').width() * 0.15);
 }
 
-function hideAndSeek(element) {
+function hideAndSeek(element, parent) {
 	var elemHeight = $(element).css('height');
-	var parent = $(element).parent();
 
 	if ($(parent).css('height') != elemHeight) {
 		$(parent).animate({
@@ -45,17 +54,31 @@ function hideAndSeek(element) {
 }
 
 function secHideAndSeek(element) {
-	if (hideAndSeek(element)) {
+	parent = $(element).parent();
+
+	if (hideAndSeek(element, parent)) {
 		$('html').animate({
 			scrollTop : $(element).offset().top
 		}, 200);
 	}
 }
 
-function voieHideAndSeek(element) {
-	if (hideAndSeek(element)) {
+function siteHideAndSeek(element) {
+	parent = $(element).parent().parent().parent();
+
+	if (hideAndSeek(element, parent)) {
 		$('html').animate({
-			scrollTop : $(element).parent().parent().offset().top
+			scrollTop : $(parent).offset().top
+		}, 200);
+	}
+}
+
+function voieHideAndSeek(element) {
+	parent = $(element).parent();
+
+	if (hideAndSeek(element, parent)) {
+		$('html').animate({
+			scrollTop : $(parent).parent().offset().top
 		}, 200);
 	}
 }
