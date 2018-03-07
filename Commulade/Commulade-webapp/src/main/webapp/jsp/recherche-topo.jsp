@@ -9,11 +9,13 @@
 	</form>
 </aside>
 
+
 <s:if test="list != null">
 	<div id="siteContent">
+
 		<s:iterator value="list" var="var">
-			<a class="aMainSite" href="topo/<s:property value="id" />">
-				<div class="flexCol topoContainer">
+			<div class="divSiteTopo" onclick="document.location='topo/<s:property value="id" />'">
+				<div class="flexCol siteTopoContainer">
 					<s:property value="name" />
 
 					<p class="noMar description">
@@ -24,8 +26,9 @@
 
 					<s:property value="editionDate" />
 				</div>
-			</a>
+			</div>
 		</s:iterator>
+
 	</div>
 </s:if>
 <s:else>

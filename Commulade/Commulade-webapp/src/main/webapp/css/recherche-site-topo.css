@@ -2,24 +2,23 @@ form {
 	padding: 5%;
 }
 
-.aMainSite {
+.description {
+	font-size: initial;
+	height: 100%;
+	overflow: hidden;
+}
+
+.divSiteTopo {
 	border: 1px solid silver;
 	border-radius: 3%;
-	color: silver;
+	cursor: pointer;
 	display: inline-grid;
 	font-size: x-large;
 	margin: 0 0.9% 15px;
 	min-width: 150px;
 	padding: 5px;
 	text-align: center;
-	text-decoration: none;
 	width: 18%;
-}
-
-.description {
-	font-size: initial;
-	height: 100%;
-	overflow: hidden;
 }
 
 .edition {
@@ -35,7 +34,11 @@ form {
 	width: 5em;
 }
 
-.topoContainer {
+.siteImg {
+	font-size: large;
+}
+
+.siteTopoContainer {
 	max-height: 100%
 }
 

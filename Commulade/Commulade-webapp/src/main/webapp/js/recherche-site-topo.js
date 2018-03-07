@@ -11,7 +11,7 @@ $(window).resize(function() {
  * Functions
  */
 function adaptHeight() {
-	$('.aMainSite').css('height', $('.aMainSite').width());
+	$('.divSiteTopo').css('height', $('.divSiteTopo').width());
 }
 
 // Test if an element with the class "observe" is not empty

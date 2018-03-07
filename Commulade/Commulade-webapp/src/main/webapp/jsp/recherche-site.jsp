@@ -29,17 +29,22 @@
 	</form>
 </aside>
 
+
 <s:if test="list != null">
 	<div id="siteContent">
-		<s:iterator value="list" var="var">
-			<a class="aMainSite" href="site/<s:property value="id" />">
-				<s:property value="name" />
 
-				<s:if test="#var.photoName != null">
-					<img class="resizeImg" alt="Aucune image disponible" src="<s:property value="%{photoPath}" /><s:property value="photoName" />">
-				</s:if>
-			</a>
+		<s:iterator value="list" var="var">
+			<div class="divSiteTopo" onclick="document.location='site/<s:property value="id" />'">
+				<div class="flexCol siteTopoContainer">
+					<s:property value="name" />
+
+					<s:if test="#var.photoName != null">
+						<img class="resizeImg siteImg" alt="Aucune image disponible" src="<s:property value="%{photoPath}" /><s:property value="photoName" />">
+					</s:if>
+				</div>
+			</div>
 		</s:iterator>
+
 	</div>
 </s:if>
 <s:else>
