@@ -78,6 +78,11 @@ Common classes
 	text-align: center;
 }
 
+.divSeek {
+	margin-bottom: 5px;
+	overflow: hidden;
+}
+
 .flexCol {
 	display: flex;
 	flex-direction: column;
