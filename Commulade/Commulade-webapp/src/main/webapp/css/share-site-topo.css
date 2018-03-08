@@ -1,0 +1,26 @@
+textarea {
+	overflow: hidden;
+	padding: 5px;
+	resize: none;
+}
+
+.addItem {
+	display: flex;
+	margin: 0px auto;
+}
+
+.biggerFont {
+	font-size: 110%;
+}
+
+.deleteSymbol {
+	
+}
+
+.delInline {
+	display: inline-flex;
+}
+
+.removeItem {
+	
+}

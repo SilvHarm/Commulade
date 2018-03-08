@@ -5,7 +5,7 @@ import java.util.List;
 public class SiteFormBean {
 	
 	private List<SecteurFormBean> listSecteur;
-	private String date, name, pathIndication, photoName, place;
+	private String name, pathIndication, photoName, place;
 	
 	
 	public SiteFormBean() {
@@ -21,10 +21,9 @@ public class SiteFormBean {
 	 * @param pathIndication
 	 * @param listSecteur
 	 */
-	public SiteFormBean(String name, String date, String photoName, String place, String pathIndication,
+	public SiteFormBean(String name, String photoName, String place, String pathIndication,
 			List<SecteurFormBean> listSecteur) {
 		this.name = name;
-		this.date = date;
 		this.photoName = photoName;
 		this.place = place;
 		this.pathIndication = pathIndication;
@@ -50,23 +49,6 @@ public class SiteFormBean {
 	 */
 	public void setListSecteur(List<SecteurFormBean> listSecteur) {
 		this.listSecteur = listSecteur;
-	}
-	
-	
-	/**
-	 * @return the date
-	 */
-	public String getDate() {
-		return date;
-	}
-	
-	
-	/**
-	 * @param date
-	 *           the date to set
-	 */
-	public void setDate(String date) {
-		this.date = date;
 	}
 	
 	
