@@ -3,6 +3,7 @@ package fr.silvharm.commulade.business.contract;
 import java.util.List;
 
 import fr.silvharm.commulade.model.bean.SiteSearchFormBean;
+import fr.silvharm.commulade.model.bean.TopoFormBean;
 import fr.silvharm.commulade.model.pojo.Site;
 
 public interface SiteInteractions {
@@ -58,5 +59,15 @@ public interface SiteInteractions {
 	 *         exist
 	 */
 	public Site getSiteById(int id);
+	
+	
+	/**
+	 * Verify the Form and call the consumer module to add it to the database if
+	 * everything is conform
+	 * 
+	 * @param topoForm
+	 * @return true if nothing went wrong or false
+	 */
+	public Boolean shareSite(TopoFormBean topoForm);
 	
 }

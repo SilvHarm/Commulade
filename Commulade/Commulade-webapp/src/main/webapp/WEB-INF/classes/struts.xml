@@ -26,6 +26,7 @@
 
 		<action name="share-site-form" class="shareSiteAction" method="getForm">
 			<result name="success">/jsp/template/main-template.jsp</result>
+			<result name="error">/jsp/template/main-template.jsp</result>
 		</action>
 
 		<action name="site/*" class="viewSiteAction" method="execute">
