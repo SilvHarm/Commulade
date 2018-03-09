@@ -1,33 +1,37 @@
 package fr.silvharm.commulade.model.bean;
 
+import java.io.File;
 import java.util.List;
 
 public class SiteFormBean {
 	
+	private File photo;
 	private List<SecteurFormBean> listSecteur;
-	private String name, pathIndication, photoName, place;
+	private String name, pathIndication, photoName, photoType, place;
 	
 	
-	public SiteFormBean() {
-		
+	public SiteFormBean() {}
+	
+	
+	/********************************
+	 * Struts 2
+	 *******************************/
+	
+	/**
+	 * @param contentType
+	 *           the contentType to set
+	 */
+	public void setPhotoContentType(String contentType) {
+		this.photoType = contentType;
 	}
 	
 	
 	/**
-	 * @param name
-	 * @param date
-	 * @param photoName
-	 * @param place
-	 * @param pathIndication
-	 * @param listSecteur
+	 * @param fileName
+	 *           the fileName to set
 	 */
-	public SiteFormBean(String name, String photoName, String place, String pathIndication,
-			List<SecteurFormBean> listSecteur) {
-		this.name = name;
-		this.photoName = photoName;
-		this.place = place;
-		this.pathIndication = pathIndication;
-		this.listSecteur = listSecteur;
+	public void setPhotoFileName(String fileName) {
+		this.photoName = fileName;
 	}
 	
 	
@@ -87,6 +91,23 @@ public class SiteFormBean {
 	
 	
 	/**
+	 * @return the photo
+	 */
+	public File getPhoto() {
+		return photo;
+	}
+	
+	
+	/**
+	 * @param photo
+	 *           the photo to set
+	 */
+	public void setPhoto(File photo) {
+		this.photo = photo;
+	}
+	
+	
+	/**
 	 * @return the photoName
 	 */
 	public String getPhotoName() {
@@ -100,6 +121,23 @@ public class SiteFormBean {
 	 */
 	public void setPhotoName(String photoName) {
 		this.photoName = photoName;
+	}
+	
+	
+	/**
+	 * @return the photoType
+	 */
+	public String getPhotoType() {
+		return photoType;
+	}
+	
+	
+	/**
+	 * @param photoType
+	 *           the photoType to set
+	 */
+	public void setPhotoType(String photoType) {
+		this.photoType = photoType;
 	}
 	
 	

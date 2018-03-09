@@ -94,7 +94,7 @@ function siteHtml() {
 
 			+ '<p><input name="topoForm.listSite['
 			+ siteCount
-			+ '].photoName" type="file" accept=".png, .jpg, .jpeg"></p>'
+			+ '].photo" type="file" accept=".png, .jpg, .jpeg"></p>'
 
 			+ '<p><textarea class="biggerFont" name="topoForm.listSite['
 			+ siteCount
@@ -129,7 +129,7 @@ function secteurHtml() {
 			+ i
 			+ '].listSecteur['
 			+ j
-			+ '].photoName" type="file" accept=".png, .jpg, .jpeg"></p>'
+			+ '].photo" type="file" accept=".png, .jpg, .jpeg"></p>'
 
 			+ voieHtml()
 

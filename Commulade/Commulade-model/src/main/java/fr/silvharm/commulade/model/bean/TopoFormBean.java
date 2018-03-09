@@ -8,22 +8,7 @@ public class TopoFormBean {
 	private String description, editionDate, name;
 	
 	
-	public TopoFormBean() {
-	}
-	
-	
-	/**
-	 * @param name
-	 * @param editionDate
-	 * @param description
-	 * @param listSite
-	 */
-	public TopoFormBean(String name, String editionDate, String description, List<SiteFormBean> listSite) {
-		this.name = name;
-		this.editionDate = editionDate;
-		this.description = description;
-		this.listSite = listSite;
-	}
+	public TopoFormBean() {}
 	
 	
 	/********************************

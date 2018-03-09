@@ -2,26 +2,13 @@ package fr.silvharm.commulade.model.bean;
 
 import java.util.List;
 
-import fr.silvharm.commulade.model.pojo.Longueur;
-
 public class VoieFormBean {
 	
 	private List<LongueurFormBean> listLongueur;
 	private String name;
 	
 	
-	public VoieFormBean() {
-	}
-	
-	
-	/**
-	 * @param name
-	 * @param listLongueur
-	 */
-	public VoieFormBean(String name, List<LongueurFormBean> listLongueur) {
-		this.name = name;
-		this.listLongueur = listLongueur;
-	}
+	public VoieFormBean() {}
 	
 	
 	/********************************

@@ -6,28 +6,7 @@ public class SiteSearchFormBean {
 	private String cotation, maxHeight, minHeight, maxPointNumber, minPointNumber, siteName;
 	
 	
-	public SiteSearchFormBean() {
-		
-	}
-	
-	
-	/**
-	 * @param siteName
-	 * @param maxHeight
-	 * @param minHeight
-	 * @param maxPointNumber
-	 * @param minPointNumber
-	 * @param minVoieNumber
-	 */
-	public SiteSearchFormBean(String siteName, String maxHeight, String minHeight, String maxPointNumber,
-			String minPointNumber, String cotation) {
-		this.siteName = siteName;
-		this.maxHeight = maxHeight;
-		this.minHeight = minHeight;
-		this.maxPointNumber = maxPointNumber;
-		this.minPointNumber = minPointNumber;
-		this.cotation = cotation;
-	}
+	public SiteSearchFormBean() {}
 	
 	
 	/**

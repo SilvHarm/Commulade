@@ -6,20 +6,7 @@ public class LongueurFormBean {
 	private String cotation, height, nombrePoints;
 	
 	
-	public LongueurFormBean() {
-	}
-	
-	
-	/**
-	 * @param height
-	 * @param nombrePoints
-	 * @param cotation
-	 */
-	public LongueurFormBean(String height, String nombrePoints, String cotation) {
-		this.height = height;
-		this.nombrePoints = nombrePoints;
-		this.cotation = cotation;
-	}
+	public LongueurFormBean() {}
 	
 	
 	/********************************

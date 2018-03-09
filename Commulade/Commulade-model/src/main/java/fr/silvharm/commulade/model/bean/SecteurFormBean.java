@@ -1,26 +1,37 @@
 package fr.silvharm.commulade.model.bean;
 
+import java.io.File;
 import java.util.List;
 
 public class SecteurFormBean {
 	
+	private File photo;
 	private List<VoieFormBean> listVoie;
-	private String name, photoName;
+	private String name, photoName, photoType;
 	
 	
-	public SecteurFormBean() {
+	public SecteurFormBean() {}
+	
+	
+	/********************************
+	 * Struts 2
+	 *******************************/
+	
+	/**
+	 * @param contentType
+	 *           the contentType to set
+	 */
+	public void setPhotoContentType(String contentType) {
+		this.photoType = contentType;
 	}
 	
 	
 	/**
-	 * @param name
-	 * @param photoName
-	 * @param listVoie
+	 * @param fileName
+	 *           the fileName to set
 	 */
-	public SecteurFormBean(String name, String photoName, List<VoieFormBean> listVoie) {
-		this.name = name;
-		this.photoName = photoName;
-		this.listVoie = listVoie;
+	public void setPhotoFileName(String fileName) {
+		this.photoName = fileName;
 	}
 	
 	
@@ -63,6 +74,23 @@ public class SecteurFormBean {
 	
 	
 	/**
+	 * @return the photo
+	 */
+	public File getPhoto() {
+		return photo;
+	}
+	
+	
+	/**
+	 * @param photo
+	 *           the photo to set
+	 */
+	public void setPhoto(File photo) {
+		this.photo = photo;
+	}
+	
+	
+	/**
 	 * @return the photoName
 	 */
 	public String getPhotoName() {
@@ -76,6 +104,23 @@ public class SecteurFormBean {
 	 */
 	public void setPhotoName(String photoName) {
 		this.photoName = photoName;
+	}
+	
+	
+	/**
+	 * @return the photoType
+	 */
+	public String getPhotoType() {
+		return photoType;
+	}
+	
+	
+	/**
+	 * @param photoType
+	 *           the photoType to set
+	 */
+	public void setPhotoType(String photoType) {
+		this.photoType = photoType;
 	}
 	
 }
