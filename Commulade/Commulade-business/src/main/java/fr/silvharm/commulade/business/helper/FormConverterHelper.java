@@ -24,6 +24,7 @@ public class FormConverterHelper {
 		LongueurFormBean longueurForm;
 		Secteur secteur;
 		SecteurFormBean secteurForm;
+		String tempo;
 		Voie voie;
 		VoieFormBean voieForm;
 		
@@ -36,7 +37,17 @@ public class FormConverterHelper {
 		site.setPathIndication(siteForm.getPathIndication());
 		
 		if (siteForm.getPhotoName() != null) {
-			site.setPhotoName(siteForm.getPhotoName());
+			site.setPhoto(siteForm.getPhoto());
+			
+			tempo = siteForm.getPhotoName().replaceAll(" ", "_");
+			
+			if (60 < tempo.length()) {
+				tempo = tempo.substring(0, 59);
+				
+				tempo += "_" + ((int) (Math.random() * (99999999 - 1000001) + 1000000));
+			}
+			
+			site.setPhotoName(tempo);
 		}
 		
 		
@@ -52,7 +63,17 @@ public class FormConverterHelper {
 				secteur.setName(secteurForm.getName());
 				
 				if (secteurForm.getPhotoName() != null) {
-					secteur.setPhotoName(secteurForm.getPhotoName());
+					secteur.setPhoto(secteurForm.getPhoto());
+					
+					tempo = secteurForm.getPhotoName().replaceAll(" ", "_");
+					
+					if (60 < tempo.length()) {
+						tempo = tempo.substring(0, 59);
+						
+						tempo += "_" + ((int) (Math.random() * (99999999 - 1000001) + 1000000));
+					}
+					
+					secteur.setPhotoName(tempo);
 				}
 				
 				

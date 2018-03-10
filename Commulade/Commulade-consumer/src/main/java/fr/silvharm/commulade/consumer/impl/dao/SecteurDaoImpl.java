@@ -2,6 +2,7 @@ package fr.silvharm.commulade.consumer.impl.dao;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
@@ -24,12 +25,29 @@ public class SecteurDaoImpl extends AbstractDaoImpl implements SecteurDao {
 		String vSQL = "INSERT INTO " + TABLE_NAME + " (" + NAME + "," + SITE_ID + "," + PHOTO_NAME + ") VALUES ";
 		
 		for (Secteur secteur : secteurList) {
-			vSQL += "('" + secteur.getName() + "'," + secteur.getSiteId() + ",'" + secteur.getPhotoName() + "'),";
+			vSQL += "('" + secteur.getName() + "'," + secteur.getSiteId() + ",";
+			
+			if (secteur.getPhotoName() != null) {
+				vSQL += "'" + secteur.getPhotoName() + "'";
+			}
+			else {
+				vSQL += "null";
+			}
+			
+			vSQL += "),";
 		}
 		
-		vSQL = vSQL.replaceAll(",$", ";");
+		vSQL = vSQL.replaceAll(",$", " RETURNING id;");
 		
-		return jdbcTemplate.query(vSQL, new BeanPropertyRowMapper<Integer>(Integer.class));
+		
+		Iterable<Map<String, Object>> iter = jdbcTemplate.queryForList(vSQL);
+		
+		List<Integer> list = new ArrayList<Integer>();
+		for (Map<String, Object> map : iter) {
+			list.add((Integer) map.get("id"));
+		}
+		
+		return list;
 	}
 	
 	

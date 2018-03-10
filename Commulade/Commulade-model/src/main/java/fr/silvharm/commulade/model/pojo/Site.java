@@ -1,18 +1,19 @@
 package fr.silvharm.commulade.model.pojo;
 
+import java.io.File;
 import java.time.LocalDate;
 import java.util.List;
 
 public class Site {
 	
+	private File photo;
 	private Integer id;
 	private List<Secteur> listSecteur;
 	private LocalDate date;
 	private String name, pathIndication, photoName, place;
 	
 	
-	public Site() {
-	}
+	public Site() {}
 	
 	
 	/**
@@ -132,6 +133,23 @@ public class Site {
 	 */
 	public void setPathIndication(String pathIndication) {
 		this.pathIndication = pathIndication;
+	}
+	
+	
+	/**
+	 * @return the photo
+	 */
+	public File getPhoto() {
+		return photo;
+	}
+	
+	
+	/**
+	 * @param photo
+	 *           the photo to set
+	 */
+	public void setPhoto(File photo) {
+		this.photo = photo;
 	}
 	
 	

@@ -1,16 +1,17 @@
 package fr.silvharm.commulade.model.pojo;
 
+import java.io.File;
 import java.util.List;
 
 public class Secteur {
 	
+	private File photo;
 	private Integer id, siteId;
 	private List<Voie> listVoie;
 	private String name, photoName;
 	
 	
-	public Secteur() {
-	}
+	public Secteur() {}
 	
 	
 	/**
@@ -108,6 +109,23 @@ public class Secteur {
 	 */
 	public void setName(String name) {
 		this.name = name;
+	}
+	
+	
+	/**
+	 * @return the photo
+	 */
+	public File getPhoto() {
+		return photo;
+	}
+	
+	
+	/**
+	 * @param photo
+	 *           the photo to set
+	 */
+	public void setPhoto(File photo) {
+		this.photo = photo;
 	}
 	
 	

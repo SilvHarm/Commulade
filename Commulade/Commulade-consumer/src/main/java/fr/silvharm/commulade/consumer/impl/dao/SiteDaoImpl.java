@@ -2,6 +2,7 @@ package fr.silvharm.commulade.consumer.impl.dao;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
@@ -30,13 +31,29 @@ public class SiteDaoImpl extends AbstractDaoImpl implements SiteDao {
 				+ PATH_INDICATION + ") VALUES ";
 		
 		for (Site site : siteList) {
-			vSQL += "('" + site.getName() + "','" + site.getDate() + "','" + site.getPhotoName() + "','" + site.getPlace()
-					+ "','" + site.getPathIndication() + "'),";
+			vSQL += "('" + site.getName() + "','" + site.getDate() + "',";
+			
+			if (site.getPhotoName() != null) {
+				vSQL += "'" + site.getPhotoName() + "'";
+			}
+			else {
+				vSQL += "null";
+			}
+			
+			vSQL += ",'" + site.getPlace() + "','" + site.getPathIndication() + "'),";
 		}
 		
-		vSQL = vSQL.replaceAll(",$", ";");
+		vSQL = vSQL.replaceAll(",$", " RETURNING id;");
 		
-		return jdbcTemplate.query(vSQL, new BeanPropertyRowMapper<Integer>(Integer.class));
+		
+		Iterable<Map<String, Object>> iter = jdbcTemplate.queryForList(vSQL);
+		
+		List<Integer> list = new ArrayList<Integer>();
+		for (Map<String, Object> map : iter) {
+			list.add((Integer) map.get("id"));
+		}
+		
+		return list;
 	}
 	
 	

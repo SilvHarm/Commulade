@@ -2,6 +2,7 @@ package fr.silvharm.commulade.consumer.impl.dao;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -33,9 +34,17 @@ public class TopoDaoImpl extends AbstractDaoImpl implements TopoDao {
 			vSQL += "('" + topo.getName() + "','" + topo.getEditionDate() + "','" + topo.getDescription() + "'),";
 		}
 		
-		vSQL = vSQL.replaceAll(",$", ";");
+		vSQL = vSQL.replaceAll(",$", " RETURNING id;");
 		
-		return jdbcTemplate.query(vSQL, new BeanPropertyRowMapper<Integer>(Integer.class));
+		
+		Iterable<Map<String, Object>> iter = jdbcTemplate.queryForList(vSQL);
+		
+		List<Integer> list = new ArrayList<Integer>();
+		for (Map<String, Object> map : iter) {
+			list.add((Integer) map.get("id"));
+		}
+		
+		return list;
 	}
 	
 	
