@@ -5,7 +5,7 @@
 				value="<s:property value="name" />">
 		</p>
 
-		<button id="searchButton">Rechercher</button>
+		<button class="seShaButtons someButton">Rechercher</button>
 	</form>
 </aside>
 

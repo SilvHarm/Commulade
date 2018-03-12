@@ -25,8 +25,10 @@
 				value="<s:property value="formBean.cotation" />">
 		</p>
 
-		<button id="searchButton" class="hundWid">Rechercher</button>
+		<button class="hundWid seShaButtons someButton">Rechercher</button>
 	</form>
+
+	<button class="hundWid seShaButtons someButton" onclick="document.location='share-site'">Partager un site</button>
 </aside>
 
 

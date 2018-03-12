@@ -20,8 +20,14 @@
 			<result name="success">/jsp/template/main-template.jsp</result>
 		</action>
 
-		<action name="topo-presentation" class="fr.silvharm.commulade.webapp.action.TopoPresentationAction" method="execute">
+		<action name="share-site" class="shareSiteAction" method="execute">
 			<result name="success">/jsp/template/main-template.jsp</result>
+		</action>
+
+		<action name="share-site-form" class="shareSiteAction" method="getForm">
+			<result name="error">/jsp/template/main-template.jsp</result>
+			<result name="success" type="redirect">site/${newSiteId}</result>
+
 		</action>
 
 		<action name="site/*" class="viewSiteAction" method="execute">

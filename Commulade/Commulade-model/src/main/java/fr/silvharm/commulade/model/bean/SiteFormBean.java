@@ -1,49 +1,37 @@
-package fr.silvharm.commulade.model.pojo;
+package fr.silvharm.commulade.model.bean;
 
 import java.io.File;
-import java.time.LocalDate;
 import java.util.List;
 
-public class Site {
+public class SiteFormBean {
 	
 	private File photo;
-	private Integer id;
-	private List<Secteur> listSecteur;
-	private LocalDate date;
-	private String name, pathIndication, photoName, place;
+	private List<SecteurFormBean> listSecteur;
+	private String name, pathIndication, photoName, photoType, place;
 	
 	
-	public Site() {}
+	public SiteFormBean() {}
 	
+	
+	/********************************
+	 * Struts 2
+	 *******************************/
 	
 	/**
-	 * @param id
-	 * @param name
-	 * @param date
-	 * @param photoName
-	 * @param place
-	 * @param pathIndication
-	 * @param listSecteur
+	 * @param contentType
+	 *           the contentType to set
 	 */
-	public Site(Integer id, String name, LocalDate date, String photoName, String place, String pathIndication,
-			List<Secteur> listSecteur) {
-		this.id = id;
-		this.name = name;
-		this.date = date;
-		this.photoName = photoName;
-		this.place = place;
-		this.pathIndication = pathIndication;
-		this.listSecteur = listSecteur;
+	public void setPhotoContentType(String contentType) {
+		this.photoType = contentType;
 	}
 	
 	
 	/**
-	 * Add the Secteur provided to listSecteur
-	 * 
-	 * @param item
+	 * @param fileName
+	 *           the fileName to set
 	 */
-	public void addItemToList(Secteur item) {
-		listSecteur.add(item);
+	public void setPhotoFileName(String fileName) {
+		this.photoName = fileName;
 	}
 	
 	
@@ -52,26 +40,9 @@ public class Site {
 	 *******************************/
 	
 	/**
-	 * @return the id
-	 */
-	public Integer getId() {
-		return id;
-	}
-	
-	
-	/**
-	 * @param id
-	 *           the id to set
-	 */
-	public void setId(Integer id) {
-		this.id = id;
-	}
-	
-	
-	/**
 	 * @return the listSecteur
 	 */
-	public List<Secteur> getListSecteur() {
+	public List<SecteurFormBean> getListSecteur() {
 		return listSecteur;
 	}
 	
@@ -80,25 +51,8 @@ public class Site {
 	 * @param listSecteur
 	 *           the listSecteur to set
 	 */
-	public void setListSecteur(List<Secteur> listSecteur) {
+	public void setListSecteur(List<SecteurFormBean> listSecteur) {
 		this.listSecteur = listSecteur;
-	}
-	
-	
-	/**
-	 * @return the date
-	 */
-	public LocalDate getDate() {
-		return date;
-	}
-	
-	
-	/**
-	 * @param date
-	 *           the date to set
-	 */
-	public void setDate(LocalDate date) {
-		this.date = date;
 	}
 	
 	
@@ -167,6 +121,23 @@ public class Site {
 	 */
 	public void setPhotoName(String photoName) {
 		this.photoName = photoName;
+	}
+	
+	
+	/**
+	 * @return the photoType
+	 */
+	public String getPhotoType() {
+		return photoType;
+	}
+	
+	
+	/**
+	 * @param photoType
+	 *           the photoType to set
+	 */
+	public void setPhotoType(String photoType) {
+		this.photoType = photoType;
 	}
 	
 	

@@ -1,0 +1,34 @@
+textarea {
+	overflow: hidden;
+	padding: 5px;
+	resize: none;
+}
+
+.addItem {
+	margin-top: 20px;
+}
+
+.biggerFont {
+	font-size: 110%;
+}
+
+.deleteSymbol {
+	
+}
+
+.delInline {
+	display: inline-flex;
+}
+
+.longInput {
+	margin-left: 20px;
+	margin-right: 20px;
+}
+
+.removeItem {
+	
+}
+
+#shareButton {
+	margin-top: 50px;
+}

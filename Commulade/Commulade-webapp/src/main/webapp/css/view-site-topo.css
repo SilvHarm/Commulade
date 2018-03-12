@@ -3,11 +3,6 @@
 	border-radius: 1%;
 }
 
-.divSeek {
-	margin-bottom: 5px;
-	overflow: hidden;
-}
-
 .divImgSecteur {
 	text-align: center;
 	width: 20%;
@@ -25,10 +20,6 @@
 .hSecObserver, .hVoieObserver {
 	cursor: pointer;
 	margin-top: 0px;
-}
-
-.siteSeparator {
-	color: crimson;
 }
 
 .spanLong {
