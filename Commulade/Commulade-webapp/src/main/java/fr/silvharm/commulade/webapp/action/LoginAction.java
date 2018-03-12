@@ -31,7 +31,9 @@ public class LoginAction extends ActionSupport implements SessionAware {
 	
 	
 	public String login() {
-		if (!userInteractions.connectUser(user)) {
+		user = userInteractions.connectUser(user);
+		
+		if (user == null) {
 			return ERROR;
 		}
 		

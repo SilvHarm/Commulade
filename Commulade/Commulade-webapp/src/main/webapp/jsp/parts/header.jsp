@@ -9,9 +9,9 @@
 		<a class="falseButtonHeader" href="pret-topo">Espace de Prêt</a>
 
 
-		<s:if test="username != null">
-			<a class="disLogRegHeader" href="disconnect">
-				<s:property value="username" />
+		<s:if test="#attr['username'] != null">
+			<a id="disconnect" class="disLogRegHeader" href="disconnect">
+				<s:property value="%{#attr['username']}" />
 				: Se Déconnecter
 			</a>
 		</s:if>

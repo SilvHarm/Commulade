@@ -9,9 +9,9 @@ public interface UserInteractions {
 	 * registered in the database
 	 * 
 	 * @param user
-	 * @return true if the user is valid or false
+	 * @return the User with it's id added or null
 	 */
-	Boolean connectUser(User user);
+	User connectUser(User user);
 	
 	
 	/**

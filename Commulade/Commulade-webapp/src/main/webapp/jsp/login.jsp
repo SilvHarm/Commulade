@@ -1,4 +1,4 @@
-<form class="autoMar flexCol" action="login" method="post">
+<form class="autoMar flexCol" action="loginForm" method="post">
 	<p>
 		<label>Nom d'utilisateur : </label><input id="username" name="user.username" type="text" pattern="[a-zA-Z]{6,32}"
 			placeholder="Nom d'Utilisateur..." required> <label>[0-9, a-z, A-Z]</label>

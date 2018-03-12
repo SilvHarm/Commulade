@@ -21,7 +21,9 @@
 
 		<!-- Login -->
 
-		<action name="disconnect" class="loginAction" method="disconnect"></action>
+		<action name="disconnect" class="loginAction" method="disconnect">
+			<result name="success" type="redirect">welcome</result>
+		</action>
 
 		<action name="login" class="loginAction" method="execute">
 			<result name="success">/jsp/template/main-template.jsp</result>

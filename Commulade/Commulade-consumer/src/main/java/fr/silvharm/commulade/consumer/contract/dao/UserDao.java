@@ -13,8 +13,9 @@ public interface UserDao {
 	 * Insert the provided User in the database
 	 * 
 	 * @param user
+	 * @return the id of the newly created user
 	 */
-	public void create(User user);
+	public Integer create(User user);
 	
 	
 	/**
@@ -32,6 +33,15 @@ public interface UserDao {
 	 * @return the User associated to the id provided
 	 */
 	public User findById(int id);
+	
+	
+	/**
+	 * Get from the database the User whom the username is equal to the one provided
+	 * 
+	 * @param username
+	 * @return the User associated to the username provided
+	 */
+	public User findByName(String username);
 	
 	
 	/**
