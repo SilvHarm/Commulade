@@ -1,17 +1,20 @@
 package fr.silvharm.commulade.webapp.action;
 
+import java.util.Map;
+
+import org.apache.struts2.interceptor.SessionAware;
+
 import com.opensymphony.xwork2.ActionSupport;
 
-import fr.silvharm.commulade.business.contract.SiteInteractions;
-import fr.silvharm.commulade.model.bean.TopoFormBean;
+import fr.silvharm.commulade.business.contract.UserInteractions;
+import fr.silvharm.commulade.model.pojo.User;
 
-public class ShareSiteAction extends ActionSupport {
+public class RegisterAction extends ActionSupport implements SessionAware {
 	
-	private Integer newSiteId;
-	private SiteInteractions siteInteractions;
-	private String contentJsp = "share-site", css = "share-site-topo", js = "share-site-topo",
-			title = "Partager un site";
-	private TopoFormBean topoForm;
+	private Map<String, Object> session;
+	private String contentJsp = "register", css = "regis-login", js = null, title = "S'inscrire au site";
+	private User user;
+	private UserInteractions userInteractions;
 	
 	
 	public String execute() {
@@ -19,16 +22,15 @@ public class ShareSiteAction extends ActionSupport {
 	}
 	
 	
-	public String getForm() {
-		if (topoForm == null) {
+	public String register() {
+		user = userInteractions.registerUser(user);
+		
+		if (user == null) {
 			return ERROR;
 		}
 		
-		newSiteId = siteInteractions.shareSite(topoForm);
-		
-		if (newSiteId == null) {
-			return ERROR;
-		}
+		session.put("userId", user.getId());
+		session.put("username", user.getUsername());
 		
 		return SUCCESS;
 	}
@@ -89,20 +91,9 @@ public class ShareSiteAction extends ActionSupport {
 	}
 	
 	
-	/**
-	 * @return the newSiteId
-	 */
-	public int getNewSiteId() {
-		return newSiteId;
-	}
-	
-	
-	/**
-	 * @param siteInteractions
-	 *           the siteInteractions to set
-	 */
-	public void setSiteInteractions(SiteInteractions siteInteractions) {
-		this.siteInteractions = siteInteractions;
+	@Override
+	public void setSession(Map<String, Object> session) {
+		this.session = session;
 	}
 	
 	
@@ -124,19 +115,28 @@ public class ShareSiteAction extends ActionSupport {
 	
 	
 	/**
-	 * @return the topoForm
+	 * @return the user
 	 */
-	public TopoFormBean getTopoForm() {
-		return topoForm;
+	public User getUser() {
+		return user;
 	}
 	
 	
 	/**
-	 * @param topoForm
-	 *           the topoForm to set
+	 * @param user
+	 *           the user to set
 	 */
-	public void setTopoForm(TopoFormBean topoForm) {
-		this.topoForm = topoForm;
+	public void setUser(User user) {
+		this.user = user;
+	}
+	
+	
+	/**
+	 * @param userInteractions
+	 *           the userInteractions to set
+	 */
+	public void setUserInteractions(UserInteractions userInteractions) {
+		this.userInteractions = userInteractions;
 	}
 	
 }

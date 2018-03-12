@@ -16,6 +16,10 @@
 
 	<!-- Actions -->
 
+	<bean id="loginAction" class="fr.silvharm.commulade.webapp.action.LoginAction" scope="prototype">
+		<property name="userInteractions" ref="userInteractionsImpl"/>
+	</bean>
+
 	<bean id="rechercheSiteAction" class="fr.silvharm.commulade.webapp.action.RechercheSiteAction" scope="prototype">
 		<property name="configContainer" ref="configContainer"/>
 		<property name="siteInteractions" ref="siteInteractionsImpl"/>
@@ -23,6 +27,10 @@
 
 	<bean id="rechercheTopoAction" class="fr.silvharm.commulade.webapp.action.RechercheTopoAction" scope="prototype">
 		<property name="topoInteractions" ref="topoInteractionsImpl"/>
+	</bean>
+
+	<bean id="registerAction" class="fr.silvharm.commulade.webapp.action.RegisterAction" scope="prototype">
+		<property name="userInteractions" ref="userInteractionsImpl"/>
 	</bean>
 
 	<bean id="shareSiteAction" class="fr.silvharm.commulade.webapp.action.ShareSiteAction" scope="prototype">

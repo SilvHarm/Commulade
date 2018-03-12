@@ -44,7 +44,7 @@ public class FormVerificationHelper {
 				// test if field content is an Integer
 				i = Integer.parseInt(formBean.getMinHeight());
 				// test if value is unexpected
-				if (i < 1 && 99 < i) {
+				if (i < 1 && 32000 < i) {
 					logger.info("minHeight property value is unexpected");
 					
 					return false;
@@ -53,7 +53,7 @@ public class FormVerificationHelper {
 			
 			if (!formBean.getMaxHeight().isEmpty()) {
 				i = Integer.parseInt(formBean.getMaxHeight());
-				if (i < 2 && 100 < i) {
+				if (i < 1 && 32000 < i) {
 					logger.info("maxHeight property value is unexpected");
 					
 					return false;
@@ -62,7 +62,7 @@ public class FormVerificationHelper {
 			
 			if (!formBean.getMinPointNumber().isEmpty()) {
 				i = Integer.parseInt(formBean.getMinPointNumber());
-				if (i < 1 && 99 < i) {
+				if (i < 1 && 32000 < i) {
 					logger.info("minPointNumber property value is unexpected");
 					
 					return false;
@@ -71,7 +71,7 @@ public class FormVerificationHelper {
 			
 			if (!formBean.getMaxPointNumber().isEmpty()) {
 				i = Integer.parseInt(formBean.getMaxPointNumber());
-				if (i < 2 && 100 < i) {
+				if (i < 1 && 32000 < i) {
 					logger.info("maxPointNumber property value is unexpected");
 					
 					return false;

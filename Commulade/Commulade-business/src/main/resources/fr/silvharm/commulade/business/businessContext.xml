@@ -16,4 +16,8 @@
 		<property name="topoDao" ref="topoDaoImpl"/>
 	</bean>
 
+	<bean id="userInteractionsImpl" class="fr.silvharm.commulade.business.impl.UserInteractionsImpl">
+		<property name="userDao" ref="userDaoImpl"/>
+	</bean>
+
 </beans>

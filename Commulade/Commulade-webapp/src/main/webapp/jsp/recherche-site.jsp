@@ -7,16 +7,16 @@
 
 		<p>Hauteur :</p>
 		<p class="inputFormP">
-			<input class="numberInput observe" name="formBean.minHeight" type="number" min="1" max="99" placeholder="min..."
+			<input class="numberInput observe" name="formBean.minHeight" type="number" min="1" max="32000" placeholder="min..."
 				value="<s:property value="formBean.minHeight" />"> - <input class="numberInput observe" name="formBean.maxHeight" type="number"
-				min="2" max="100" placeholder="max..." value="<s:property value="formBean.maxHeight" />">
+				min="1" max="32000" placeholder="max..." value="<s:property value="formBean.maxHeight" />">
 		</p>
 
 		<p>Nombre de points :</p>
 		<p class="inputFormP">
-			<input class="numberInput observe" name="formBean.minPointNumber" type="number" min="1" max="99" placeholder="min..."
+			<input class="numberInput observe" name="formBean.minPointNumber" type="number" min="1" max="32000" placeholder="min..."
 				value="<s:property value="formBean.minPointNumber" />"> - <input class="numberInput observe" name="formBean.maxPointNumber"
-				type="number" min="2" max="100" placeholder="max..." value="<s:property value="formBean.maxPointNumber" />">
+				type="number" min="1" max="32000" placeholder="max..." value="<s:property value="formBean.maxPointNumber" />">
 		</p>
 
 		<p>Cotation :</p>
