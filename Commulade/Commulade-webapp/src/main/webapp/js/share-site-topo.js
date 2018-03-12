@@ -76,7 +76,7 @@ function deleteItem(element) {
  ******************************************************************************/
 function deleteButton() {
 
-	return '<button class="delInline removeItem" type="button" onclick="deleteItem(this)"><span class="deleteSymbol">X</span></button>';
+	return '<button class="delInline removeItem seShaButtons" type="button" onclick="deleteItem(this)"><span class="deleteSymbol">X</span></button>';
 }
 
 function siteHtml() {
@@ -106,7 +106,7 @@ function siteHtml() {
 
 			+ secteurHtml()
 
-			+ '<button class="addItem" type="button" onclick="addSecteur(this)">Ajouter un secteur</button>'
+			+ '<button class="addItem seShaButtons" type="button" onclick="addSecteur(this)">Ajouter un secteur</button>'
 			+ '</div>';
 }
 
@@ -133,7 +133,7 @@ function secteurHtml() {
 
 			+ voieHtml()
 
-			+ '<button class="addItem" type="button" onclick="addVoie(this)">Ajouter une voie</button>'
+			+ '<button class="addItem seShaButtons" type="button" onclick="addVoie(this)">Ajouter une voie</button>'
 			+ '</div>';
 }
 
@@ -154,7 +154,7 @@ function voieHtml() {
 
 			+ longueurHtml()
 
-			+ '<button class="addItem" type="button" onclick="addLongueur(this)">Ajouter une longueur</button>'
+			+ '<button class="seShaButtons" type="button" onclick="addLongueur(this)">Ajouter une longueur</button>'
 			+ '</div>';
 }
 
@@ -163,7 +163,7 @@ function longueurHtml() {
 			+ l
 			+ '">'
 
-			+ '<p class="delInline"><input name="topoForm.listSite['
+			+ '<p class="delInline"><input class="longInput" name="topoForm.listSite['
 			+ i
 			+ '].listSecteur['
 			+ j
@@ -173,7 +173,7 @@ function longueurHtml() {
 			+ l
 			+ '].height" type="number" min="0" max="32000" placeholder="Hauteur en mètre..." required>'
 
-			+ '<input name="topoForm.listSite['
+			+ '<input class="longInput" name="topoForm.listSite['
 			+ i
 			+ '].listSecteur['
 			+ j
@@ -183,7 +183,7 @@ function longueurHtml() {
 			+ l
 			+ '].nombrePoints" type="number" min="0" max="32000" placeholder="Nombre de points..." required>'
 
-			+ '<input name="topoForm.listSite['
+			+ '<input class="longInput" name="topoForm.listSite['
 			+ i
 			+ '].listSecteur['
 			+ j

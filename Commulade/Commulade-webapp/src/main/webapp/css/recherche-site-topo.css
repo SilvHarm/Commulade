@@ -2,6 +2,10 @@ form {
 	padding: 5%;
 }
 
+.someButton {
+	margin-top: 20px;
+}
+
 .description {
 	font-size: initial;
 	height: 100%;
@@ -40,17 +44,6 @@ form {
 
 .siteTopoContainer {
 	max-height: 100%
-}
-
-#searchButton {
-	background-color: #222;
-	border-color: #111;
-	border-radius: 10%;
-	color: #AAA;
-	cursor: pointer;
-	font-family: andalus;
-	font-size: large;
-	margin-top: 20px;
 }
 
 #searchCriteria {

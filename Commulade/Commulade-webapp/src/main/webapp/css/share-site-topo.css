@@ -5,8 +5,7 @@ textarea {
 }
 
 .addItem {
-	display: flex;
-	margin: 0px auto;
+	margin-top: 20px;
 }
 
 .biggerFont {
@@ -21,6 +20,15 @@ textarea {
 	display: inline-flex;
 }
 
+.longInput {
+	margin-left: 20px;
+	margin-right: 20px;
+}
+
 .removeItem {
 	
+}
+
+#shareButton {
+	margin-top: 50px;
 }
