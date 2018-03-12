@@ -7,6 +7,7 @@ import fr.silvharm.commulade.model.bean.TopoFormBean;
 
 public class ShareSiteAction extends ActionSupport {
 	
+	private Integer newSiteId;
 	private SiteInteractions siteInteractions;
 	private String contentJsp = "share-site", css = "share-site-topo", js = "share-site-topo",
 			title = "Partager un site";
@@ -19,7 +20,15 @@ public class ShareSiteAction extends ActionSupport {
 	
 	
 	public String getForm() {
-		if (topoForm == null || !(siteInteractions.shareSite(topoForm))) {
+		if (topoForm == null) {
+			contentJsp = "error";
+			
+			return ERROR;
+		}
+		
+		newSiteId = siteInteractions.shareSite(topoForm);
+		
+		if (newSiteId == null) {
 			contentJsp = "error";
 			
 			return ERROR;
@@ -81,6 +90,14 @@ public class ShareSiteAction extends ActionSupport {
 	 */
 	public void setJs(String js) {
 		this.js = js;
+	}
+	
+	
+	/**
+	 * @return the newSiteId
+	 */
+	public int getNewSiteId() {
+		return newSiteId;
 	}
 	
 	

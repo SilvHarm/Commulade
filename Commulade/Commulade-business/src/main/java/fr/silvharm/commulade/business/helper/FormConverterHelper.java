@@ -15,6 +15,11 @@ import fr.silvharm.commulade.model.pojo.Voie;
 
 public class FormConverterHelper {
 	
+	private static String stringSqlConform(String str) {
+		return str.replaceAll("'", "''");
+	}
+	
+	
 	public static Site siteFormToSite(SiteFormBean siteForm) {
 		int i, j, k;
 		List<LongueurFormBean> listLongueur;
@@ -31,15 +36,16 @@ public class FormConverterHelper {
 		Site site = new Site();
 		site.setListSecteur(new ArrayList<Secteur>());
 		
-		site.setName(siteForm.getName());
+		site.setName(stringSqlConform(siteForm.getName()));
 		site.setDate(LocalDate.now());
-		site.setPlace(siteForm.getPlace());
-		site.setPathIndication(siteForm.getPathIndication());
+		site.setPlace(stringSqlConform(siteForm.getPlace()));
+		site.setPathIndication(stringSqlConform(siteForm.getPathIndication()));
 		
 		if (siteForm.getPhotoName() != null) {
 			site.setPhoto(siteForm.getPhoto());
 			
 			tempo = siteForm.getPhotoName().replaceAll(" ", "_");
+			tempo = stringSqlConform(tempo);
 			
 			if (60 < tempo.length()) {
 				tempo = tempo.substring(0, 59);
@@ -60,12 +66,13 @@ public class FormConverterHelper {
 				secteur = new Secteur();
 				secteur.setListVoie(new ArrayList<Voie>());
 				
-				secteur.setName(secteurForm.getName());
+				secteur.setName(stringSqlConform(secteurForm.getName()));
 				
 				if (secteurForm.getPhotoName() != null) {
 					secteur.setPhoto(secteurForm.getPhoto());
 					
 					tempo = secteurForm.getPhotoName().replaceAll(" ", "_");
+					tempo = stringSqlConform(tempo);
 					
 					if (60 < tempo.length()) {
 						tempo = tempo.substring(0, 59);
@@ -86,20 +93,20 @@ public class FormConverterHelper {
 						voie = new Voie();
 						voie.setListLongueur(new ArrayList<Longueur>());
 						
-						voie.setName(voieForm.getName());
+						voie.setName(stringSqlConform(voieForm.getName()));
 						
 						
 						// Add Longueur to voie
 						listLongueur = voieForm.getListLongueur();
-						for (k = 0; k < listVoie.size(); k++) {
-							longueurForm = listLongueur.get(j);
+						for (k = 0; k < listLongueur.size(); k++) {
+							longueurForm = listLongueur.get(k);
 							
 							if (longueurForm != null) {
 								longueur = new Longueur();
 								
 								longueur.setHeight(Integer.parseInt(longueurForm.getHeight()));
 								longueur.setNombrePoints(Integer.parseInt(longueurForm.getNombrePoints()));
-								longueur.setCotation(longueurForm.getCotation());
+								longueur.setCotation(stringSqlConform(longueurForm.getCotation()));
 								
 								voie.addItemToList(longueur);
 							}

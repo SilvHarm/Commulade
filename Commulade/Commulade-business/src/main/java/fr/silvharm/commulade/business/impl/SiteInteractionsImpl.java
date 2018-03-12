@@ -7,6 +7,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import fr.silvharm.commulade.business.contract.SiteInteractions;
+import fr.silvharm.commulade.business.helper.FormConverterHelper;
 import fr.silvharm.commulade.business.helper.FormVerificationHelper;
 import fr.silvharm.commulade.consumer.contract.dao.LongueurDao;
 import fr.silvharm.commulade.consumer.contract.dao.SecteurDao;
@@ -202,18 +203,97 @@ public class SiteInteractionsImpl implements SiteInteractions {
 	}
 	
 	
-	public Boolean shareSite(TopoFormBean topoForm) {
+	public Integer shareSite(TopoFormBean topoForm) {
 		List<SiteFormBean> list = topoForm.getListSite();
 		
 		if (list != null) {
 			if (list.size() == 1 || list.get(0) != null) {
+				// is the TopoFormBean conform to what is expected
 				if (FormVerificationHelper.shareSite(list.get(0))) {
+					Site site = FormConverterHelper.siteFormToSite(list.get(0));
 					
+					// add Site to database
+					int siteId = siteDao.create(site);
+					
+					
+					// add all the Secteur to database
+					List<Secteur> secteurList = site.getListSecteur();
+					for (Secteur secteur : secteurList) {
+						secteur.setSiteId(siteId);
+					}
+					
+					List<Integer> idList = secteurDao.createList(secteurList);
+					
+					
+					// add all the Voie to database
+					List<Voie> voieList = new ArrayList<Voie>();
+					for (int i = 0; i < secteurList.size(); i++) {
+						for (Voie voie : secteurList.get(i).getListVoie()) {
+							voie.setSecteurId(idList.get(i));
+							
+							voieList.add(voie);
+						}
+					}
+					
+					idList = voieDao.createList(voieList);
+					
+					
+					// set the id of the Voie to help set Longueur's voieId later
+					for (int j = 0; j < voieList.size(); j++) {
+						voieList.get(j).setId(idList.get(j));
+					}
+					
+					
+					// add all the Longueur to database
+					Boolean boucle;
+					int b, nbTurn = 0, listSize;
+					List<Longueur> longueurList = new ArrayList<Longueur>();
+					List<Longueur> toAddList = new ArrayList<Longueur>();
+					Voie voie;
+					do {
+						boucle = false;
+						toAddList.clear();
+						
+						listSize = voieList.size();
+						for (b = 0; b < listSize; b++) {
+							voie = voieList.get(b);
+							longueurList = voie.getListLongueur();
+							
+							if (longueurList.size() <= nbTurn) {
+								idList.remove(b);
+								voieList.remove(b);
+								b--;
+								listSize--;
+								
+								continue;
+							}
+							
+							longueurList.get(nbTurn).setVoieId(voie.getId());
+							if (0 < nbTurn) {
+								longueurList.get(nbTurn).setPreviousLongueurId(idList.get(b));
+							}
+							
+							toAddList.add(longueurList.get(nbTurn));
+							
+							
+							// if a Voie still has Longueur that will need to be added after that turn
+							if (longueurList.size() > (nbTurn + 1)) {
+								boucle = true;
+							}
+						}
+						
+						idList = longueurDao.createList(toAddList);
+						
+						nbTurn++;
+					} while (boucle);
+					
+					
+					return siteId;
 				}
 			}
 		}
 		
-		return false;
+		return null;
 	}
 	
 	

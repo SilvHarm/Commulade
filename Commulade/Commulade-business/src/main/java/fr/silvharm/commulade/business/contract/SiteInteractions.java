@@ -66,8 +66,8 @@ public interface SiteInteractions {
 	 * everything is conform
 	 * 
 	 * @param topoForm
-	 * @return true if nothing went wrong or false
+	 * @return the id of the new Site or null
 	 */
-	public Boolean shareSite(TopoFormBean topoForm);
+	public Integer shareSite(TopoFormBean topoForm);
 	
 }
