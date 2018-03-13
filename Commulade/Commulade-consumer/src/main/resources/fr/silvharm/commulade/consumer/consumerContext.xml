@@ -22,7 +22,11 @@
 
 	<bean id="siteDaoImpl" class="fr.silvharm.commulade.consumer.impl.dao.SiteDaoImpl" parent="abstractDaoImpl"></bean>
 
+	<bean id="siteTopoDaoImpl" class="fr.silvharm.commulade.consumer.impl.dao.SiteTopoDaoImpl" parent="abstractDaoImpl"></bean>
+
 	<bean id="topoDaoImpl" class="fr.silvharm.commulade.consumer.impl.dao.TopoDaoImpl" parent="abstractDaoImpl"></bean>
+
+	<bean id="topoOwnedByUserDaoImpl" class="fr.silvharm.commulade.consumer.impl.dao.TopoOwnedByUserDaoImpl" parent="abstractDaoImpl"></bean>
 
 	<bean id="userDaoImpl" class="fr.silvharm.commulade.consumer.impl.dao.UserDaoImpl" parent="abstractDaoImpl"></bean>
 
