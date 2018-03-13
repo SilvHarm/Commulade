@@ -17,7 +17,7 @@
 		</s:if>
 		<s:else>
 			<a class="disLogRegHeader" href="register">S'inscrire</a>
-			<span id="ou">OU</span>
+			<span id="ouHeader">OU</span>
 			<a class="disLogRegHeader" href="login">Se Connecter</a>
 		</s:else>
 	</nav>
