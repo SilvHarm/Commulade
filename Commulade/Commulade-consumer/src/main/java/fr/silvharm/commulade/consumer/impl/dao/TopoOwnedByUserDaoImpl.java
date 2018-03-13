@@ -43,6 +43,17 @@ public class TopoOwnedByUserDaoImpl extends AbstractDaoImpl implements TopoOwned
 	}
 	
 	
+	public void deleteByUserTopoId(int ownerId, int topoId) {
+		String vSQL = "DELETE FROM " + TABLE_NAME + " WHERE " + OWNER_ID + " = :ownerId AND " + TOPO_ID + " = :topoId ;";
+		
+		MapSqlParameterSource vParams = new MapSqlParameterSource();
+		vParams.addValue("ownerId", ownerId);
+		vParams.addValue("topoId", topoId);
+		
+		namedJdbcTemplate.update(vSQL, vParams);
+	}
+	
+	
 	public TopoOwnedByUser findById(int id) {
 		String vSQL = "SELECT * FROM " + TABLE_NAME + " WHERE " + ID + " = :id ;";
 		

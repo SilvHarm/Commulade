@@ -30,6 +30,16 @@ public interface TopoOwnedByUserDao {
 	
 	
 	/**
+	 * Delete from the database the TopoOwnedByUser associated to the userId and
+	 * topoId provided
+	 * 
+	 * @param userId
+	 * @param topoId
+	 */
+	public void deleteByUserTopoId(int userId, int topoId);
+	
+	
+	/**
 	 * Get from the database the TopoOwnedByUser whom the id is equal to the one
 	 * provided
 	 * 

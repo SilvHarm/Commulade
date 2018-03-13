@@ -21,6 +21,16 @@ public class TopoOwnedInteractionsImpl implements TopoOwnedInteractions {
 	}
 	
 	
+	public void startSharing(int topoId, int userId) {
+		topoOwnedByUserDao.create(userId, topoId);
+	}
+	
+	
+	public void stopSharing(int topoId, int userId) {
+		topoOwnedByUserDao.deleteByUserTopoId(userId, topoId);
+	}
+	
+	
 	/********************************
 	 * Getters & Setters
 	 *******************************/
