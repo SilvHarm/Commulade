@@ -96,6 +96,8 @@ function secHideAndSeek(element) {
 
 function setPowning(html) {
 	$('#powning').html(html);
+
+	buttonSet();
 }
 
 function siteHideAndSeek(element) {
