@@ -22,7 +22,7 @@
 		<!-- Login -->
 
 		<action name="disconnect" class="loginAction" method="disconnect">
-			<result name="success" type="redirect">welcome</result>
+			<result name="success" type="dispatcher">/jsp/parts/logreg.jsp</result>
 		</action>
 
 		<action name="login" class="loginAction" method="execute">

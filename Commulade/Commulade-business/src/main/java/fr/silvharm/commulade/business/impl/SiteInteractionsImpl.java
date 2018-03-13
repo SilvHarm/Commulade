@@ -105,6 +105,8 @@ public class SiteInteractionsImpl implements SiteInteractions {
 			return null;
 		}
 		
+		formBean.setSiteName(FormConverterHelper.stringSqlConform(formBean.getSiteName()));
+		
 		return siteDao.findBySearch(formBean);
 	}
 	

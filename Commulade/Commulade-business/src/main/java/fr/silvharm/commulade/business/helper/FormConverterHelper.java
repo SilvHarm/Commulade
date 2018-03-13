@@ -15,7 +15,7 @@ import fr.silvharm.commulade.model.pojo.Voie;
 
 public class FormConverterHelper {
 	
-	private static String stringSqlConform(String str) {
+	public static String stringSqlConform(String str) {
 		return str.replaceAll("'", "''");
 	}
 	
