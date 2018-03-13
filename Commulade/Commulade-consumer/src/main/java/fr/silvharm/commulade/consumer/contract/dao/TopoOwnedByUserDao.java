@@ -63,6 +63,18 @@ public interface TopoOwnedByUserDao {
 	
 	
 	/**
+	 * Get from the database the TopoOwnedByUser whom the ownerId and the topoId are
+	 * equals to the ones provided
+	 * 
+	 * @param ownerId
+	 * @param topoId
+	 * @return the TopoOwnedByUser associated to the ownerId and topoId provided or
+	 *         null if it doesn't exist
+	 */
+	public TopoOwnedByUser findByTopoOwnerId(int ownerId, int topoId);
+	
+	
+	/**
 	 * Get all the TopoOwnedByUser from the database
 	 * 
 	 * @return a List containing all the TopoOwnedByUser of the database

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 
@@ -70,6 +71,24 @@ public class TopoOwnedByUserDaoImpl extends AbstractDaoImpl implements TopoOwned
 		vParams.addValue("ownerId", ownerId);
 		
 		return jdbcTemplate.query(vSQL, new BeanPropertyRowMapper<TopoOwnedByUser>(TopoOwnedByUser.class));
+	}
+	
+	
+	public TopoOwnedByUser findByTopoOwnerId(int ownerId, int topoId) {
+		String vSQL = "SELECT * FROM " + TABLE_NAME + " WHERE " + OWNER_ID + " = :ownerId AND " + TOPO_ID
+				+ " = :topoId ;";
+		
+		MapSqlParameterSource vParams = new MapSqlParameterSource();
+		vParams.addValue("ownerId", ownerId);
+		vParams.addValue("topoId", topoId);
+		try {
+			return namedJdbcTemplate.queryForObject(vSQL, vParams,
+					new BeanPropertyRowMapper<TopoOwnedByUser>(TopoOwnedByUser.class));
+		}
+		catch (DataAccessException e) {
+			// We do not care much about the Exception itself
+			return null;
+		}
 	}
 	
 	
