@@ -8,6 +8,7 @@ import org.apache.logging.log4j.Logger;
 
 import fr.silvharm.commulade.business.contract.SiteInteractions;
 import fr.silvharm.commulade.business.contract.TopoInteractions;
+import fr.silvharm.commulade.business.helper.FormConverterHelper;
 import fr.silvharm.commulade.consumer.contract.dao.TopoDao;
 import fr.silvharm.commulade.model.pojo.Site;
 import fr.silvharm.commulade.model.pojo.Topo;
@@ -44,7 +45,7 @@ public class TopoInteractionsImpl implements TopoInteractions {
 			return null;
 		}
 		
-		return topoDao.getByName(topoName);
+		return topoDao.getByName(FormConverterHelper.stringSqlConform(topoName));
 	}
 	
 	
