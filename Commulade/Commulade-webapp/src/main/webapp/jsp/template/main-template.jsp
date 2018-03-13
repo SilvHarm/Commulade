@@ -19,7 +19,6 @@
 
 <%-- Common --%>
 <link rel="stylesheet" type="text/css" href="css/common-css.css" media="screen" />
-<script src="js/common-js.js"></script>
 
 <%-- Page --%>
 <s:if test="css!=null">
@@ -36,6 +35,7 @@
 	<s:include value="/jsp/parts/footer.jsp"></s:include>
 
 	<%-- Script --%>
+	<script src="js/common-js.js"></script>
 	<s:if test="js!=null">
 		<script src="js/<s:property value="js" />.js"></script>
 	</s:if>

@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 
@@ -12,6 +15,9 @@ import fr.silvharm.commulade.model.pojo.User;
 
 
 public class UserDaoImpl extends AbstractDaoImpl implements UserDao {
+	
+	private static final Logger logger = LogManager.getLogger();
+	
 	
 	public Integer create(User user) {
 		String vSQL = "INSERT INTO " + TABLE_NAME + " (" + USERNAME + "," + PASSWORD + ")"
@@ -58,7 +64,14 @@ public class UserDaoImpl extends AbstractDaoImpl implements UserDao {
 		MapSqlParameterSource vParams = new MapSqlParameterSource();
 		vParams.addValue("username", username);
 		
-		return namedJdbcTemplate.queryForObject(vSQL, vParams, new BeanPropertyRowMapper<User>(User.class));
+		try {
+			return namedJdbcTemplate.queryForObject(vSQL, vParams, new BeanPropertyRowMapper<User>(User.class));
+		}
+		catch (DataAccessException e) {
+			logger.info("No User with the name \"" + username + "\" exist in the database");
+			
+			return null;
+		}
 	}
 	
 	
