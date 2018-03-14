@@ -4,6 +4,7 @@ var parent;
  * their height adjusted to be equal to new width
  */
 window.onload = adaptHeight();
+window.onload = buttonSet();
 
 $(window).resize(function() {
 	adaptHeight();
@@ -37,6 +38,16 @@ function adaptHeight() {
 	$('.imgSecObs').css('height', $('body').width() * 0.15);
 }
 
+function buttonSet() {
+	$("#iDontOwnIt").click(function() {
+		iDontOwnIt();
+	});
+
+	$("#iOwnIt").click(function() {
+		iOwnIt();
+	});
+}
+
 function hideAndSeek(element, parent) {
 	var elemHeight = $(element).css('height');
 
@@ -53,6 +64,26 @@ function hideAndSeek(element, parent) {
 	}
 }
 
+function iDontOwnIt() {
+	$.ajax({
+		type : 'POST',
+		url : 'iDontOwnIt',
+		success : function(data) {
+			setPowning(data);
+		}
+	});
+}
+
+function iOwnIt() {
+	$.ajax({
+		type : 'POST',
+		url : 'iOwnIt',
+		success : function(data) {
+			setPowning(data);
+		}
+	});
+}
+
 function secHideAndSeek(element) {
 	parent = $(element).parent();
 
@@ -61,6 +92,12 @@ function secHideAndSeek(element) {
 			scrollTop : $(element).offset().top
 		}, 200);
 	}
+}
+
+function setPowning(html) {
+	$('#powning').html(html);
+
+	buttonSet();
 }
 
 function siteHideAndSeek(element) {

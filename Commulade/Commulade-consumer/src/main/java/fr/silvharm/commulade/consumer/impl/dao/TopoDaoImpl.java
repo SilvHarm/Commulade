@@ -31,7 +31,16 @@ public class TopoDaoImpl extends AbstractDaoImpl implements TopoDao {
 		String vSQL = "INSERT INTO " + TABLE_NAME + " (" + NAME + "," + EDITION_DATE + "," + DESCRIPTION + ") VALUES ";
 		
 		for (Topo topo : topoList) {
-			vSQL += "('" + topo.getName() + "','" + topo.getEditionDate() + "','" + topo.getDescription() + "'),";
+			vSQL += "('" + topo.getName() + "','" + topo.getEditionDate() + "',";
+			
+			if (topo.getDescription() != null) {
+				vSQL += "'" + topo.getDescription() + "'";
+			}
+			else {
+				vSQL += "null";
+			}
+			
+			vSQL += "),";
 		}
 		
 		vSQL = vSQL.replaceAll(",$", " RETURNING id;");

@@ -9,7 +9,10 @@ import org.apache.logging.log4j.Logger;
 import fr.silvharm.commulade.business.contract.SiteInteractions;
 import fr.silvharm.commulade.business.contract.TopoInteractions;
 import fr.silvharm.commulade.business.helper.FormConverterHelper;
+import fr.silvharm.commulade.business.helper.FormVerificationHelper;
+import fr.silvharm.commulade.consumer.contract.dao.SiteTopoDao;
 import fr.silvharm.commulade.consumer.contract.dao.TopoDao;
+import fr.silvharm.commulade.model.bean.TopoFormBean;
 import fr.silvharm.commulade.model.pojo.Site;
 import fr.silvharm.commulade.model.pojo.Topo;
 
@@ -19,6 +22,7 @@ public class TopoInteractionsImpl implements TopoInteractions {
 	private static final Logger logger = LogManager.getLogger();
 	
 	private SiteInteractions siteInteractions;
+	private SiteTopoDao siteTopoDao;
 	private TopoDao topoDao;
 	
 	
@@ -73,6 +77,23 @@ public class TopoInteractionsImpl implements TopoInteractions {
 	}
 	
 	
+	public Integer shareTopo(TopoFormBean topoForm) {
+		if (FormVerificationHelper.shareTopo(topoForm)) {
+			Topo topo = FormConverterHelper.topoFormToTopo(topoForm);
+			
+			int topoId = topoDao.create(topo);
+			
+			List<Integer> siteIdList = siteInteractions.shareListSite(topoForm.getListSite(), topo.getEditionDate());
+			
+			siteTopoDao.createList(topoId, siteIdList);
+			
+			return topoId;
+		}
+		
+		return null;
+	}
+	
+	
 	/********************************
 	 * Getters & Setters
 	 *******************************/
@@ -83,6 +104,15 @@ public class TopoInteractionsImpl implements TopoInteractions {
 	 */
 	public void setSiteInteractions(SiteInteractions siteInteractions) {
 		this.siteInteractions = siteInteractions;
+	}
+	
+	
+	/**
+	 * @param siteTopoDao
+	 *           the siteTopoDao to set
+	 */
+	public void setSiteTopoDao(SiteTopoDao siteTopoDao) {
+		this.siteTopoDao = siteTopoDao;
 	}
 	
 	

@@ -1,18 +1,25 @@
 package fr.silvharm.commulade.webapp.action;
 
+import java.util.Map;
+
+import org.apache.struts2.interceptor.SessionAware;
+
 import com.opensymphony.xwork2.ActionSupport;
 
 import fr.silvharm.commulade.business.contract.TopoInteractions;
+import fr.silvharm.commulade.business.contract.TopoOwnedInteractions;
 import fr.silvharm.commulade.model.pojo.ConfigContainer;
 import fr.silvharm.commulade.model.pojo.Topo;
 
-public class ViewTopoAction extends ActionSupport {
+public class ViewTopoAction extends ActionSupport implements SessionAware {
 	
-	private Boolean isUpToDate;
+	private Boolean isOwned, isUpToDate;
 	private ConfigContainer configContainer;
 	private int topoId;
+	private Map<String, Object> session;
 	private Topo topo;
 	private TopoInteractions topoInteractions;
+	private TopoOwnedInteractions topoOwnedInteractions;
 	private String contentJsp = "view-topo", css = "view-site-topo", js = "view-site-topo", title = "Topo: ";
 	
 	@SuppressWarnings("unused") // are used by struts in the jsp
@@ -26,12 +33,41 @@ public class ViewTopoAction extends ActionSupport {
 			title += topo.getName();
 			
 			isUpToDate = topoInteractions.isUpToDate(topo);
+			
+			Integer userId = (Integer) session.get("userId");
+			if (userId != null) {
+				isOwned = topoOwnedInteractions.isTopoOwned(topoId, userId);
+			}
 		}
 		else {
 			title = "Topo not Found";
 		}
 		
 		return SUCCESS;
+	}
+	
+	
+	public String iDontOwnIt() {
+		Integer userId = (Integer) session.get("userId");
+		if (userId != null) {
+			topoOwnedInteractions.stopSharing(topoId, userId);
+			
+			return SUCCESS;
+		}
+		
+		return ERROR;
+	}
+	
+	
+	public String iOwnIt() {
+		Integer userId = (Integer) session.get("userId");
+		if (userId != null) {
+			topoOwnedInteractions.startSharing(topoId, userId);
+			
+			return SUCCESS;
+		}
+		
+		return ERROR;
 	}
 	
 	
@@ -67,6 +103,14 @@ public class ViewTopoAction extends ActionSupport {
 	/**
 	 * @return the isUpToDate
 	 */
+	public Boolean getIsOwned() {
+		return isOwned;
+	}
+	
+	
+	/**
+	 * @return the isUpToDate
+	 */
 	public Boolean getIsUpToDate() {
 		return isUpToDate;
 	}
@@ -85,6 +129,12 @@ public class ViewTopoAction extends ActionSupport {
 	 */
 	public String getSecteurPhotoPath() {
 		return configContainer.getSecteurPhotoPath();
+	}
+	
+	
+	@Override
+	public void setSession(Map<String, Object> session) {
+		this.session = session;
 	}
 	
 	
@@ -114,8 +164,16 @@ public class ViewTopoAction extends ActionSupport {
 	
 	
 	/**
-	 * @param siteInteractions
-	 *           the siteInteractions to set
+	 * @return the title
+	 */
+	public String getTitle() {
+		return title;
+	}
+	
+	
+	/**
+	 * @param topoInteractions
+	 *           the TopoInteractions to set
 	 */
 	public void setTopoInteractions(TopoInteractions topoInteractions) {
 		this.topoInteractions = topoInteractions;
@@ -123,10 +181,11 @@ public class ViewTopoAction extends ActionSupport {
 	
 	
 	/**
-	 * @return the title
+	 * @param topoOwnedInteractions
+	 *           the TopoOwnedInteractions to set
 	 */
-	public String getTitle() {
-		return title;
+	public void setTopoOwnedInteractions(TopoOwnedInteractions topoOwnedInteractions) {
+		this.topoOwnedInteractions = topoOwnedInteractions;
 	}
 	
 }

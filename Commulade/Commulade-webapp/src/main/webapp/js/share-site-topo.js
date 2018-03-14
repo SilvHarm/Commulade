@@ -3,7 +3,14 @@ var i, j, k, l, parent, tempo;
 
 $(function() {
 	if ($('#topo').length != 0) {
-		console.log('Topo');
+		i = siteCount;
+		j = 0;
+		k = 0;
+		l = 0;
+
+		$('#addSiteBut').before(siteHtml());
+
+		siteCount++;
 	} else {
 		i = 0;
 		j = 0;
@@ -154,7 +161,7 @@ function voieHtml() {
 
 			+ longueurHtml()
 
-			+ '<button class="seShaButtons" type="button" onclick="addLongueur(this)">Ajouter une longueur</button>'
+			+ '<button class="seShaButtons" type="button" onclick="addLongueur(this)">+</button>'
 			+ '</div>';
 }
 

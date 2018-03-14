@@ -254,7 +254,55 @@ public class FormVerificationHelper {
 	 * @return true if the TopoFormBean is valid or false if it's not
 	 */
 	public static Boolean shareTopo(TopoFormBean topoForm) {
+		try {
+			if (topoForm.getName().isEmpty() || topoForm.getName().length() > 50) {
+				logger.info("TopoFormBean name property value is unexpected");
+				
+				return false;
+			}
+			
+			if (topoForm.getEditionDate().isEmpty()) {
+				logger.info("TopoFormBean editionDate property value is unexpected");
+				
+				return false;
+			}
+			
+			if (topoForm.getDescription() != null) {
+				if (topoForm.getDescription().length() > 256) {
+					logger.info("TopoFormBean description property value is unexpected");
+					
+					return false;
+				}
+			}
+			
+			if (topoForm.getListSite() == null) {
+				logger.info("TopoFormBean listSite property value is null");
+				
+				return false;
+			}
+		}
+		catch (NullPointerException e) {
+			logger.info("one of the topoForm properties is null when it shouldn't be", e);
+			
+			return false;
+		}
 		
+		int isntNull = 0;
+		for (SiteFormBean siteForm : topoForm.getListSite()) {
+			if (siteForm != null) {
+				isntNull++;
+				
+				if (!shareSite(siteForm)) {
+					return false;
+				}
+			}
+		}
+		
+		if (isntNull == 0) {
+			logger.info("all SiteFormBean of TopoFormBean listSite property value were null");
+			
+			return false;
+		}
 		
 		return true;
 	}

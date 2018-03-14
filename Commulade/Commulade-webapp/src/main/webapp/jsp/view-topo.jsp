@@ -1,5 +1,17 @@
 <s:if test="topo != null">
 	<div class="centText hundWid">
+
+		<s:if test="#attr['username'] != null">
+			<p id="powning" class="sharing">
+				<s:if test="isOwned">
+					<s:include value="/jsp/parts/own-it-topo.jsp"></s:include>
+				</s:if>
+				<s:else>
+					<s:include value="/jsp/parts/dont-own-it-topo.jsp"></s:include>
+				</s:else>
+			</p>
+		</s:if>
+
 		<div>
 			<h1 class="noMar">
 				<s:property value="topo.name" />
