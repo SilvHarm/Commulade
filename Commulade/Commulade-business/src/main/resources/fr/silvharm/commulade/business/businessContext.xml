@@ -13,9 +13,10 @@
 
 	<bean id="topoInteractionsImpl" class="fr.silvharm.commulade.business.impl.TopoInteractionsImpl">
 		<property name="siteInteractions" ref="siteInteractionsImpl"/>
+		<property name="siteTopoDao" ref="siteTopoDaoImpl"/>
 		<property name="topoDao" ref="topoDaoImpl"/>
 	</bean>
-	
+
 	<bean id="topoOwnedInteractionsImpl" class="fr.silvharm.commulade.business.impl.TopoOwnedInteractionsImpl">
 		<property name="topoOwnedByUserDao" ref="topoOwnedByUserDaoImpl"/>
 	</bean>

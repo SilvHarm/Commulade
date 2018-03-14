@@ -7,6 +7,8 @@
 
 		<button class="seShaButtons someButton">Rechercher</button>
 	</form>
+
+	<button class="hundWid seShaButtons someButton" onclick="document.location='share-topo'">Partager un topo</button>
 </aside>
 
 
