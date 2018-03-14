@@ -2,6 +2,7 @@ package fr.silvharm.commulade.business.contract;
 
 import java.util.List;
 
+import fr.silvharm.commulade.model.bean.SiteFormBean;
 import fr.silvharm.commulade.model.bean.SiteSearchFormBean;
 import fr.silvharm.commulade.model.bean.TopoFormBean;
 import fr.silvharm.commulade.model.pojo.Site;
@@ -69,5 +70,15 @@ public interface SiteInteractions {
 	 * @return the id of the new Site or null
 	 */
 	public Integer shareSite(TopoFormBean topoForm);
+	
+	
+	/**
+	 * Convert the elements of the List to Site and call the consumer module to add
+	 * them to the database
+	 * 
+	 * @param list
+	 * @return the List of the id of the new Site or null
+	 */
+	public List<Integer> shareListSite(List<SiteFormBean> list);
 	
 }
