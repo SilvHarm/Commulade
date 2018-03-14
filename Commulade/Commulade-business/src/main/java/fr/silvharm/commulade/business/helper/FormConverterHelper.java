@@ -22,7 +22,7 @@ public class FormConverterHelper {
 	}
 	
 	
-	public static Site siteFormToSite(SiteFormBean siteForm) {
+	public static Site siteFormToSite(SiteFormBean siteForm, LocalDate date) {
 		int i, j, k;
 		List<LongueurFormBean> listLongueur;
 		List<SecteurFormBean> listSecteur;
@@ -39,7 +39,7 @@ public class FormConverterHelper {
 		site.setListSecteur(new ArrayList<Secteur>());
 		
 		site.setName(stringSqlConform(siteForm.getName()));
-		site.setDate(LocalDate.now());
+		site.setDate(date);
 		site.setPlace(stringSqlConform(siteForm.getPlace()));
 		site.setPathIndication(stringSqlConform(siteForm.getPathIndication()));
 		

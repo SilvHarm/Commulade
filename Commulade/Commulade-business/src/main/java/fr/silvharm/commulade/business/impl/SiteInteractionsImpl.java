@@ -1,5 +1,6 @@
 package fr.silvharm.commulade.business.impl;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -216,7 +217,7 @@ public class SiteInteractionsImpl implements SiteInteractions {
 					list.add(topoForm.getListSite().get(0));
 					
 					
-					return shareListSite(list).get(0);
+					return shareListSite(list, LocalDate.now()).get(0);
 				}
 			}
 		}
@@ -225,13 +226,13 @@ public class SiteInteractionsImpl implements SiteInteractions {
 	}
 	
 	
-	public List<Integer> shareListSite(List<SiteFormBean> list) {
+	public List<Integer> shareListSite(List<SiteFormBean> list, LocalDate date) {
 		List<Site> siteList = new ArrayList<Site>();
 		
 		for (SiteFormBean siteForm : list) {
 			// skip the SiteFormBean if it's null
 			if (siteForm != null) {
-				siteList.add(FormConverterHelper.siteFormToSite(siteForm));
+				siteList.add(FormConverterHelper.siteFormToSite(siteForm, date));
 			}
 		}
 		

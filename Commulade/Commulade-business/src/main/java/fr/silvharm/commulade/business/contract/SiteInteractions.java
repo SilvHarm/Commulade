@@ -1,5 +1,6 @@
 package fr.silvharm.commulade.business.contract;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import fr.silvharm.commulade.model.bean.SiteFormBean;
@@ -77,8 +78,9 @@ public interface SiteInteractions {
 	 * them to the database
 	 * 
 	 * @param list
+	 * @param date
 	 * @return the List of the id of the new Site or null
 	 */
-	public List<Integer> shareListSite(List<SiteFormBean> list);
+	public List<Integer> shareListSite(List<SiteFormBean> list, LocalDate date);
 	
 }

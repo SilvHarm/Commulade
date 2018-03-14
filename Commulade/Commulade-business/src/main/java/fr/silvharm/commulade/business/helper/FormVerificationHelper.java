@@ -255,14 +255,30 @@ public class FormVerificationHelper {
 	 */
 	public static Boolean shareTopo(TopoFormBean topoForm) {
 		try {
-			if (topoForm.getName().isEmpty() || topoForm.getEditionDate().isEmpty() || topoForm.getListSite() == null) {
+			if (topoForm.getName().isEmpty() || topoForm.getName().length() > 50) {
+				logger.info("TopoFormBean name property value is unexpected");
+				
+				return false;
+			}
+			
+			if (topoForm.getEditionDate().isEmpty()) {
+				logger.info("TopoFormBean editionDate property value is unexpected");
+				
 				return false;
 			}
 			
 			if (topoForm.getDescription() != null) {
 				if (topoForm.getDescription().length() > 256) {
+					logger.info("TopoFormBean description property value is unexpected");
+					
 					return false;
 				}
+			}
+			
+			if (topoForm.getListSite() == null) {
+				logger.info("TopoFormBean listSite property value is null");
+				
+				return false;
 			}
 		}
 		catch (NullPointerException e) {
@@ -283,6 +299,8 @@ public class FormVerificationHelper {
 		}
 		
 		if (isntNull == 0) {
+			logger.info("all SiteFormBean of TopoFormBean listSite property value were null");
+			
 			return false;
 		}
 		
