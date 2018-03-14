@@ -2,6 +2,7 @@ package fr.silvharm.commulade.business.contract;
 
 import java.util.List;
 
+import fr.silvharm.commulade.model.bean.TopoFormBean;
 import fr.silvharm.commulade.model.pojo.Topo;
 
 public interface TopoInteractions {
@@ -45,4 +46,14 @@ public interface TopoInteractions {
 	 * @return true if there is no Site more recent or false
 	 */
 	public Boolean isUpToDate(Topo topo);
+	
+	
+	/**
+	 * Verify the Form and call the consumer module to add it to the database if
+	 * everything is conform
+	 * 
+	 * @param topoForm
+	 * @return the id of the new Topo or null
+	 */
+	public Integer shareTopo(TopoFormBean topoForm);
 }
