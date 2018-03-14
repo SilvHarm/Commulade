@@ -7,10 +7,12 @@ import java.util.List;
 import fr.silvharm.commulade.model.bean.LongueurFormBean;
 import fr.silvharm.commulade.model.bean.SecteurFormBean;
 import fr.silvharm.commulade.model.bean.SiteFormBean;
+import fr.silvharm.commulade.model.bean.TopoFormBean;
 import fr.silvharm.commulade.model.bean.VoieFormBean;
 import fr.silvharm.commulade.model.pojo.Longueur;
 import fr.silvharm.commulade.model.pojo.Secteur;
 import fr.silvharm.commulade.model.pojo.Site;
+import fr.silvharm.commulade.model.pojo.Topo;
 import fr.silvharm.commulade.model.pojo.Voie;
 
 public class FormConverterHelper {
@@ -122,4 +124,19 @@ public class FormConverterHelper {
 		
 		return site;
 	}
+	
+	
+	public static Topo topoFormToTopo(TopoFormBean topoForm) {
+		Topo topo = new Topo();
+		
+		topo.setName(stringSqlConform(topoForm.getName()));
+		topo.setEditionDate(LocalDate.parse(topoForm.getEditionDate()));
+		
+		if (!topoForm.getDescription().isEmpty()) {
+			topo.setDescription(stringSqlConform(topoForm.getDescription()));
+		}
+		
+		return topo;
+	}
+	
 }
