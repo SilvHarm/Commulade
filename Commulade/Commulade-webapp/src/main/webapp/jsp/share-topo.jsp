@@ -17,8 +17,8 @@
 
 	<s:if test="#attr['username'] != null">
 		<p id="wishCheck">
-			<input name="wishToShare" type="checkbox"><label>Je poss�de physiquement ce topo et souhaite le
-				partager avec d'autres utilisateurs</label>
+			<input name="wishToShare" type="checkbox"><label>Je poss�de physiquement ce topo et souhaite le partager avec d'autres
+				utilisateurs</label>
 		</p>
 	</s:if>
 

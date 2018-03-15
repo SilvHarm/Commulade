@@ -1,5 +1,7 @@
 package fr.silvharm.commulade.consumer.contract.dao;
 
+import java.util.List;
+
 import fr.silvharm.commulade.model.pojo.Message;
 
 public interface MessageDao {
@@ -37,11 +39,31 @@ public interface MessageDao {
 	
 	
 	/**
+	 * Get from the database the Message whom the receiver_id or the sender_id is
+	 * equal to the userId provided
+	 * 
+	 * @param userId
+	 * @return a List of Message associated to the userId provided
+	 */
+	public List<Message> findByUserId(int userId);
+	
+	
+	/**
 	 * Update the properties of the Message from the database, whom the id is equal
 	 * to the id of the Message provided, by the ones of the Message provided
 	 * 
 	 * @param message
 	 */
 	public void update(Message message);
+	
+	
+	/**
+	 * Change to true the message_read column of the Message whom the id and the
+	 * receiver_id are equals to the ones provided
+	 * 
+	 * @param messageId
+	 * @param receiverId
+	 */
+	public void updateAsRead(int messageId, int receiverId);
 	
 }

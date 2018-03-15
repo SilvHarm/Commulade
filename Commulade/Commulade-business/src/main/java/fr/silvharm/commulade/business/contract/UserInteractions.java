@@ -11,7 +11,7 @@ public interface UserInteractions {
 	 * @param user
 	 * @return the User with it's id added or null
 	 */
-	User connectUser(User user);
+	public User connectUser(User user);
 	
 	
 	/**
@@ -21,6 +21,16 @@ public interface UserInteractions {
 	 * @param user
 	 * @return the User registered with it's id or null
 	 */
-	User registerUser(User user);
+	public User registerUser(User user);
+	
+	
+	/**
+	 * Verify if there is a User with the couple {userId, username}
+	 * 
+	 * @param userId
+	 * @param username
+	 * @return true if there is one or false
+	 */
+	public Boolean verifyUser(int userId, String username);
 	
 }
