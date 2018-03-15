@@ -64,7 +64,7 @@ public class MessageDaoImpl extends AbstractDaoImpl implements MessageDao {
 	
 	public List<Message> findByUserId(int userId) {
 		String vSQL = "SELECT * FROM " + TABLE_NAME + " WHERE " + RECEIVER_ID + " = :receiverId OR " + SENDER_ID
-				+ " = :senderId ;";
+				+ " = :senderId ORDER BY " + ID + " DESC;";
 		
 		MapSqlParameterSource vParams = new MapSqlParameterSource();
 		vParams.addValue("receiverId", userId);

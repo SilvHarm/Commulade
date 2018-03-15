@@ -12,8 +12,9 @@ public interface MessageInteractions {
 	 * 
 	 * @param userId
 	 * @param username
-	 * @return a List containing 2 List<Message>, the first for the received and the
-	 *         second for the sended or null if User don't exist
+	 * @return a List containing 2 List<Message> ordered by recent first; the first
+	 *         for the received and the second for the sended or null if User don't
+	 *         exist
 	 */
 	public List<List<Message>> getUserMessageList(int userId);
 	

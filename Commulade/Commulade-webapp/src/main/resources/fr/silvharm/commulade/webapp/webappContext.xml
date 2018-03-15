@@ -20,6 +20,11 @@
 		<property name="userInteractions" ref="userInteractionsImpl"/>
 	</bean>
 
+	<bean id="messageAction" class="fr.silvharm.commulade.webapp.action.MessageAction" scope="prototype">
+		<property name="messageInteractions" ref="messageInteractionsImpl"/>
+		<property name="userInteractions" ref="userInteractionsImpl"/>
+	</bean>
+
 	<bean id="rechercheSiteAction" class="fr.silvharm.commulade.webapp.action.RechercheSiteAction" scope="prototype">
 		<property name="configContainer" ref="configContainer"/>
 		<property name="siteInteractions" ref="siteInteractionsImpl"/>

@@ -54,7 +54,8 @@ public interface MessageDao {
 	 * equal to the userId provided
 	 * 
 	 * @param userId
-	 * @return a List of Message associated to the userId provided
+	 * @return a List of Message, ordered by recent first, associated to the userId
+	 *         provided
 	 */
 	public List<Message> findByUserId(int userId);
 	
