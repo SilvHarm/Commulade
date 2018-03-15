@@ -21,7 +21,7 @@ public class MessageDaoImpl extends AbstractDaoImpl implements MessageDao {
 		vParams.addValue("senderId", message.getSenderId());
 		vParams.addValue("previousMessageId", message.getPreviousMessageId());
 		vParams.addValue("dateTime", message.getDateTime());
-		vParams.addValue("messageRead", message.getMessageRead());
+		vParams.addValue("messageRead", false);
 		vParams.addValue("subject", message.getSubject());
 		vParams.addValue("content", message.getContent());
 		
@@ -49,6 +49,19 @@ public class MessageDaoImpl extends AbstractDaoImpl implements MessageDao {
 	}
 	
 	
+	public Message findByIdUserId(int id, int userId) {
+		String vSQL = "SELECT * FROM " + TABLE_NAME + " WHERE " + ID + " = :id AND (" + RECEIVER_ID + " = :receiverId OR "
+				+ SENDER_ID + " = :senderId);";
+		
+		MapSqlParameterSource vParams = new MapSqlParameterSource();
+		vParams.addValue("id", id);
+		vParams.addValue("receiverId", userId);
+		vParams.addValue("senderId", userId);
+		
+		return namedJdbcTemplate.queryForObject(vSQL, vParams, new BeanPropertyRowMapper<Message>(Message.class));
+	}
+	
+	
 	public List<Message> findByUserId(int userId) {
 		String vSQL = "SELECT * FROM " + TABLE_NAME + " WHERE " + RECEIVER_ID + " = :receiverId OR " + SENDER_ID
 				+ " = :senderId ;";
@@ -57,7 +70,7 @@ public class MessageDaoImpl extends AbstractDaoImpl implements MessageDao {
 		vParams.addValue("receiverId", userId);
 		vParams.addValue("senderId", userId);
 		
-		return namedJdbcTemplate.query(vSQL, new BeanPropertyRowMapper<Message>(Message.class));
+		return namedJdbcTemplate.query(vSQL, vParams, new BeanPropertyRowMapper<Message>(Message.class));
 	}
 	
 	

@@ -39,6 +39,17 @@ public interface MessageDao {
 	
 	
 	/**
+	 * Get from the database the Message whom the id and one of the userId are
+	 * equals to the ones provided
+	 * 
+	 * @param id
+	 * @param userId
+	 * @return the Message associated to the id and userId provided
+	 */
+	public Message findByIdUserId(int id, int userId);
+	
+	
+	/**
 	 * Get from the database the Message whom the receiver_id or the sender_id is
 	 * equal to the userId provided
 	 * 

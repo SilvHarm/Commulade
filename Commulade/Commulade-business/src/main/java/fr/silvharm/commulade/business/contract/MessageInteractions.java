@@ -7,15 +7,26 @@ import fr.silvharm.commulade.model.pojo.Message;
 public interface MessageInteractions {
 	
 	/**
-	 * Call the consumer module to get the Message of the user and sort them between
-	 * received and send
+	 * Call the consumer module to get all the Message related to the user and sort
+	 * them between received and send
 	 * 
 	 * @param userId
 	 * @param username
 	 * @return a List containing 2 List<Message>, the first for the received and the
 	 *         second for the sended or null if User don't exist
 	 */
-	public List<List<Message>> getUserMessages(int userId, String username);
+	public List<List<Message>> getUserMessageList(int userId);
+	
+	
+	/**
+	 * Call the consumer module to get the Message sent or received by the user whom
+	 * the id are equals to the ones provided
+	 * 
+	 * @param messageId
+	 * @param userId
+	 * @return the Message requested or null
+	 */
+	public Message getUserMessage(int messageId, int userId);
 	
 	
 	/**
@@ -25,7 +36,7 @@ public interface MessageInteractions {
 	 * @param userId
 	 * @param username
 	 */
-	public void messageWasRead(int messageId, int userId, String username);
+	public void messageWasRead(int messageId, int userId);
 	
 	
 	/**
@@ -34,5 +45,5 @@ public interface MessageInteractions {
 	 * @param message
 	 * @param senderName
 	 */
-	public boolean sendMessage(Message message, String senderName, String receiverName);
+	public boolean sendMessage(Message message, String receiverName);
 }

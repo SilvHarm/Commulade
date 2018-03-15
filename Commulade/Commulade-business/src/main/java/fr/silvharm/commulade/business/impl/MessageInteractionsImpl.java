@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import fr.silvharm.commulade.business.contract.MessageInteractions;
-import fr.silvharm.commulade.business.contract.UserInteractions;
 import fr.silvharm.commulade.consumer.contract.dao.MessageDao;
 import fr.silvharm.commulade.consumer.contract.dao.UserDao;
 import fr.silvharm.commulade.model.pojo.Message;
@@ -15,13 +14,12 @@ public class MessageInteractionsImpl implements MessageInteractions {
 	
 	private MessageDao messageDao;
 	private UserDao userDao;
-	private UserInteractions userInteractions;
 	
 	
-	public List<List<Message>> getUserMessages(int userId, String username) {
-		if (userInteractions.verifyUser(userId, username)) {
-			List<Message> list = messageDao.findByUserId(userId);
-			
+	public List<List<Message>> getUserMessageList(int userId) {
+		List<Message> list = messageDao.findByUserId(userId);
+		
+		if (list != null && !list.isEmpty()) {
 			List<Message> received = new ArrayList<Message>();
 			List<Message> sended = new ArrayList<Message>();
 			
@@ -45,17 +43,20 @@ public class MessageInteractionsImpl implements MessageInteractions {
 	}
 	
 	
-	public void messageWasRead(int messageId, int userId, String username) {
-		if (userInteractions.verifyUser(userId, username)) {
-			messageDao.updateAsRead(messageId, userId);
-		}
+	public Message getUserMessage(int messageId, int userId) {
+		return messageDao.findByIdUserId(messageId, userId);
 	}
 	
 	
-	public boolean sendMessage(Message message, String senderName, String receiverName) {
+	public void messageWasRead(int messageId, int userId) {
+		messageDao.updateAsRead(messageId, userId);
+	}
+	
+	
+	public boolean sendMessage(Message message, String receiverName) {
 		User receiver = userDao.findByName(receiverName);
 		
-		if (userInteractions.verifyUser(message.getSenderId(), senderName) && receiver != null) {
+		if (receiver != null) {
 			message.setReceiverId(receiver.getId());
 			
 			messageDao.create(message);
@@ -86,15 +87,6 @@ public class MessageInteractionsImpl implements MessageInteractions {
 	 */
 	public void setUserDao(UserDao userDao) {
 		this.userDao = userDao;
-	}
-	
-	
-	/**
-	 * @param userInteractions
-	 *           the userInteractions to set
-	 */
-	public void setUserInteractions(UserInteractions userInteractions) {
-		this.userInteractions = userInteractions;
 	}
 	
 }

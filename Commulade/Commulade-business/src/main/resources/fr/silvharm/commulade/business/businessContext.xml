@@ -7,7 +7,6 @@
 	<bean id="messageInteractionsImpl" class="fr.silvharm.commulade.business.impl.MessageInteractionsImpl">
 		<property name="messageDao" ref="messageDaoImpl"/>
 		<property name="userDao" ref="userDaoImpl"/>
-		<property name="userInteractions" ref="userInteractionsImpl"/>
 	</bean>
 
 	<bean id="siteInteractionsImpl" class="fr.silvharm.commulade.business.impl.SiteInteractionsImpl">
