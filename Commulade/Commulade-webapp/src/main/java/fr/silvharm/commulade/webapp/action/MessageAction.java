@@ -1,5 +1,6 @@
 package fr.silvharm.commulade.webapp.action;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -16,29 +17,46 @@ public class MessageAction extends ActionSupport implements SessionAware {
 	
 	private Integer messageId, userId;
 	private List<Message> receivedList, sentList;
+	private Map<Integer, String> usernameMap;
 	private Map<String, Object> session;
 	private Message message;
 	private MessageInteractions messageInteractions;
-	private String contentJsp = "view-messages", css = "view-messages", js = "view-messages", title = "Messagerie",
-			username;
+	private String contentJsp = "view-messages", css = "view-messages", js = "view-messages", otherName,
+			title = "Messagerie", username;
 	private UserInteractions userInteractions;
 	
 	
 	public String execute() {
-		setUserId();
-		setUsername();
+		getUserId();
+		getUsername();
 		
 		if (userId != null && username != null) {
 			if (userInteractions.verifyUser(userId, username)) {
 				List<List<Message>> list = messageInteractions.getUserMessageList(userId);
 				
 				if (list != null) {
+					List<Integer> userIdList = new ArrayList<Integer>();
+					
 					if (list.get(0) != null) {
 						receivedList = list.get(0);
+						
+						for (Message message : receivedList) {
+							if (!userIdList.contains(message.getSenderId())) {
+								userIdList.add(message.getSenderId());
+							}
+						}
 					}
 					if (list.get(1) != null) {
 						sentList = list.get(1);
+						
+						for (Message message : sentList) {
+							if (!userIdList.contains(message.getReceiverId())) {
+								userIdList.add(message.getReceiverId());
+							}
+						}
 					}
+					
+					usernameMap = userInteractions.getUsernameMapByIdList(userIdList);
 				}
 				
 				return SUCCESS;
@@ -50,19 +68,28 @@ public class MessageAction extends ActionSupport implements SessionAware {
 	
 	
 	public String getSpecificMessage() {
-		setUserId();
-		setUsername();
+		getUserId();
+		getUsername();
 		
 		if (userId != null && username != null) {
 			if (userInteractions.verifyUser(userId, username)) {
 				message = messageInteractions.getUserMessage(messageId, userId);
 				
 				if (message != null) {
+					Integer idToGet;
+					
 					if (message.getReceiverId().equals(userId)) {
 						message.setReceiverId(null);
+						idToGet = message.getSenderId();
 					}
 					else {
 						message.setSenderId(null);
+						idToGet = message.getReceiverId();
+					}
+					
+					
+					if (idToGet != null) {
+						otherName = userInteractions.getUsernameById(idToGet);
 					}
 					
 					return SUCCESS;
@@ -75,8 +102,8 @@ public class MessageAction extends ActionSupport implements SessionAware {
 	
 	
 	public String wasRead() {
-		setUserId();
-		setUsername();
+		getUserId();
+		getUsername();
 		
 		if (messageId != null && userId != null && username != null) {
 			if (userInteractions.verifyUser(userId, username)) {
@@ -143,6 +170,14 @@ public class MessageAction extends ActionSupport implements SessionAware {
 	
 	
 	/**
+	 * @return the otherName
+	 */
+	public String getOtherName() {
+		return otherName;
+	}
+	
+	
+	/**
 	 * @return the receivedList
 	 */
 	public List<Message> getReceivedList() {
@@ -172,7 +207,7 @@ public class MessageAction extends ActionSupport implements SessionAware {
 	}
 	
 	
-	public void setUserId() {
+	public void getUserId() {
 		this.userId = (Integer) session.get("userId");
 	}
 	
@@ -186,8 +221,25 @@ public class MessageAction extends ActionSupport implements SessionAware {
 	}
 	
 	
-	public void setUsername() {
+	public void getUsername() {
 		this.username = (String) session.get("username");
+	}
+	
+	
+	/**
+	 * @return the usernameMap
+	 */
+	public Map<Integer, String> getUsernameMap() {
+		return usernameMap;
+	}
+	
+	
+	/**
+	 * @param usernameMap
+	 *           the usernameMap to set
+	 */
+	public void setUsernameMap(Map<Integer, String> usernameMap) {
+		this.usernameMap = usernameMap;
 	}
 	
 }

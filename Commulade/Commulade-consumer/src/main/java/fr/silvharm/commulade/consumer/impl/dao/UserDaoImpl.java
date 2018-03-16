@@ -58,6 +58,21 @@ public class UserDaoImpl extends AbstractDaoImpl implements UserDao {
 	}
 	
 	
+	public List<User> findByIdList(List<Integer> idList) {
+		String vSQL = "SELECT * FROM " + TABLE_NAME + " WHERE " + ID + " = " + idList.get(0);
+		
+		idList.remove(0);
+		
+		for (Integer i : idList) {
+			vSQL += " OR " + ID + " = " + i;
+		}
+		
+		vSQL += ";";
+		
+		return jdbcTemplate.query(vSQL, new BeanPropertyRowMapper<User>(User.class));
+	}
+	
+	
 	public User findByName(String username) {
 		String vSQL = "SELECT * FROM " + TABLE_NAME + " WHERE " + USERNAME + " = :username ;";
 		

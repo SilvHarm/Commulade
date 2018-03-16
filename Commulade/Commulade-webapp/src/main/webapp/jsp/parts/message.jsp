@@ -1,8 +1,8 @@
 <p>
-	<s:if test="message.receiverId != null">à: <s:property value="message.receiverId" />
+	<s:if test="message.receiverId != null">à: <s:property value="otherName" />
 	</s:if>
-	<s:else>de: <s:if test="message.senderId == null">#SYSTEM#</s:if>
-		<s:property value="message.senderId" />
+	<s:else>de: <s:if test="otherName == null">#SYSTEM#</s:if>
+		<s:property value="otherName" />
 	</s:else>
 </p>
 

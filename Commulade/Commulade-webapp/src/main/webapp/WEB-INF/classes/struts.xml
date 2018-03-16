@@ -53,6 +53,7 @@
 		<action name="message-read" class="messageAction" method="wasRead"/>
 
 		<action name="view-message" class="messageAction" method="getSpecificMessage">
+			<result name="error" type="dispatcher">/jsp/error.jsp</result>
 			<result name="success" type="dispatcher">/jsp/parts/message.jsp</result>
 		</action>
 

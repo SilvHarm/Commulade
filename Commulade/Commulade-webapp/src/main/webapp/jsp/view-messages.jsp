@@ -8,7 +8,7 @@
 							notRead
 						</s:if>" data-id="<s:property value="#var.id"/>">
 					<th><s:if test="#var.senderId != null">
-							<s:property value="#var.senderId" />
+							<s:property value="usernameMap[#var.senderId]" />
 						</s:if> <s:else>
 			#SYSTEM#
 		</s:else></th>
@@ -31,7 +31,7 @@
 		<s:if test="sentList != null">
 			<s:iterator value="sentList" var="var">
 				<tr class="messAge" data-id="<s:property value="#var.id"/>">
-					<th><s:property value="#var.receiverId" /></th>
+					<th><s:property value="usernameMap[#var.receiverId]" /></th>
 					<th><s:property value="#var.subject" /></th>
 					<th><s:property value="#var.timeStr" /></th>
 					<th><s:property value="#var.dateStr" /></th>
