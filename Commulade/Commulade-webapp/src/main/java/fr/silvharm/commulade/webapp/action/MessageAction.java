@@ -58,6 +58,13 @@ public class MessageAction extends ActionSupport implements SessionAware {
 				message = messageInteractions.getUserMessage(messageId, userId);
 				
 				if (message != null) {
+					if (message.getSenderId() == userId) {
+						message.setSenderId(null);
+					}
+					else {
+						message.setReceiverId(null);
+					}
+					
 					return SUCCESS;
 				}
 			}
@@ -74,12 +81,10 @@ public class MessageAction extends ActionSupport implements SessionAware {
 		if (messageId != null && userId != null && username != null) {
 			if (userInteractions.verifyUser(userId, username)) {
 				messageInteractions.messageWasRead(messageId, userId);
-				
-				return SUCCESS;
 			}
 		}
 		
-		return ERROR;
+		return NONE;
 	}
 	
 	

@@ -1,40 +1,17 @@
 package fr.silvharm.commulade.model.pojo;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class Message {
 	
 	private Boolean messageRead;
 	private Integer id, previousMessageId, receiverId, senderId;
 	private LocalDateTime dateTime;
-	private String content, subject;
+	private String content, dateStr, dateTimeStr, subject, timeStr;
 	
 	
-	public Message() {
-	}
-	
-	
-	/**
-	 * @param id
-	 * @param receiverId
-	 * @param senderId
-	 * @param previousMessageId
-	 * @param dateTime
-	 * @param messageRead
-	 * @param subject
-	 * @param content
-	 */
-	public Message(Integer id, Integer receiverId, Integer senderId, Integer previousMessageId, LocalDateTime dateTime,
-			Boolean messageRead, String subject, String content) {
-		this.id = id;
-		this.receiverId = receiverId;
-		this.senderId = senderId;
-		this.previousMessageId = previousMessageId;
-		this.dateTime = dateTime;
-		this.messageRead = messageRead;
-		this.subject = subject;
-		this.content = content;
-	}
+	public Message() {}
 	
 	
 	/**
@@ -136,6 +113,10 @@ public class Message {
 	 */
 	public void setDateTime(LocalDateTime dateTime) {
 		this.dateTime = dateTime;
+		
+		setDateTimeStr();
+		setDateStr();
+		setTimeStr();
 	}
 	
 	
@@ -157,6 +138,32 @@ public class Message {
 	
 	
 	/**
+	 * @return the dateStr
+	 */
+	public String getDateStr() {
+		return dateStr;
+	}
+	
+	
+	private void setDateStr() {
+		dateStr = dateTime.toLocalDate().toString();
+	}
+	
+	
+	/**
+	 * @return the dateTimeStr
+	 */
+	public String getDateTimeStr() {
+		return dateTimeStr;
+	}
+	
+	
+	private void setDateTimeStr() {
+		dateTimeStr = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss").format(dateTime);
+	}
+	
+	
+	/**
 	 * @return the subject
 	 */
 	public String getSubject() {
@@ -170,6 +177,19 @@ public class Message {
 	 */
 	public void setSubject(String subject) {
 		this.subject = subject;
+	}
+	
+	
+	/**
+	 * @return the timeStr
+	 */
+	public String getTimeStr() {
+		return timeStr;
+	}
+	
+	
+	private void setTimeStr() {
+		timeStr = dateTime.toLocalTime().toString();
 	}
 	
 }
