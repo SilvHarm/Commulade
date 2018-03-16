@@ -58,11 +58,11 @@ public class MessageAction extends ActionSupport implements SessionAware {
 				message = messageInteractions.getUserMessage(messageId, userId);
 				
 				if (message != null) {
-					if (message.getSenderId() == userId) {
-						message.setSenderId(null);
+					if (message.getReceiverId().equals(userId)) {
+						message.setReceiverId(null);
 					}
 					else {
-						message.setReceiverId(null);
+						message.setSenderId(null);
 					}
 					
 					return SUCCESS;

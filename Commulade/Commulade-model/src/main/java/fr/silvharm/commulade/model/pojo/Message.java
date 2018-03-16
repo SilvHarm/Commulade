@@ -146,7 +146,7 @@ public class Message {
 	
 	
 	private void setDateStr() {
-		dateStr = dateTime.toLocalDate().toString();
+		dateStr = DateTimeFormatter.ofPattern("dd-MM-yyyy").format(dateTime);
 	}
 	
 	
@@ -189,7 +189,7 @@ public class Message {
 	
 	
 	private void setTimeStr() {
-		timeStr = dateTime.toLocalTime().toString();
+		timeStr = DateTimeFormatter.ofPattern("HH:mm").format(dateTime);
 	}
 	
 }

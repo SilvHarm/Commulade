@@ -1,21 +1,49 @@
-<div>
-	<div>
-		<s:if test="receivedList != null">
-			<s:iterator value="receivedList" var="var"></s:iterator>
-		</s:if>
-		<s:else>
-			<h2>Aucun message reçu</h2>
-		</s:else>
-	</div>
+<div id="leftView" class="centText">
+	<button id="newMessageButton" class="seShaButtons">Envoyer un message</button>
 
-	<div>
-		<s:if test="sentList != null">
-			<s:iterator value="sentList" var="var"></s:iterator>
+	<table class="listView">
+		<s:if test="receivedList != null">
+			<s:iterator value="receivedList" var="var">
+				<tr class="messAge <s:if test="#var.messageRead == false">
+							notRead
+						</s:if>" data-id="<s:property value="#var.id"/>">
+					<th><s:if test="#var.senderId != null">
+							<s:property value="#var.senderId" />
+						</s:if> <s:else>
+			#SYSTEM#
+		</s:else></th>
+					<th><s:property value="#var.subject" /></th>
+					<th><s:property value="#var.timeStr" /></th>
+					<th><s:property value="#var.dateStr" /></th>
+				</tr>
+			</s:iterator>
 		</s:if>
 		<s:else>
-			<h2>Aucun message envoyé</h2>
+			<tr class="centText">
+				<th>Aucun message reçu</th>
+			</tr>
 		</s:else>
-	</div>
+	</table>
+
+	<hr class="hundWid">
+
+	<table class="listView">
+		<s:if test="sentList != null">
+			<s:iterator value="sentList" var="var">
+				<tr class="messAge" data-id="<s:property value="#var.id"/>">
+					<th><s:property value="#var.receiverId" /></th>
+					<th><s:property value="#var.subject" /></th>
+					<th><s:property value="#var.timeStr" /></th>
+					<th><s:property value="#var.dateStr" /></th>
+				</tr>
+			</s:iterator>
+		</s:if>
+		<s:else>
+			<tr class="centText">
+				<th>Aucun message envoyé</th>
+			</tr>
+		</s:else>
+	</table>
 </div>
 
-<div></div>
+<div id="messageDiv"></div>
