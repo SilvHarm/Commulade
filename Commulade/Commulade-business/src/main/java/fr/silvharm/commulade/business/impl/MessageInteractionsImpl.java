@@ -4,8 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import fr.silvharm.commulade.business.contract.MessageInteractions;
+import fr.silvharm.commulade.business.helper.FormConverterHelper;
+import fr.silvharm.commulade.business.helper.FormVerificationHelper;
 import fr.silvharm.commulade.consumer.contract.dao.MessageDao;
 import fr.silvharm.commulade.consumer.contract.dao.UserDao;
+import fr.silvharm.commulade.model.bean.SendMessageFormBean;
 import fr.silvharm.commulade.model.pojo.Message;
 import fr.silvharm.commulade.model.pojo.User;
 
@@ -53,16 +56,21 @@ public class MessageInteractionsImpl implements MessageInteractions {
 	}
 	
 	
-	public boolean sendMessage(Message message, String receiverName) {
-		User receiver = userDao.findByName(receiverName);
-		
-		if (receiver != null) {
-			message.setReceiverId(receiver.getId());
+	public boolean sendMessage(SendMessageFormBean messageForm, int senderId) {
+		if (FormVerificationHelper.sendMessage(messageForm)) {
+			User receiver = userDao.findByName(FormConverterHelper.stringSqlConform(messageForm.getReceiverName()));
 			
-			messageDao.create(message);
-			
-			return true;
+			if (receiver != null) {
+				Message message = new Message(receiver.getId(), senderId, null,
+						FormConverterHelper.stringSqlConform(messageForm.getSubject()),
+						FormConverterHelper.stringSqlConform(messageForm.getContent()));
+				
+				messageDao.create(message);
+				
+				return true;
+			}
 		}
+		
 		
 		return false;
 	}

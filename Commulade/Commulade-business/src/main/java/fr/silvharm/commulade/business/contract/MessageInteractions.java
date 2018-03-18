@@ -2,6 +2,7 @@ package fr.silvharm.commulade.business.contract;
 
 import java.util.List;
 
+import fr.silvharm.commulade.model.bean.SendMessageFormBean;
 import fr.silvharm.commulade.model.pojo.Message;
 
 public interface MessageInteractions {
@@ -41,10 +42,10 @@ public interface MessageInteractions {
 	
 	
 	/**
-	 * Send a Message to another User
+	 * Send a Message to another User by using a SendMessageFormBean
 	 * 
-	 * @param message
-	 * @param senderName
+	 * @param messageForm
+	 * @param senderId
 	 */
-	public boolean sendMessage(Message message, String receiverName);
+	public boolean sendMessage(SendMessageFormBean messageForm, int senderId);
 }

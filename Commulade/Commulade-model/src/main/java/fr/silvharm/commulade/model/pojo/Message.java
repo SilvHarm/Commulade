@@ -15,6 +15,27 @@ public class Message {
 	
 	
 	/**
+	 * Used to create a new Message just sent by a User to another and with the
+	 * purpose to add it to the database
+	 * 
+	 * @param receiverId
+	 * @param senderId
+	 * @param previousMessageId
+	 * @param subject
+	 * @param content
+	 */
+	public Message(Integer receiverId, Integer senderId, Integer previousMessageId, String subject, String content) {
+		this.receiverId = receiverId;
+		this.senderId = senderId;
+		this.previousMessageId = previousMessageId;
+		dateTime = LocalDateTime.now();
+		messageRead = false;
+		this.subject = subject;
+		this.content = content;
+	}
+	
+	
+	/**
 	 * @return the messageRead
 	 */
 	public Boolean getMessageRead() {

@@ -7,6 +7,7 @@ import org.apache.logging.log4j.Logger;
 
 import fr.silvharm.commulade.model.bean.LongueurFormBean;
 import fr.silvharm.commulade.model.bean.SecteurFormBean;
+import fr.silvharm.commulade.model.bean.SendMessageFormBean;
 import fr.silvharm.commulade.model.bean.SiteFormBean;
 import fr.silvharm.commulade.model.bean.SiteSearchFormBean;
 import fr.silvharm.commulade.model.bean.TopoFormBean;
@@ -15,6 +16,41 @@ import fr.silvharm.commulade.model.bean.VoieFormBean;
 public class FormVerificationHelper {
 	
 	private static final Logger logger = LogManager.getLogger();
+	
+	
+	/**
+	 * Verify if the SendMessageFormBean properties have the format expected
+	 * 
+	 * @return true if the SendMessageFormBean is valid or false
+	 */
+	public static Boolean sendMessage(SendMessageFormBean sendMessageFormBean) {
+		try {
+			if (sendMessageFormBean.getReceiverName().isEmpty() || sendMessageFormBean.getReceiverName().length() > 32) {
+				logger.info("receiverName property value is unexpected");
+				
+				return false;
+			}
+			
+			if (sendMessageFormBean.getSubject().isEmpty() || sendMessageFormBean.getSubject().length() > 32) {
+				logger.info("subject property value is unexpected");
+				
+				return false;
+			}
+			
+			if (sendMessageFormBean.getContent().isEmpty() || sendMessageFormBean.getContent().length() > 1024) {
+				logger.info("content property value is unexpected");
+				
+				return false;
+			}
+		}
+		catch (NullPointerException e) {
+			logger.info("A property of the form was null when it's shouldn't have been", e);
+			
+			return false;
+		}
+		
+		return true;
+	}
 	
 	
 	/**
