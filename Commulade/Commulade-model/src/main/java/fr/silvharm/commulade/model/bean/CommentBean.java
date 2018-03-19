@@ -5,6 +5,9 @@ public class CommentBean {
 	private String comment, date, time, username;
 	
 	
+	public CommentBean() {}
+	
+	
 	/**
 	 * @param username
 	 * @param date
