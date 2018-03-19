@@ -18,4 +18,4 @@
 	<s:property value="message.subject" />
 </p>
 
-<textarea class="hundWid" rows="20" spellcheck="false" readonly><s:property value="message.content" /></textarea>
+<textarea class="hundWid viewMessageArea" rows="20" spellcheck="false" readonly><s:property value="message.content" /></textarea>

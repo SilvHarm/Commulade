@@ -10,6 +10,7 @@ import com.opensymphony.xwork2.ActionSupport;
 
 import fr.silvharm.commulade.business.contract.MessageInteractions;
 import fr.silvharm.commulade.business.contract.UserInteractions;
+import fr.silvharm.commulade.model.bean.SendMessageFormBean;
 import fr.silvharm.commulade.model.pojo.Message;
 
 
@@ -21,6 +22,7 @@ public class MessageAction extends ActionSupport implements SessionAware {
 	private Map<String, Object> session;
 	private Message message;
 	private MessageInteractions messageInteractions;
+	private SendMessageFormBean sendMessageForm;
 	private String contentJsp = "view-messages", css = "view-messages", js = "view-messages", otherName,
 			title = "Messagerie", username;
 	private UserInteractions userInteractions;
@@ -67,6 +69,11 @@ public class MessageAction extends ActionSupport implements SessionAware {
 	}
 	
 	
+	public String getSendMessageJsp() {
+		return SUCCESS;
+	}
+	
+	
 	public String getSpecificMessage() {
 		getUserId();
 		getUsername();
@@ -94,6 +101,22 @@ public class MessageAction extends ActionSupport implements SessionAware {
 					
 					return SUCCESS;
 				}
+			}
+		}
+		
+		return ERROR;
+	}
+	
+	
+	public String sendMessage() {
+		getUserId();
+		getUsername();
+		
+		if (userId != null && username != null) {
+			if (userInteractions.verifyUser(userId, username)) {
+				messageInteractions.sendMessage(sendMessageForm, userId);
+				
+				return SUCCESS;
 			}
 		}
 		
@@ -182,6 +205,23 @@ public class MessageAction extends ActionSupport implements SessionAware {
 	 */
 	public List<Message> getReceivedList() {
 		return receivedList;
+	}
+	
+	
+	/**
+	 * @return the sendMessageForm
+	 */
+	public SendMessageFormBean getSendMessageForm() {
+		return sendMessageForm;
+	}
+	
+	
+	/**
+	 * @param sendMessageForm
+	 *           the sendMessageForm to set
+	 */
+	public void setSendMessageForm(SendMessageFormBean sendMessageForm) {
+		this.sendMessageForm = sendMessageForm;
 	}
 	
 	

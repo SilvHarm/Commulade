@@ -23,6 +23,16 @@ function getMessage(element) {
 	}
 }
 
+function getSendMessageForm() {
+	$.ajax({
+		type : 'POST',
+		url : 'get-message-form',
+		success : function(data) {
+			$('#messageDiv').html(data);
+		}
+	});
+}
+
 function wasRead(element) {
 	var id = parseInt($(element).attr('data-id'));
 

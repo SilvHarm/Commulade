@@ -1,5 +1,5 @@
 <div id="leftView" class="centText">
-	<button id="newMessageButton" class="seShaButtons">Envoyer un message</button>
+	<button id="newMessageButton" class="seShaButtons" onclick="getSendMessageForm();">Envoyer un message</button>
 
 	<table class="listView">
 		<s:if test="receivedList != null">
