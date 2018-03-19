@@ -1,37 +1,35 @@
 package fr.silvharm.commulade.model.pojo;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class Message {
 	
 	private Boolean messageRead;
 	private Integer id, previousMessageId, receiverId, senderId;
 	private LocalDateTime dateTime;
-	private String content, subject;
+	private String content, dateStr, dateTimeStr, subject, timeStr;
 	
 	
-	public Message() {
-	}
+	public Message() {}
 	
 	
 	/**
-	 * @param id
+	 * Used to create a new Message just sent by a User to another and with the
+	 * purpose to add it to the database
+	 * 
 	 * @param receiverId
 	 * @param senderId
 	 * @param previousMessageId
-	 * @param dateTime
-	 * @param messageRead
 	 * @param subject
 	 * @param content
 	 */
-	public Message(Integer id, Integer receiverId, Integer senderId, Integer previousMessageId, LocalDateTime dateTime,
-			Boolean messageRead, String subject, String content) {
-		this.id = id;
+	public Message(Integer receiverId, Integer senderId, Integer previousMessageId, String subject, String content) {
 		this.receiverId = receiverId;
 		this.senderId = senderId;
 		this.previousMessageId = previousMessageId;
-		this.dateTime = dateTime;
-		this.messageRead = messageRead;
+		dateTime = LocalDateTime.now();
+		messageRead = false;
 		this.subject = subject;
 		this.content = content;
 	}
@@ -136,6 +134,10 @@ public class Message {
 	 */
 	public void setDateTime(LocalDateTime dateTime) {
 		this.dateTime = dateTime;
+		
+		setDateTimeStr();
+		setDateStr();
+		setTimeStr();
 	}
 	
 	
@@ -157,6 +159,32 @@ public class Message {
 	
 	
 	/**
+	 * @return the dateStr
+	 */
+	public String getDateStr() {
+		return dateStr;
+	}
+	
+	
+	private void setDateStr() {
+		dateStr = DateTimeFormatter.ofPattern("dd-MM-yyyy").format(dateTime);
+	}
+	
+	
+	/**
+	 * @return the dateTimeStr
+	 */
+	public String getDateTimeStr() {
+		return dateTimeStr;
+	}
+	
+	
+	private void setDateTimeStr() {
+		dateTimeStr = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss").format(dateTime);
+	}
+	
+	
+	/**
 	 * @return the subject
 	 */
 	public String getSubject() {
@@ -170,6 +198,19 @@ public class Message {
 	 */
 	public void setSubject(String subject) {
 		this.subject = subject;
+	}
+	
+	
+	/**
+	 * @return the timeStr
+	 */
+	public String getTimeStr() {
+		return timeStr;
+	}
+	
+	
+	private void setTimeStr() {
+		timeStr = DateTimeFormatter.ofPattern("HH:mm").format(dateTime);
 	}
 	
 }

@@ -1,5 +1,9 @@
 package fr.silvharm.commulade.business.impl;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -27,6 +31,23 @@ public class UserInteractionsImpl implements UserInteractions {
 		}
 		
 		return null;
+	}
+	
+	
+	public String getUsernameById(int userId) {
+		return userDao.findById(userId).getUsername();
+	}
+	
+	
+	public Map<Integer, String> getUsernameMapByIdList(List<Integer> userIdList) {
+		Map<Integer, String> map = new HashMap<Integer, String>();
+		List<User> list = userDao.findByIdList(userIdList);
+		
+		for (User user : list) {
+			map.put(user.getId(), user.getUsername());
+		}
+		
+		return map;
 	}
 	
 	
@@ -70,6 +91,17 @@ public class UserInteractionsImpl implements UserInteractions {
 		}
 		
 		return null;
+	}
+	
+	
+	public Boolean verifyUser(int userId, String username) {
+		User user = userDao.findById(userId);
+		
+		if (user != null && user.getUsername().equals(username)) {
+			return true;
+		}
+		
+		return false;
 	}
 	
 	

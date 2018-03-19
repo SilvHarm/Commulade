@@ -1,5 +1,7 @@
 package fr.silvharm.commulade.consumer.contract.dao;
 
+import java.util.List;
+
 import fr.silvharm.commulade.model.pojo.User;
 
 public interface UserDao {
@@ -33,6 +35,16 @@ public interface UserDao {
 	 * @return the User associated to the id provided
 	 */
 	public User findById(int id);
+	
+	
+	/**
+	 * Get from the database all the User whom the id are equals to the ones
+	 * provided
+	 * 
+	 * @param idList
+	 * @return a List of the User associated to the id provided
+	 */
+	public List<User> findByIdList(List<Integer> idList);
 	
 	
 	/**

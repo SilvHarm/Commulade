@@ -6,7 +6,7 @@ body {
 	background-color: #222;
 	color: silver;
 	font-family: andalus;
-	min-width: 720px;
+	min-width: 1000px;
 }
 
 /*
@@ -92,16 +92,6 @@ Common classes
 	margin: auto;
 }
 
-.seShaButtons {
-	background-color: #222;
-	border-color: #111;
-	border-radius: 10%;
-	color: #AAA;
-	cursor: pointer;
-	font-family: andalus;
-	font-size: large;
-}
-
 .centText {
 	text-align: center;
 }
@@ -137,6 +127,16 @@ Common classes
 	margin: auto;
 	max-height: 100%;
 	max-width: 100%;
+}
+
+.seShaButtons {
+	background-color: #222;
+	border-color: #111;
+	border-radius: 10%;
+	color: #AAA;
+	cursor: pointer;
+	font-family: andalus;
+	font-size: large;
 }
 
 .siteSeparator {

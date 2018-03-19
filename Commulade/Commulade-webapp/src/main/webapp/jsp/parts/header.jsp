@@ -8,6 +8,10 @@
 
 		<a class="falseButtonHeader" href="pret-topo">Espace de Prêt</a>
 
+		<s:if test="#attr['username'] != null">
+			<a class="falseButtonHeader" href="message">Messagerie</a>
+		</s:if>
+
 
 		<div id="divDisLogRegHeader">
 			<s:if test="#attr['username'] != null">

@@ -5,7 +5,7 @@
 		</p>
 
 		<p>
-			<label>Date d'ï¿½dition du topo: </label> <input name="editionDate" type="date" max="<s:property value="todayDate"/>" required>
+			<label>Date d'édition du topo: </label> <input name="editionDate" type="date" max="<s:property value="todayDate"/>" required>
 		</p>
 
 		<p>
@@ -17,8 +17,8 @@
 
 	<s:if test="#attr['username'] != null">
 		<p id="wishCheck">
-			<input name="wishToShare" type="checkbox"><label>Je possï¿½de physiquement ce topo et souhaite le
-				partager avec d'autres utilisateurs</label>
+			<input name="wishToShare" type="checkbox"><label>Je possède physiquement ce topo et souhaite le partager avec d'autres
+				utilisateurs</label>
 		</p>
 	</s:if>
 
