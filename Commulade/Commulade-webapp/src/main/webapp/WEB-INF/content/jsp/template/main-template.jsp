@@ -26,13 +26,13 @@
 </s:if>
 </head>
 <body class="flexCol noMarPad">
-	<s:include value="/jsp/parts/header.jsp"></s:include>
+	<s:include value="/WEB-INF/content/jsp/parts/header.jsp"></s:include>
 
 	<div id="mainContent" class="autoMar">
-		<s:include value="/jsp/%{contentJsp}.jsp"></s:include>
+		<s:include value="/WEB-INF/content/jsp/%{contentJsp}.jsp"></s:include>
 	</div>
 
-	<s:include value="/jsp/parts/footer.jsp"></s:include>
+	<s:include value="/WEB-INF/content/jsp/parts/footer.jsp"></s:include>
 
 	<%-- Script --%>
 	<script src="js/common-js.js"></script>

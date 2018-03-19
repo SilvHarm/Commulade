@@ -4,10 +4,10 @@
 		<s:if test="#attr['username'] != null">
 			<p id="powning" class="sharing">
 				<s:if test="isOwned">
-					<s:include value="/jsp/parts/own-it-topo.jsp"></s:include>
+					<s:include value="/WEB-INF/content/jsp/parts/own-it-topo.jsp"></s:include>
 				</s:if>
 				<s:else>
-					<s:include value="/jsp/parts/dont-own-it-topo.jsp"></s:include>
+					<s:include value="/WEB-INF/content/jsp/parts/dont-own-it-topo.jsp"></s:include>
 				</s:else>
 			</p>
 		</s:if>
@@ -37,7 +37,7 @@
 			<hr class="hundWid siteSeparator">
 			<hr class="hundWid siteSeparator">
 
-			<s:include value="/jsp/view-site.jsp"></s:include>
+			<s:include value="/WEB-INF/content/jsp/view-site.jsp"></s:include>
 		</s:iterator>
 	</div>
 </s:if>

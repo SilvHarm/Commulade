@@ -5,14 +5,14 @@
 	<display-name>Commulade</display-name>
 
 	<welcome-file-list>
-		<welcome-file>jsp/welcome.jsp</welcome-file>
+		<welcome-file>/WEB-INF/content/jsp/welcome.jsp</welcome-file>
 	</welcome-file-list>
 
 
 	<jsp-config>
 		<jsp-property-group>
 			<url-pattern>*.jsp</url-pattern>
-			<include-prelude>/jsp/parts/taglibs.jsp</include-prelude>
+			<include-prelude>/WEB-INF/content/jsp/parts/taglibs.jsp</include-prelude>
 		</jsp-property-group>
 	</jsp-config>
 
