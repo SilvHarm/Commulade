@@ -13,6 +13,7 @@ public class ViewSiteAction extends ActionSupport {
 	private Site site;
 	private SiteInteractions siteInteractions;
 	private String contentJsp = "view-site", css = "view-site-topo", js = "view-site-topo", title = "Site: ";
+	
 	@SuppressWarnings("unused") // are used by struts in the jsp
 	private String secteurPhotoPath, sitePhotoPath;
 	

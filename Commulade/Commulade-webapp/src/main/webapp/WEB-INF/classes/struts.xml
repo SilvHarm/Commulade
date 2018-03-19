@@ -6,6 +6,7 @@
 	<constant name="struts.enable.SlashesInActionNames" value="true"/>
 	<constant name="struts.mapper.alwaysSelectFullNamespace" value="false"/>
 
+
 	<package name="default" extends="struts-default">
 
 		<!-- General -->

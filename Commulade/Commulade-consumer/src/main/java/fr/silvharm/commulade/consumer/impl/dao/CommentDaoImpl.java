@@ -1,5 +1,7 @@
 package fr.silvharm.commulade.consumer.impl.dao;
 
+import java.util.List;
+
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 
@@ -41,6 +43,18 @@ public class CommentDaoImpl extends AbstractDaoImpl implements CommentDao {
 		vParams.addValue("id", id);
 		
 		return namedJdbcTemplate.queryForObject(vSQL, vParams, new BeanPropertyRowMapper<Comment>(Comment.class));
+	}
+	
+	
+	public List<Comment> findByPostTypeId(int postId, int postType) {
+		String vSQL = "SELECT * FROM " + TABLE_NAME + " WHERE " + POST_ID + " = :postId AND " + POST_TYPE
+				+ " = :postType ORDER BY " + ID + " DESC;";
+		
+		MapSqlParameterSource vParams = new MapSqlParameterSource();
+		vParams.addValue("postId", postId);
+		vParams.addValue("typeId", postType);
+		
+		return namedJdbcTemplate.query(vSQL, vParams, new BeanPropertyRowMapper<Comment>(Comment.class));
 	}
 	
 	
