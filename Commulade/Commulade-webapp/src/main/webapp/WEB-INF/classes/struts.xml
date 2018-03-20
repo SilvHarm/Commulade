@@ -23,6 +23,7 @@
 		<!-- Comment -->
 		<action name="add-comment" class="commentAction" method="addComment">
 			<result name="error" type="redirect">error</result>
+			<result name="success" type="redirect">welcome</result>
 		</action>
 
 		<action name="get-comment" class="commentAction" method="execute">

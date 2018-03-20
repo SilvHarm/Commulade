@@ -43,7 +43,7 @@ public class CommentAction extends ActionSupport implements SessionAware {
 			}
 			
 			if (commentInteractions.createComment(commentForm)) {
-				return NONE;
+				return SUCCESS;
 			}
 		}
 		

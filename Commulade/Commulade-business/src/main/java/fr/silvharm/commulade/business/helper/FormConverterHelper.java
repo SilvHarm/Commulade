@@ -26,8 +26,13 @@ public class FormConverterHelper {
 	
 	
 	public static Comment commentFormToComment(CommentFormBean commentForm) {
-		return new Comment(commentForm.getUserId(), Integer.parseInt(commentForm.getPostType()),
-				Integer.parseInt(commentForm.getPostId()), LocalDateTime.now(), stringSqlConform(commentForm.getComment()));
+		Integer userId = commentForm.getUserId();
+		if (userId == 0) {
+			userId = null;
+		}
+		
+		return new Comment(userId, Integer.parseInt(commentForm.getPostType()), Integer.parseInt(commentForm.getPostId()),
+				LocalDateTime.now(), stringSqlConform(commentForm.getComment()));
 	}
 	
 	
