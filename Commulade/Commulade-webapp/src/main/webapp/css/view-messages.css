@@ -8,6 +8,11 @@ textarea {
 	resize: none;
 }
 
+.answerButton {
+	font-size: medium;
+	margin-left: 20px;
+}
+
 .listView {
 	max-height: 42%;
 	overflow-y: auto;
@@ -41,10 +46,14 @@ textarea {
 	width: 70%;
 }
 
+#messageDiv>p:nth-child(1), form>p:nth-child(1) {
+	margin-top: 0px;
+}
+
 #newMessageButton {
 	margin-bottom: 30px;
 }
 
 #sendButton {
-	margin-top: 30px;
+	margin-top: 20px;
 }

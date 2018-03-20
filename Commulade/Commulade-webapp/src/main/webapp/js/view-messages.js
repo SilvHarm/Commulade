@@ -1,3 +1,6 @@
+var object = '';
+var username = '';
+
 $(".messAge").click(function() {
 	getMessage(this);
 });
@@ -9,6 +12,13 @@ $(".notRead").click(function() {
 /*******************************************************************************
  * Functions
  ******************************************************************************/
+function clickSendMessage() {
+	object = '';
+	username = '';
+
+	getSendMessageForm();
+}
+
 function getMessage(element) {
 	var id = parseInt($(element).attr('data-id'));
 
@@ -18,6 +28,13 @@ function getMessage(element) {
 			url : 'view-message?messageId=' + id,
 			success : function(data) {
 				$('#messageDiv').html(data);
+
+				$('.answerButton').click(function() {
+					username = $('#messageUsername').text();
+					object = $('#messageObject').text();
+
+					getSendMessageForm();
+				});
 			}
 		});
 	}
@@ -29,6 +46,11 @@ function getSendMessageForm() {
 		url : 'get-message-form',
 		success : function(data) {
 			$('#messageDiv').html(data);
+
+			if (username != '' || object != '') {
+				$('#messageUsername').val(username);
+				$('#messageObject').val(object);
+			}
 		}
 	});
 }
