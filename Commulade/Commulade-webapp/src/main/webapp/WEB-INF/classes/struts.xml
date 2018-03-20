@@ -20,6 +20,12 @@
 		</action>
 
 
+		<!-- Comment -->
+		<action name="get-comment" class="commentAction" method="execute">
+			<result name="error" type="dispatcher">/WEB-INF/content/jsp/error.jsp</result>
+			<result name="success" type="dispatcher">/WEB-INF/content/jsp/parts/comment.jsp</result>
+		</action>
+
 		<!-- Login -->
 
 		<action name="disconnect" class="loginAction" method="disconnect">

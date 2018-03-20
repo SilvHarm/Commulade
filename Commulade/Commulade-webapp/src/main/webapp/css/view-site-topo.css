@@ -1,3 +1,17 @@
+.comment {
+	border: 1px solid darkslategray;
+	border-radius: 1%;
+	width: 80%;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.comButton {
+	font-size: small;
+	margin-bottom: 5px;
+	margin-top: 10px;
+}
+
 .imgBord {
 	border: 1px solid silver;
 	border-radius: 1%;

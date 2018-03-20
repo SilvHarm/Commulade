@@ -1,5 +1,6 @@
 package fr.silvharm.commulade.business.helper;
 
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -16,7 +17,7 @@ public class PojoConverterHelper {
 		for (Comment comment : list) {
 			username = usernameMap.get(comment.getUserId());
 			date = comment.getDateTime().toLocalDate().toString();
-			time = comment.getDateTime().toLocalTime().toString();
+			time = DateTimeFormatter.ofPattern("HH:mm").format(comment.getDateTime());
 			commentStr = comment.getComment();
 			
 			beanList.add(new CommentBean(username, date, time, commentStr));

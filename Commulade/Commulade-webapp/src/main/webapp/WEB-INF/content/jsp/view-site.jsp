@@ -38,6 +38,10 @@
 					<s:property value="#site.pathIndication" />
 				</p>
 			</div>
+
+			<s:set var="postId" value="#site.id" />
+			<s:set var="typeId" value="@fr.silvharm.commulade.model.enu.PostTypeEnum@SITE.type" />
+			<s:include value="/WEB-INF/content/jsp/parts/comment-container.jsp" />
 		</div>
 
 
@@ -59,6 +63,10 @@
 					</div>
 				</s:else>
 
+				<s:set var="postId" value="#var.id" />
+				<s:set var="typeId" value="@fr.silvharm.commulade.model.enu.PostTypeEnum@SECTEUR.type" />
+				<s:include value="/WEB-INF/content/jsp/parts/comment-container.jsp" />
+
 
 				<s:iterator value="#var.listVoie" var="ver">
 					<div class="divSeek">
@@ -73,6 +81,11 @@
 								</span>
 							</p>
 						</s:iterator>
+
+						<s:set var="postId" value="#ver.id" />
+						<s:set var="typeId" value="@fr.silvharm.commulade.model.enu.PostTypeEnum@VOIE.type" />
+						<s:include value="/WEB-INF/content/jsp/parts/comment-container.jsp" />
+
 					</div>
 				</s:iterator>
 
