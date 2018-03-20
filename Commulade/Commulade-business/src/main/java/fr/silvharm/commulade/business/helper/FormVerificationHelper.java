@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import fr.silvharm.commulade.model.bean.CommentFormBean;
 import fr.silvharm.commulade.model.bean.LongueurFormBean;
 import fr.silvharm.commulade.model.bean.SecteurFormBean;
 import fr.silvharm.commulade.model.bean.SendMessageFormBean;
@@ -12,10 +13,55 @@ import fr.silvharm.commulade.model.bean.SiteFormBean;
 import fr.silvharm.commulade.model.bean.SiteSearchFormBean;
 import fr.silvharm.commulade.model.bean.TopoFormBean;
 import fr.silvharm.commulade.model.bean.VoieFormBean;
+import fr.silvharm.commulade.model.enu.PostTypeEnum;
 
 public class FormVerificationHelper {
 	
 	private static final Logger logger = LogManager.getLogger();
+	
+	
+	public static Boolean commentForm(CommentFormBean commentForm) {
+		boolean isConform;
+		Integer tempI;
+		String tempS;
+		
+		try {
+			Integer.parseInt(commentForm.getPostId());
+			
+			tempI = Integer.parseInt(commentForm.getPostType());
+			isConform = false;
+			for (PostTypeEnum postTypeEnum : PostTypeEnum.values()) {
+				if (tempI == postTypeEnum.getType()) {
+					isConform = true;
+				}
+			}
+			if (!isConform) {
+				logger.info("postType property value is unexpected");
+				
+				return false;
+			}
+			
+			tempS = commentForm.getComment();
+			if (tempS.isEmpty() || tempS.length() > 256 || tempS.trim().length() == 0) {
+				logger.info("comment property value is unexpected");
+				
+				return false;
+			}
+		}
+		catch (NumberFormatException e) {
+			logger.info("One of the identifier property wasn't an Integer", e);
+			
+			return false;
+		}
+		catch (NullPointerException e) {
+			logger.info("A property of the form was null when it's shouldn't have been", e);
+			
+			return false;
+		}
+		
+		
+		return true;
+	}
 	
 	
 	/**

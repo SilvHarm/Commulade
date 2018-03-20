@@ -9,21 +9,20 @@ public class Comment {
 	private String comment;
 	
 	
-	public Comment() {
-	}
+	public Comment() {}
 	
 	
 	/**
-	 * @param id
+	 * Used to create a new Comment that was just post by a User with the purpose to
+	 * add it to the database
+	 * 
 	 * @param userId
 	 * @param postType
 	 * @param postId
 	 * @param dateTime
 	 * @param comment
 	 */
-	public Comment(Integer id, Integer userId, Integer postType, Integer postId, LocalDateTime dateTime,
-			String comment) {
-		this.id = id;
+	public Comment(Integer userId, Integer postType, Integer postId, LocalDateTime dateTime, String comment) {
 		this.userId = userId;
 		this.postType = postType;
 		this.postId = postId;
@@ -31,6 +30,10 @@ public class Comment {
 		this.comment = comment;
 	}
 	
+	
+	/********************************
+	 * Getters & Setters
+	 *******************************/
 	
 	/**
 	 * @return the id
@@ -132,4 +135,5 @@ public class Comment {
 	public void setComment(String comment) {
 		this.comment = comment;
 	}
+	
 }

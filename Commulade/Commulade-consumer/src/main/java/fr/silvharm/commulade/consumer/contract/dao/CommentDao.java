@@ -1,5 +1,7 @@
 package fr.silvharm.commulade.consumer.contract.dao;
 
+import java.util.List;
+
 import fr.silvharm.commulade.model.pojo.Comment;
 
 public interface CommentDao {
@@ -33,6 +35,18 @@ public interface CommentDao {
 	 * @return the Comment associated to the id provided
 	 */
 	public Comment findById(int id);
+	
+	
+	/**
+	 * Get from the database all Comment who are associated to the postId and
+	 * postType provided
+	 * 
+	 * @param postId
+	 * @param postType
+	 * @return a List of the Comment associated to the id and the type that were
+	 *         provided
+	 */
+	public List<Comment> findByPostTypeId(int postId, int postType);
 	
 	
 	/**

@@ -16,6 +16,11 @@
 
 	<!-- Actions -->
 
+	<bean id="commentAction" class="fr.silvharm.commulade.webapp.action.CommentAction" scope="prototype">
+		<property name="commentInteractions" ref="commentInteractionsImpl"/>
+		<property name="userInteractions" ref="userInteractionsImpl"/>
+	</bean>
+
 	<bean id="loginAction" class="fr.silvharm.commulade.webapp.action.LoginAction" scope="prototype">
 		<property name="userInteractions" ref="userInteractionsImpl"/>
 	</bean>

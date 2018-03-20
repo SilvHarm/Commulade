@@ -1,4 +1,9 @@
 var parent;
+
+$('.comButton').click(function() {
+	getComment(this);
+});
+
 /*
  * When window size change, the elements of the class "imgSecteur" will have
  * their height adjusted to be equal to new width
@@ -48,6 +53,32 @@ function buttonSet() {
 	});
 }
 
+function getComment(element) {
+	var parent = $(element).parent();
+	var postId = $(parent).attr('data-postid');
+	var postType = $(parent).attr('data-postType');
+
+	$.ajax({
+		type : 'POST',
+		url : 'get-comment',
+		data : jQuery.param({
+			postId : postId,
+			postType : postType
+		}),
+		success : function(data) {
+			$(element).html('Cacher les commentaires');
+			$(element).unbind();
+			$(element).click(function() {
+				hideComment(this);
+			});
+
+			$(parent).append(data);
+			$(parent).find('#postId').attr('value', postId);
+			$(parent).find('#postType').attr('value', postType);
+		}
+	});
+}
+
 function hideAndSeek(element, parent) {
 	var elemHeight = $(element).css('height');
 
@@ -62,6 +93,16 @@ function hideAndSeek(element, parent) {
 
 		return true;
 	}
+}
+
+function hideComment(element) {
+	$(element).html('Afficher les commentaires');
+	$(element).unbind();
+	$(element).click(function() {
+		getComment(this);
+	});
+
+	$(element).parent().children('div').remove();
 }
 
 function iDontOwnIt() {

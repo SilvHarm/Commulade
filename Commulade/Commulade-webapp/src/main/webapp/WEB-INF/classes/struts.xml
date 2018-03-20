@@ -6,6 +6,7 @@
 	<constant name="struts.enable.SlashesInActionNames" value="true"/>
 	<constant name="struts.mapper.alwaysSelectFullNamespace" value="false"/>
 
+
 	<package name="default" extends="struts-default">
 
 		<!-- General -->
@@ -18,6 +19,16 @@
 			<result name="success">/WEB-INF/content/jsp/template/main-template.jsp</result>
 		</action>
 
+
+		<!-- Comment -->
+		<action name="add-comment" class="commentAction" method="addComment">
+			<result name="error" type="redirect">error</result>
+		</action>
+
+		<action name="get-comment" class="commentAction" method="execute">
+			<result name="error" type="dispatcher">/WEB-INF/content/jsp/error.jsp</result>
+			<result name="success" type="dispatcher">/WEB-INF/content/jsp/parts/comment.jsp</result>
+		</action>
 
 		<!-- Login -->
 

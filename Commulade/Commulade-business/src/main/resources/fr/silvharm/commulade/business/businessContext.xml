@@ -4,6 +4,11 @@
 		http://www.springframework.org/schema/beans
 		http://www.springframework.org/schema/beans/spring-beans.xsd">
 
+	<bean id="commentInteractionsImpl" class="fr.silvharm.commulade.business.impl.CommentInteractionsImpl">
+		<property name="commentDao" ref="commentDaoImpl"/>
+		<property name="userInteractions" ref="userInteractionsImpl"/>
+	</bean>
+
 	<bean id="messageInteractionsImpl" class="fr.silvharm.commulade.business.impl.MessageInteractionsImpl">
 		<property name="messageDao" ref="messageDaoImpl"/>
 		<property name="userDao" ref="userDaoImpl"/>

@@ -1,14 +1,17 @@
 package fr.silvharm.commulade.business.helper;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import fr.silvharm.commulade.model.bean.CommentFormBean;
 import fr.silvharm.commulade.model.bean.LongueurFormBean;
 import fr.silvharm.commulade.model.bean.SecteurFormBean;
 import fr.silvharm.commulade.model.bean.SiteFormBean;
 import fr.silvharm.commulade.model.bean.TopoFormBean;
 import fr.silvharm.commulade.model.bean.VoieFormBean;
+import fr.silvharm.commulade.model.pojo.Comment;
 import fr.silvharm.commulade.model.pojo.Longueur;
 import fr.silvharm.commulade.model.pojo.Secteur;
 import fr.silvharm.commulade.model.pojo.Site;
@@ -19,6 +22,12 @@ public class FormConverterHelper {
 	
 	public static String stringSqlConform(String str) {
 		return str.replaceAll("'", "''");
+	}
+	
+	
+	public static Comment commentFormToComment(CommentFormBean commentForm) {
+		return new Comment(commentForm.getUserId(), Integer.parseInt(commentForm.getPostType()),
+				Integer.parseInt(commentForm.getPostId()), LocalDateTime.now(), stringSqlConform(commentForm.getComment()));
 	}
 	
 	

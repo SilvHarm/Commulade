@@ -30,6 +30,10 @@
 			<p>
 				<s:property value="topo.description" />
 			</p>
+
+			<s:set var="postId" value="topo.id" />
+			<s:set var="postType" value="@fr.silvharm.commulade.model.enu.PostTypeEnum@TOPO.type" />
+			<s:include value="/WEB-INF/content/jsp/parts/comment-container.jsp" />
 		</div>
 
 
