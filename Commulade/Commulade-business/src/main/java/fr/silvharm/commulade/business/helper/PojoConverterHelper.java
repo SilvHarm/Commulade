@@ -11,15 +11,15 @@ public class PojoConverterHelper {
 	
 	public static List<CommentBean> commentToCommentBean(List<Comment> list, Map<Integer, String> usernameMap) {
 		List<CommentBean> beanList = new ArrayList<CommentBean>();
-		CommentBean tempo = new CommentBean();
+		String commentStr, date, time, username;
 		
 		for (Comment comment : list) {
-			tempo.setUsername(usernameMap.get(comment.getUserId()));
-			tempo.setDate(comment.getDateTime().toLocalDate().toString());
-			tempo.setTime(comment.getDateTime().toLocalTime().toString());
-			tempo.setComment(comment.getComment());
+			username = usernameMap.get(comment.getUserId());
+			date = comment.getDateTime().toLocalDate().toString();
+			time = comment.getDateTime().toLocalTime().toString();
+			commentStr = comment.getComment();
 			
-			beanList.add(tempo);
+			beanList.add(new CommentBean(username, date, time, commentStr));
 		}
 		
 		return beanList;

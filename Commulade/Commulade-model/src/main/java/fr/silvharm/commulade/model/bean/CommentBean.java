@@ -17,6 +17,7 @@ public class CommentBean {
 	public CommentBean(String username, String date, String time, String comment) {
 		this.username = username;
 		this.date = date;
+		this.time = time;
 		this.comment = comment;
 	}
 	

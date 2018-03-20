@@ -52,7 +52,7 @@ public class CommentDaoImpl extends AbstractDaoImpl implements CommentDao {
 		
 		MapSqlParameterSource vParams = new MapSqlParameterSource();
 		vParams.addValue("postId", postId);
-		vParams.addValue("typeId", postType);
+		vParams.addValue("postType", postType);
 		
 		return namedJdbcTemplate.query(vSQL, vParams, new BeanPropertyRowMapper<Comment>(Comment.class));
 	}
