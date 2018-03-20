@@ -40,7 +40,7 @@
 			</div>
 
 			<s:set var="postId" value="#site.id" />
-			<s:set var="typeId" value="@fr.silvharm.commulade.model.enu.PostTypeEnum@SITE.type" />
+			<s:set var="postType" value="@fr.silvharm.commulade.model.enu.PostTypeEnum@SITE.type" />
 			<s:include value="/WEB-INF/content/jsp/parts/comment-container.jsp" />
 		</div>
 
@@ -64,7 +64,7 @@
 				</s:else>
 
 				<s:set var="postId" value="#var.id" />
-				<s:set var="typeId" value="@fr.silvharm.commulade.model.enu.PostTypeEnum@SECTEUR.type" />
+				<s:set var="postType" value="@fr.silvharm.commulade.model.enu.PostTypeEnum@SECTEUR.type" />
 				<s:include value="/WEB-INF/content/jsp/parts/comment-container.jsp" />
 
 
@@ -82,9 +82,9 @@
 							</p>
 						</s:iterator>
 
-						<s:set var="postId" value="#ver.id" />
-						<s:set var="typeId" value="@fr.silvharm.commulade.model.enu.PostTypeEnum@VOIE.type" />
-						<s:include value="/WEB-INF/content/jsp/parts/comment-container.jsp" />
+						<%-- <s:set var="postId" value="#ver.id" />
+						<s:set var="postType" value="@fr.silvharm.commulade.model.enu.PostTypeEnum@VOIE.type" />
+						<s:include value="/WEB-INF/content/jsp/parts/comment-container.jsp" /> --%>
 
 					</div>
 				</s:iterator>

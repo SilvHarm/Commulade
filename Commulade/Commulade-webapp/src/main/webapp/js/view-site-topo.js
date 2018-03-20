@@ -55,13 +55,15 @@ function buttonSet() {
 
 function getComment(element) {
 	var parent = $(element).parent();
+	var postId = $(parent).attr('data-postid');
+	var postType = $(parent).attr('data-postType');
 
 	$.ajax({
 		type : 'POST',
 		url : 'get-comment',
 		data : jQuery.param({
-			postId : $(parent).attr('data-postid'),
-			postType : $(parent).attr('data-typeid')
+			postId : postId,
+			postType : postType
 		}),
 		success : function(data) {
 			$(element).html('Cacher les commentaires');
@@ -71,6 +73,8 @@ function getComment(element) {
 			});
 
 			$(parent).append(data);
+			$(parent).find('#postId').attr('value', postId);
+			$(parent).find('#postType').attr('value', postType);
 		}
 	});
 }

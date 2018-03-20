@@ -1,4 +1,11 @@
 <div class="commentContainer">
+	<form action="add-comment" method="post">
+		<input id="postId" name="commentForm.postId" type="hidden"> <input id="postType" name="commentForm.postType" type="hidden">
+		<textarea name="commentForm.comment" cols="96" rows="3" maxlength="256" placeholder="Ecrivez votre commentaire..." spellcheck="false"
+			required></textarea>
+		<button class="seShaButtons sendComButton">Commenter</button>
+	</form>
+
 
 	<s:if test="beanList != null">
 		<s:iterator value="beanList" var="comment">
@@ -17,6 +24,6 @@
 	</s:if>
 
 	<s:else>
-		<p>Aucun commentaire n'a encore été posté</p>
+		<p class="siteSeparator">Aucun commentaire n'a encore été posté</p>
 	</s:else>
 </div>

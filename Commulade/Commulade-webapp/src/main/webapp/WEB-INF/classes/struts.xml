@@ -21,6 +21,10 @@
 
 
 		<!-- Comment -->
+		<action name="add-comment" class="commentAction" method="addComment">
+			<result name="error" type="redirect">/WEB-INF/content/jsp/error.jsp</result>
+		</action>
+
 		<action name="get-comment" class="commentAction" method="execute">
 			<result name="error" type="dispatcher">/WEB-INF/content/jsp/error.jsp</result>
 			<result name="success" type="dispatcher">/WEB-INF/content/jsp/parts/comment.jsp</result>

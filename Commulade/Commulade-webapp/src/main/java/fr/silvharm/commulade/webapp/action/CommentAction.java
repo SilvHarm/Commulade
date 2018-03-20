@@ -1,17 +1,25 @@
 package fr.silvharm.commulade.webapp.action;
 
 import java.util.List;
+import java.util.Map;
+
+import org.apache.struts2.interceptor.SessionAware;
 
 import com.opensymphony.xwork2.ActionSupport;
 
 import fr.silvharm.commulade.business.contract.CommentInteractions;
+import fr.silvharm.commulade.business.contract.UserInteractions;
 import fr.silvharm.commulade.model.bean.CommentBean;
+import fr.silvharm.commulade.model.bean.CommentFormBean;
 
-public class CommentAction extends ActionSupport {
+public class CommentAction extends ActionSupport implements SessionAware {
 	
+	private CommentFormBean commentForm;
 	private CommentInteractions commentInteractions;
 	private Integer postId, postType;
 	private List<CommentBean> beanList;
+	private Map<String, Object> session;
+	private UserInteractions userInteractions;
 	
 	
 	public String execute() {
@@ -19,6 +27,24 @@ public class CommentAction extends ActionSupport {
 			beanList = commentInteractions.getListCommentOfPost(postId, postType);
 			
 			return SUCCESS;
+		}
+		
+		return ERROR;
+	}
+	
+	
+	public String addComment() {
+		Integer userId = (Integer) session.get("userId");
+		String username = (String) session.get("username");
+		
+		if (commentForm != null) {
+			if (username != null && userId != null && userInteractions.verifyUser(userId, username)) {
+				commentForm.setUsername((String) session.get("username"));
+			}
+			
+			if (commentInteractions.createComment(commentForm)) {
+				return NONE;
+			}
 		}
 		
 		return ERROR;
@@ -35,6 +61,15 @@ public class CommentAction extends ActionSupport {
 	 */
 	public List<CommentBean> getBeanList() {
 		return beanList;
+	}
+	
+	
+	/**
+	 * @param commentForm
+	 *           the commentForm to set
+	 */
+	public void setCommentForm(CommentFormBean commentForm) {
+		this.commentForm = commentForm;
 	}
 	
 	
@@ -62,6 +97,21 @@ public class CommentAction extends ActionSupport {
 	 */
 	public void setPostType(Integer postType) {
 		this.postType = postType;
+	}
+	
+	
+	@Override
+	public void setSession(Map<String, Object> session) {
+		this.session = session;
+	}
+	
+	
+	/**
+	 * @param userInteractions
+	 *           the userInteractions to set
+	 */
+	public void setUserInteractions(UserInteractions userInteractions) {
+		this.userInteractions = userInteractions;
 	}
 	
 }
