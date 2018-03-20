@@ -3,16 +3,17 @@ package fr.silvharm.commulade.business.contract;
 import java.util.List;
 
 import fr.silvharm.commulade.model.bean.CommentBean;
+import fr.silvharm.commulade.model.bean.CommentFormBean;
 
 public interface CommentInteractions {
 	
 	/**
-	 * Verify the CommentBean, convert it into a Comment and add it to the database
+	 * Verify the CommentFormBean, convert it into a Comment and add it to the database
 	 * 
 	 * @param commentBean
 	 * @return true if the Comment was created or false
 	 */
-	public Boolean createComment(CommentBean commentFormBean);
+	public Boolean createComment(CommentFormBean commentFormBean);
 	
 	
 	/**

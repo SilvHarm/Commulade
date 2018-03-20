@@ -5,9 +5,12 @@ import java.util.List;
 
 import fr.silvharm.commulade.business.contract.CommentInteractions;
 import fr.silvharm.commulade.business.contract.UserInteractions;
+import fr.silvharm.commulade.business.helper.FormConverterHelper;
+import fr.silvharm.commulade.business.helper.FormVerificationHelper;
 import fr.silvharm.commulade.business.helper.PojoConverterHelper;
 import fr.silvharm.commulade.consumer.contract.dao.CommentDao;
 import fr.silvharm.commulade.model.bean.CommentBean;
+import fr.silvharm.commulade.model.bean.CommentFormBean;
 import fr.silvharm.commulade.model.pojo.Comment;
 
 
@@ -17,9 +20,14 @@ public class CommentInteractionsImpl implements CommentInteractions {
 	private UserInteractions userInteractions;
 	
 	
-	public Boolean createComment(CommentBean commentFormBean) {
-		// TODO Auto-generated method stub
-		return null;
+	public Boolean createComment(CommentFormBean commentForm) {
+		if (FormVerificationHelper.commentForm(commentForm)) {
+			commentDao.create(FormConverterHelper.commentFormToComment(commentForm));
+			
+			return true;
+		}
+		
+		return false;
 	}
 	
 	

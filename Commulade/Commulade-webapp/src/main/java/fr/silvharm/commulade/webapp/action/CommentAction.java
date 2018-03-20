@@ -39,7 +39,7 @@ public class CommentAction extends ActionSupport implements SessionAware {
 		
 		if (commentForm != null) {
 			if (username != null && userId != null && userInteractions.verifyUser(userId, username)) {
-				commentForm.setUsername((String) session.get("username"));
+				commentForm.setUserId(userId);
 			}
 			
 			if (commentInteractions.createComment(commentForm)) {
@@ -61,6 +61,14 @@ public class CommentAction extends ActionSupport implements SessionAware {
 	 */
 	public List<CommentBean> getBeanList() {
 		return beanList;
+	}
+	
+	
+	/**
+	 * @return the commentForm
+	 */
+	public CommentFormBean getCommentForm() {
+		return commentForm;
 	}
 	
 	

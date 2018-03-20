@@ -22,7 +22,7 @@
 
 		<!-- Comment -->
 		<action name="add-comment" class="commentAction" method="addComment">
-			<result name="error" type="redirect">/WEB-INF/content/jsp/error.jsp</result>
+			<result name="error" type="redirect">error</result>
 		</action>
 
 		<action name="get-comment" class="commentAction" method="execute">

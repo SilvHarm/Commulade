@@ -3,7 +3,8 @@ package fr.silvharm.commulade.model.bean;
 
 public class CommentFormBean {
 	
-	private String comment, postId, postType, username;
+	private int userId;
+	private String comment, postId, postType;
 	
 	
 	public CommentFormBean() {}
@@ -65,18 +66,18 @@ public class CommentFormBean {
 	
 	
 	/**
-	 * @return the username
+	 * @return the userId
 	 */
-	public String getUsername() {
-		return username;
+	public int getUserId() {
+		return userId;
 	}
 	
 	
 	/**
-	 * @param username
-	 *           the username to set
+	 * @param userId
+	 *           the userId to set
 	 */
-	public void setUsername(String username) {
-		this.username = username;
+	public void setUserId(int userId) {
+		this.userId = userId;
 	}
 }
