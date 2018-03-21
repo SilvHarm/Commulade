@@ -10,7 +10,9 @@
 
 	<bean id="configContainer" class="fr.silvharm.commulade.model.pojo.ConfigContainer">
 		<property name="secteurPhotoPath" value="#{contextParameters.secteurPhotoPath}"/>
+		<property name="secteurPhotoSave" value="#{contextParameters.secteurPhotoPathSave}"/>
 		<property name="sitePhotoPath" value="#{contextParameters.sitePhotoPath}"/>
+		<property name="sitePhotoSave" value="#{contextParameters.sitePhotoPathSave}"/>
 	</bean>
 
 

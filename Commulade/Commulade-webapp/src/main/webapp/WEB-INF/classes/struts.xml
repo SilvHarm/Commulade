@@ -5,6 +5,7 @@
 	<constant name="struts.devMode" value="true"/>
 	<constant name="struts.enable.SlashesInActionNames" value="true"/>
 	<constant name="struts.mapper.alwaysSelectFullNamespace" value="false"/>
+	<constant name="struts.multipart.maxSize" value="268435456"/>
 
 
 	<package name="default" extends="struts-default">
@@ -30,6 +31,7 @@
 			<result name="error" type="dispatcher">/WEB-INF/content/jsp/error.jsp</result>
 			<result name="success" type="dispatcher">/WEB-INF/content/jsp/parts/comment.jsp</result>
 		</action>
+
 
 		<!-- Login -->
 

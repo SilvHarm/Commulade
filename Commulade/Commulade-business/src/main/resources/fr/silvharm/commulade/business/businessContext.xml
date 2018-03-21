@@ -15,6 +15,7 @@
 	</bean>
 
 	<bean id="siteInteractionsImpl" class="fr.silvharm.commulade.business.impl.SiteInteractionsImpl">
+		<property name="configContainer" ref="configContainer"/>
 		<property name="siteDao" ref="siteDaoImpl"/>
 		<property name="secteurDao" ref="secteurDaoImpl"/>
 		<property name="voieDao" ref="voieDaoImpl"/>

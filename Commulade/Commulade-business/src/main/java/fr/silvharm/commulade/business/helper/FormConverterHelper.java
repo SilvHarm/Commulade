@@ -45,7 +45,8 @@ public class FormConverterHelper {
 		LongueurFormBean longueurForm;
 		Secteur secteur;
 		SecteurFormBean secteurForm;
-		String tempo;
+		String ext, tempo;
+		String[] tempoTab;
 		Voie voie;
 		VoieFormBean voieForm;
 		
@@ -60,14 +61,18 @@ public class FormConverterHelper {
 		if (siteForm.getPhotoName() != null) {
 			site.setPhoto(siteForm.getPhoto());
 			
-			tempo = siteForm.getPhotoName().replaceAll(" ", "_");
+			tempoTab = siteForm.getPhotoName().split("\\.");
+			ext = "." + tempoTab[tempoTab.length - 1];
+			
+			tempo = siteForm.getPhotoName().trim();
+			tempo = tempo.replaceAll(ext + "$", "");
 			tempo = stringSqlConform(tempo);
 			
 			if (60 < tempo.length()) {
 				tempo = tempo.substring(0, 59);
-				
-				tempo += "_" + ((int) (Math.random() * (99999999 - 1000001) + 1000000));
 			}
+			
+			tempo += "_" + ((int) (Math.random() * (99999999 - 1000001) + 1000000)) + ext;
 			
 			site.setPhotoName(tempo);
 		}
@@ -87,14 +92,18 @@ public class FormConverterHelper {
 				if (secteurForm.getPhotoName() != null) {
 					secteur.setPhoto(secteurForm.getPhoto());
 					
-					tempo = secteurForm.getPhotoName().replaceAll(" ", "_");
+					tempoTab = secteurForm.getPhotoName().split("\\.");
+					ext = "." + tempoTab[tempoTab.length - 1];
+					
+					tempo = secteurForm.getPhotoName().trim();
+					tempo = tempo.replaceAll(ext + "$", "");
 					tempo = stringSqlConform(tempo);
 					
 					if (60 < tempo.length()) {
 						tempo = tempo.substring(0, 59);
-						
-						tempo += "_" + ((int) (Math.random() * (99999999 - 1000001) + 1000000));
 					}
+					
+					tempo += "_" + ((int) (Math.random() * (99999999 - 1000001) + 1000000)) + ext;
 					
 					secteur.setPhotoName(tempo);
 				}

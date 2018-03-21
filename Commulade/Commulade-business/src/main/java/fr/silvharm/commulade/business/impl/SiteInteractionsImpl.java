@@ -1,5 +1,11 @@
 package fr.silvharm.commulade.business.impl;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.InvalidPathException;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,6 +23,7 @@ import fr.silvharm.commulade.consumer.contract.dao.VoieDao;
 import fr.silvharm.commulade.model.bean.SiteFormBean;
 import fr.silvharm.commulade.model.bean.SiteSearchFormBean;
 import fr.silvharm.commulade.model.bean.TopoFormBean;
+import fr.silvharm.commulade.model.pojo.ConfigContainer;
 import fr.silvharm.commulade.model.pojo.Longueur;
 import fr.silvharm.commulade.model.pojo.Secteur;
 import fr.silvharm.commulade.model.pojo.Site;
@@ -26,6 +33,7 @@ public class SiteInteractionsImpl implements SiteInteractions {
 	
 	private static final Logger logger = LogManager.getLogger();
 	
+	private ConfigContainer configContainer;
 	private LongueurDao longueurDao;
 	private SecteurDao secteurDao;
 	private SiteDao siteDao;
@@ -227,12 +235,25 @@ public class SiteInteractionsImpl implements SiteInteractions {
 	
 	
 	public List<Integer> shareListSite(List<SiteFormBean> list, LocalDate date) {
+		List<File> sitePhotoList = new ArrayList<File>();
+		List<String> sitePhotoNameList = new ArrayList<String>();
+		
+		List<File> secteurPhotoList = new ArrayList<File>();
+		List<String> secteurPhotoNameList = new ArrayList<String>();
+		
 		List<Site> siteList = new ArrayList<Site>();
 		
 		for (SiteFormBean siteForm : list) {
 			// skip the SiteFormBean if it's null
 			if (siteForm != null) {
-				siteList.add(FormConverterHelper.siteFormToSite(siteForm, date));
+				Site site = FormConverterHelper.siteFormToSite(siteForm, date);
+				
+				siteList.add(site);
+				
+				if (site.getPhoto() != null) {
+					sitePhotoList.add(site.getPhoto());
+					sitePhotoNameList.add(site.getPhotoName());
+				}
 			}
 		}
 		
@@ -250,6 +271,11 @@ public class SiteInteractionsImpl implements SiteInteractions {
 				secteur.setSiteId(siteIdList.get(t));
 				
 				secteurList.add(secteur);
+				
+				if (secteur.getPhoto() != null) {
+					secteurPhotoList.add(secteur.getPhoto());
+					secteurPhotoNameList.add(secteur.getPhotoName());
+				}
 			}
 		}
 		
@@ -319,6 +345,34 @@ public class SiteInteractionsImpl implements SiteInteractions {
 		} while (boucle);
 		
 		
+		try {
+			String path;
+			
+			if (sitePhotoList.size() != 0) {
+				path = configContainer.getSitePhotoSave();
+				for (int i = 0; i < sitePhotoList.size(); i++) {
+					Files.copy(Paths.get(sitePhotoList.get(i).getPath()), Paths.get(path, "/", sitePhotoNameList.get(i)),
+							StandardCopyOption.COPY_ATTRIBUTES);
+				}
+			}
+			
+			
+			if (secteurPhotoList != null) {
+				path = configContainer.getSecteurPhotoSave();
+				for (int i = 0; i < secteurPhotoList.size(); i++) {
+					Files.copy(Paths.get(secteurPhotoList.get(i).getPath()),
+							Paths.get(path + "/" + secteurPhotoNameList.get(i)), StandardCopyOption.COPY_ATTRIBUTES);
+				}
+			}
+		}
+		catch (InvalidPathException e) {
+			logger.warn("A problem occured with a Path while moving the photos of the new Site/Secteur", e);
+		}
+		catch (IOException e) {
+			logger.warn("A problem occured while moving the photos of the new Site/Secteur", e);
+		}
+		
+		
 		return siteIdList;
 	}
 	
@@ -326,6 +380,16 @@ public class SiteInteractionsImpl implements SiteInteractions {
 	/********************************
 	 * Getters & Setters
 	 *******************************/
+	
+	
+	/**
+	 * @param configContainer
+	 *           the configContainer to set
+	 */
+	public void setConfigContainer(ConfigContainer configContainer) {
+		this.configContainer = configContainer;
+	}
+	
 	
 	/**
 	 * @param longueurDao
