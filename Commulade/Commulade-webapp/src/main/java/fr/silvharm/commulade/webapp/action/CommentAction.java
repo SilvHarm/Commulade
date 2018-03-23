@@ -1,24 +1,19 @@
 package fr.silvharm.commulade.webapp.action;
 
 import java.util.List;
-import java.util.Map;
-
-import org.apache.struts2.interceptor.SessionAware;
-
-import com.opensymphony.xwork2.ActionSupport;
 
 import fr.silvharm.commulade.business.contract.CommentInteractions;
 import fr.silvharm.commulade.business.contract.UserInteractions;
 import fr.silvharm.commulade.model.bean.CommentBean;
 import fr.silvharm.commulade.model.bean.CommentFormBean;
+import fr.silvharm.commulade.webapp.helper.SessionHelper;
 
-public class CommentAction extends ActionSupport implements SessionAware {
+public class CommentAction extends SessionHelper {
 	
 	private CommentFormBean commentForm;
 	private CommentInteractions commentInteractions;
 	private Integer postId, postType;
 	private List<CommentBean> beanList;
-	private Map<String, Object> session;
 	private UserInteractions userInteractions;
 	
 	
@@ -34,11 +29,10 @@ public class CommentAction extends ActionSupport implements SessionAware {
 	
 	
 	public String addComment() {
-		Integer userId = (Integer) session.get("userId");
-		String username = (String) session.get("username");
-		
 		if (commentForm != null) {
-			if (username != null && userId != null && userInteractions.verifyUser(userId, username)) {
+			setUserId();
+			
+			if (userInteractions.verifyUser(userId, getUsername())) {
 				commentForm.setUserId(userId);
 			}
 			
@@ -105,12 +99,6 @@ public class CommentAction extends ActionSupport implements SessionAware {
 	 */
 	public void setPostType(Integer postType) {
 		this.postType = postType;
-	}
-	
-	
-	@Override
-	public void setSession(Map<String, Object> session) {
-		this.session = session;
 	}
 	
 	

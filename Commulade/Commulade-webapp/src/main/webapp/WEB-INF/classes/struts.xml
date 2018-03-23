@@ -113,7 +113,7 @@
 			<result name="success" type="dispatcher">/WEB-INF/content/jsp/parts/own-it-topo.jsp</result>
 		</action>
 
-		<action name="pret-topo" class="fr.silvharm.commulade.webapp.action.PretTopoAction" method="execute">
+		<action name="lend-topo" class="lendTopoAction" method="execute">
 			<result name="success">/WEB-INF/content/jsp/template/main-template.jsp</result>
 		</action>
 

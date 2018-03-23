@@ -94,11 +94,13 @@ public class UserInteractionsImpl implements UserInteractions {
 	}
 	
 	
-	public Boolean verifyUser(int userId, String username) {
-		User user = userDao.findById(userId);
-		
-		if (user != null && user.getUsername().equals(username)) {
-			return true;
+	public Boolean verifyUser(Integer userId, String username) {
+		if (userId != null && username != null) {
+			User user = userDao.findById(userId);
+			
+			if (user != null && user.getUsername().equals(username)) {
+				return true;
+			}
 		}
 		
 		return false;

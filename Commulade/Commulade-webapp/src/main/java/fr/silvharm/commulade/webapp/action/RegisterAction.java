@@ -1,17 +1,11 @@
 package fr.silvharm.commulade.webapp.action;
 
-import java.util.Map;
-
-import org.apache.struts2.interceptor.SessionAware;
-
-import com.opensymphony.xwork2.ActionSupport;
-
 import fr.silvharm.commulade.business.contract.UserInteractions;
 import fr.silvharm.commulade.model.pojo.User;
+import fr.silvharm.commulade.webapp.helper.SessionHelper;
 
-public class RegisterAction extends ActionSupport implements SessionAware {
+public class RegisterAction extends SessionHelper {
 	
-	private Map<String, Object> session;
 	private String contentJsp = "register", css = "regis-login", js = null, title = "S'inscrire au site";
 	private User user;
 	private UserInteractions userInteractions;
@@ -29,8 +23,8 @@ public class RegisterAction extends ActionSupport implements SessionAware {
 			return ERROR;
 		}
 		
-		session.put("userId", user.getId());
-		session.put("username", user.getUsername());
+		addUserId(user.getId());
+		addUsername(user.getUsername());
 		
 		return SUCCESS;
 	}
@@ -49,28 +43,10 @@ public class RegisterAction extends ActionSupport implements SessionAware {
 	
 	
 	/**
-	 * @param contentJsp
-	 *           the contentJsp to set
-	 */
-	public void setContentJsp(String contentJsp) {
-		this.contentJsp = contentJsp;
-	}
-	
-	
-	/**
 	 * @return the css
 	 */
 	public String getCss() {
 		return css;
-	}
-	
-	
-	/**
-	 * @param css
-	 *           the css to set
-	 */
-	public void setCss(String css) {
-		this.css = css;
 	}
 	
 	
@@ -83,34 +59,10 @@ public class RegisterAction extends ActionSupport implements SessionAware {
 	
 	
 	/**
-	 * @param js
-	 *           the js to set
-	 */
-	public void setJs(String js) {
-		this.js = js;
-	}
-	
-	
-	@Override
-	public void setSession(Map<String, Object> session) {
-		this.session = session;
-	}
-	
-	
-	/**
 	 * @return the title
 	 */
 	public String getTitle() {
 		return title;
-	}
-	
-	
-	/**
-	 * @param title
-	 *           the title to set
-	 */
-	public void setTitle(String title) {
-		this.title = title;
 	}
 	
 	

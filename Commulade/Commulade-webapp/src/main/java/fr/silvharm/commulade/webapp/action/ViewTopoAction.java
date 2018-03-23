@@ -1,25 +1,21 @@
 package fr.silvharm.commulade.webapp.action;
 
-import java.util.Map;
-
-import org.apache.struts2.interceptor.SessionAware;
-
-import com.opensymphony.xwork2.ActionSupport;
-
 import fr.silvharm.commulade.business.contract.TopoInteractions;
 import fr.silvharm.commulade.business.contract.TopoOwnedInteractions;
+import fr.silvharm.commulade.business.contract.UserInteractions;
 import fr.silvharm.commulade.model.pojo.ConfigContainer;
 import fr.silvharm.commulade.model.pojo.Topo;
+import fr.silvharm.commulade.webapp.helper.SessionHelper;
 
-public class ViewTopoAction extends ActionSupport implements SessionAware {
+public class ViewTopoAction extends SessionHelper {
 	
 	private Boolean isOwned, isUpToDate;
 	private ConfigContainer configContainer;
 	private int topoId;
-	private Map<String, Object> session;
 	private Topo topo;
 	private TopoInteractions topoInteractions;
 	private TopoOwnedInteractions topoOwnedInteractions;
+	private UserInteractions userInteractions;
 	private String contentJsp = "view-topo", css = "view-site-topo", js = "view-site-topo", title = "Topo: ";
 	
 	@SuppressWarnings("unused") // are used by struts in the jsp
@@ -34,8 +30,8 @@ public class ViewTopoAction extends ActionSupport implements SessionAware {
 			
 			isUpToDate = topoInteractions.isUpToDate(topo);
 			
-			Integer userId = (Integer) session.get("userId");
-			if (userId != null) {
+			setUserId();
+			if (userInteractions.verifyUser(userId, getUsername())) {
 				isOwned = topoOwnedInteractions.isTopoOwned(topoId, userId);
 			}
 		}
@@ -48,8 +44,9 @@ public class ViewTopoAction extends ActionSupport implements SessionAware {
 	
 	
 	public String iDontOwnIt() {
-		Integer userId = (Integer) session.get("userId");
-		if (userId != null) {
+		setUserId();
+		
+		if (userInteractions.verifyUser(userId, getUsername())) {
 			topoOwnedInteractions.stopSharing(topoId, userId);
 			
 			return SUCCESS;
@@ -60,8 +57,9 @@ public class ViewTopoAction extends ActionSupport implements SessionAware {
 	
 	
 	public String iOwnIt() {
-		Integer userId = (Integer) session.get("userId");
-		if (userId != null) {
+		setUserId();
+		
+		if (userInteractions.verifyUser(userId, getUsername())) {
 			topoOwnedInteractions.startSharing(topoId, userId);
 			
 			return SUCCESS;
@@ -132,12 +130,6 @@ public class ViewTopoAction extends ActionSupport implements SessionAware {
 	}
 	
 	
-	@Override
-	public void setSession(Map<String, Object> session) {
-		this.session = session;
-	}
-	
-	
 	/**
 	 * @return the sitePhotoPath
 	 */
@@ -186,6 +178,15 @@ public class ViewTopoAction extends ActionSupport implements SessionAware {
 	 */
 	public void setTopoOwnedInteractions(TopoOwnedInteractions topoOwnedInteractions) {
 		this.topoOwnedInteractions = topoOwnedInteractions;
+	}
+	
+	
+	/**
+	 * @param userInteractions
+	 *           the userInteractions to set
+	 */
+	public void setUserInteractions(UserInteractions userInteractions) {
+		this.userInteractions = userInteractions;
 	}
 	
 }

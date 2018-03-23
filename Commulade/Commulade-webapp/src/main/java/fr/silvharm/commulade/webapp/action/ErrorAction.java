@@ -25,28 +25,10 @@ public class ErrorAction extends ActionSupport {
 	
 	
 	/**
-	 * @param contentJsp
-	 *           the contentJsp to set
-	 */
-	public void setContentJsp(String contentJsp) {
-		this.contentJsp = contentJsp;
-	}
-	
-	
-	/**
 	 * @return the css
 	 */
 	public String getCss() {
 		return css;
-	}
-	
-	
-	/**
-	 * @param css
-	 *           the css to set
-	 */
-	public void setCss(String css) {
-		this.css = css;
 	}
 	
 	
@@ -59,27 +41,10 @@ public class ErrorAction extends ActionSupport {
 	
 	
 	/**
-	 * @param js
-	 *           the js to set
-	 */
-	public void setJs(String js) {
-		this.js = js;
-	}
-	
-	
-	/**
 	 * @return the title
 	 */
 	public String getTitle() {
 		return title;
 	}
 	
-	
-	/**
-	 * @param title
-	 *           the title to set
-	 */
-	public void setTitle(String title) {
-		this.title = title;
-	}
 }

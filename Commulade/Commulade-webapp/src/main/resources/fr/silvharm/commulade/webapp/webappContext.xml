@@ -23,6 +23,11 @@
 		<property name="userInteractions" ref="userInteractionsImpl"/>
 	</bean>
 
+	<bean id="lendTopoAction" class="fr.silvharm.commulade.webapp.action.LendTopoAction" scope="prototype">
+		<property name="topoInteractions" ref="topoInteractionsImpl"/>
+		<property name="userInteractions" ref="userInteractionsImpl"/>
+	</bean>
+
 	<bean id="loginAction" class="fr.silvharm.commulade.webapp.action.LoginAction" scope="prototype">
 		<property name="userInteractions" ref="userInteractionsImpl"/>
 	</bean>
@@ -52,6 +57,7 @@
 	<bean id="shareTopoAction" class="fr.silvharm.commulade.webapp.action.ShareTopoAction" scope="prototype">
 		<property name="topoInteractions" ref="topoInteractionsImpl"/>
 		<property name="topoOwnedInteractions" ref="topoOwnedInteractionsImpl"/>
+		<property name="userInteractions" ref="userInteractionsImpl"/>
 	</bean>
 
 	<bean id="viewSiteAction" class="fr.silvharm.commulade.webapp.action.ViewSiteAction">
@@ -63,6 +69,7 @@
 		<property name="configContainer" ref="configContainer"/>
 		<property name="topoInteractions" ref="topoInteractionsImpl"/>
 		<property name="topoOwnedInteractions" ref="topoOwnedInteractionsImpl"/>
+		<property name="userInteractions" ref="userInteractionsImpl"/>
 	</bean>
 
 </beans>

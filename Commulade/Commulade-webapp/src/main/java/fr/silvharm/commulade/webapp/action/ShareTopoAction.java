@@ -1,27 +1,24 @@
 package fr.silvharm.commulade.webapp.action;
 
 import java.time.LocalDate;
-import java.util.Map;
-
-import org.apache.struts2.interceptor.SessionAware;
-
-import com.opensymphony.xwork2.ActionSupport;
 
 import fr.silvharm.commulade.business.contract.TopoInteractions;
 import fr.silvharm.commulade.business.contract.TopoOwnedInteractions;
+import fr.silvharm.commulade.business.contract.UserInteractions;
 import fr.silvharm.commulade.model.bean.TopoFormBean;
+import fr.silvharm.commulade.webapp.helper.SessionHelper;
 
-public class ShareTopoAction extends ActionSupport implements SessionAware {
+public class ShareTopoAction extends SessionHelper {
 	
 	private Boolean wishToShare;
 	private Integer newTopoId;
 	private LocalDate todayDate = LocalDate.now();
-	private Map<String, Object> session;
 	private String contentJsp = "share-topo", css = "share-site-topo", editionDate, js = "share-site-topo",
 			title = "Partager un topo";
 	private TopoFormBean topoForm;
 	private TopoInteractions topoInteractions;
 	private TopoOwnedInteractions topoOwnedInteractions;
+	private UserInteractions userInteractions;
 	
 	
 	public String execute() {
@@ -42,10 +39,8 @@ public class ShareTopoAction extends ActionSupport implements SessionAware {
 			return ERROR;
 		}
 		
-		// if user is connected and wish to share Topo with others
-		Integer userId = (Integer) session.get("userId");
-		// wishToShare = null when it's not check and false when it is
-		if (userId != null && wishToShare != null) {
+		setUserId();
+		if (userInteractions.verifyUser(userId, getUsername()) && wishToShare != null) {
 			topoOwnedInteractions.startSharing(newTopoId, userId);
 		}
 		
@@ -106,12 +101,6 @@ public class ShareTopoAction extends ActionSupport implements SessionAware {
 	}
 	
 	
-	@Override
-	public void setSession(Map<String, Object> session) {
-		this.session = session;
-	}
-	
-	
 	/**
 	 * @return the title
 	 */
@@ -160,6 +149,15 @@ public class ShareTopoAction extends ActionSupport implements SessionAware {
 	 */
 	public void setTopoOwnedInteractions(TopoOwnedInteractions topoOwnedInteractions) {
 		this.topoOwnedInteractions = topoOwnedInteractions;
+	}
+	
+	
+	/**
+	 * @param userInteractions
+	 *           the userInteractions to set
+	 */
+	public void setUserInteractions(UserInteractions userInteractions) {
+		this.userInteractions = userInteractions;
 	}
 	
 	

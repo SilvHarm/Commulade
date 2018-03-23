@@ -4,65 +4,58 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.struts2.interceptor.SessionAware;
-
-import com.opensymphony.xwork2.ActionSupport;
-
 import fr.silvharm.commulade.business.contract.MessageInteractions;
 import fr.silvharm.commulade.business.contract.UserInteractions;
 import fr.silvharm.commulade.model.bean.SendMessageFormBean;
 import fr.silvharm.commulade.model.pojo.Message;
+import fr.silvharm.commulade.webapp.helper.SessionHelper;
 
 
-public class MessageAction extends ActionSupport implements SessionAware {
+public class MessageAction extends SessionHelper {
 	
-	private Integer messageId, userId;
+	private Integer messageId;
 	private List<Message> receivedList, sentList;
 	private Map<Integer, String> usernameMap;
-	private Map<String, Object> session;
 	private Message message;
 	private MessageInteractions messageInteractions;
 	private SendMessageFormBean sendMessageForm;
 	private String contentJsp = "view-messages", css = "view-messages", js = "view-messages", otherName,
-			title = "Messagerie", username;
+			title = "Messagerie";
 	private UserInteractions userInteractions;
 	
 	
 	public String execute() {
-		getUserId();
-		getUsername();
+		setUserId();
 		
-		if (userId != null && username != null) {
-			if (userInteractions.verifyUser(userId, username)) {
-				List<List<Message>> list = messageInteractions.getUserMessageList(userId);
+		if (userInteractions.verifyUser(userId, getUsername())) {
+			List<List<Message>> list = messageInteractions.getUserMessageList(userId);
+			
+			if (list != null) {
+				List<Integer> userIdList = new ArrayList<Integer>();
 				
-				if (list != null) {
-					List<Integer> userIdList = new ArrayList<Integer>();
+				if (list.get(0) != null) {
+					receivedList = list.get(0);
 					
-					if (list.get(0) != null) {
-						receivedList = list.get(0);
-						
-						for (Message message : receivedList) {
-							if (!userIdList.contains(message.getSenderId())) {
-								userIdList.add(message.getSenderId());
-							}
+					for (Message message : receivedList) {
+						if (!userIdList.contains(message.getSenderId())) {
+							userIdList.add(message.getSenderId());
 						}
 					}
-					if (list.get(1) != null) {
-						sentList = list.get(1);
-						
-						for (Message message : sentList) {
-							if (!userIdList.contains(message.getReceiverId())) {
-								userIdList.add(message.getReceiverId());
-							}
+				}
+				if (list.get(1) != null) {
+					sentList = list.get(1);
+					
+					for (Message message : sentList) {
+						if (!userIdList.contains(message.getReceiverId())) {
+							userIdList.add(message.getReceiverId());
 						}
 					}
-					
-					usernameMap = userInteractions.getUsernameMapByIdList(userIdList);
 				}
 				
-				return SUCCESS;
+				usernameMap = userInteractions.getUsernameMapByIdList(userIdList);
 			}
+			
+			return SUCCESS;
 		}
 		
 		return ERROR;
@@ -75,46 +68,27 @@ public class MessageAction extends ActionSupport implements SessionAware {
 	
 	
 	public String getSpecificMessage() {
-		getUserId();
-		getUsername();
+		setUserId();
 		
-		if (userId != null && username != null) {
-			if (userInteractions.verifyUser(userId, username)) {
-				message = messageInteractions.getUserMessage(messageId, userId);
+		if (userInteractions.verifyUser(userId, getUsername())) {
+			message = messageInteractions.getUserMessage(messageId, userId);
+			
+			if (message != null) {
+				Integer idToGet;
 				
-				if (message != null) {
-					Integer idToGet;
-					
-					if (message.getReceiverId().equals(userId)) {
-						message.setReceiverId(null);
-						idToGet = message.getSenderId();
-					}
-					else {
-						message.setSenderId(null);
-						idToGet = message.getReceiverId();
-					}
-					
-					
-					if (idToGet != null) {
-						otherName = userInteractions.getUsernameById(idToGet);
-					}
-					
-					return SUCCESS;
+				if (message.getReceiverId().equals(userId)) {
+					message.setReceiverId(null);
+					idToGet = message.getSenderId();
 				}
-			}
-		}
-		
-		return ERROR;
-	}
-	
-	
-	public String sendMessage() {
-		getUserId();
-		getUsername();
-		
-		if (userId != null && username != null) {
-			if (userInteractions.verifyUser(userId, username)) {
-				messageInteractions.sendMessage(sendMessageForm, userId);
+				else {
+					message.setSenderId(null);
+					idToGet = message.getReceiverId();
+				}
+				
+				
+				if (idToGet != null) {
+					otherName = userInteractions.getUsernameById(idToGet);
+				}
 				
 				return SUCCESS;
 			}
@@ -124,14 +98,24 @@ public class MessageAction extends ActionSupport implements SessionAware {
 	}
 	
 	
-	public String wasRead() {
-		getUserId();
-		getUsername();
+	public String sendMessage() {
+		setUserId();
 		
-		if (messageId != null && userId != null && username != null) {
-			if (userInteractions.verifyUser(userId, username)) {
-				messageInteractions.messageWasRead(messageId, userId);
-			}
+		if (userInteractions.verifyUser(userId, getUsername())) {
+			messageInteractions.sendMessage(sendMessageForm, userId);
+			
+			return SUCCESS;
+		}
+		
+		return ERROR;
+	}
+	
+	
+	public String wasRead() {
+		setUserId();
+		
+		if (messageId != null && userInteractions.verifyUser(userId, getUsername())) {
+			messageInteractions.messageWasRead(messageId, userId);
 		}
 		
 		return NONE;
@@ -233,22 +217,11 @@ public class MessageAction extends ActionSupport implements SessionAware {
 	}
 	
 	
-	@Override
-	public void setSession(Map<String, Object> session) {
-		this.session = session;
-	}
-	
-	
 	/**
 	 * @return the title
 	 */
 	public String getTitle() {
 		return title;
-	}
-	
-	
-	public void getUserId() {
-		this.userId = (Integer) session.get("userId");
 	}
 	
 	
@@ -258,11 +231,6 @@ public class MessageAction extends ActionSupport implements SessionAware {
 	 */
 	public void setUserInteractions(UserInteractions userInteractions) {
 		this.userInteractions = userInteractions;
-	}
-	
-	
-	public void getUsername() {
-		this.username = (String) session.get("username");
 	}
 	
 	

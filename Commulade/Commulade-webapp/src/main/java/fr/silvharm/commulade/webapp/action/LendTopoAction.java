@@ -1,39 +1,17 @@
 package fr.silvharm.commulade.webapp.action;
 
+import fr.silvharm.commulade.business.contract.TopoInteractions;
 import fr.silvharm.commulade.business.contract.UserInteractions;
-import fr.silvharm.commulade.model.pojo.User;
 import fr.silvharm.commulade.webapp.helper.SessionHelper;
 
-public class LoginAction extends SessionHelper {
+public class LendTopoAction extends SessionHelper {
 	
-	private String contentJsp = "login", css = "regis-login", js = null, title = "Se connecter au site";
-	private User user;
+	private String contentJsp = "lend-topo", css = "lend-topo", js = null, title = "Espace de partage";
+	private TopoInteractions topoInteractions;
 	private UserInteractions userInteractions;
 	
 	
 	public String execute() {
-		return SUCCESS;
-	}
-	
-	
-	public String disconnect() {
-		removeUserId();
-		removeUsername();
-		
-		return SUCCESS;
-	}
-	
-	
-	public String login() {
-		user = userInteractions.connectUser(user);
-		
-		if (user == null) {
-			return ERROR;
-		}
-		
-		addUserId(user.getId());
-		addUsername(user.getUsername());
-		
 		return SUCCESS;
 	}
 	
@@ -75,19 +53,11 @@ public class LoginAction extends SessionHelper {
 	
 	
 	/**
-	 * @return the user
+	 * @param topoInteractions
+	 *           the topoInteractions to set
 	 */
-	public User getUser() {
-		return user;
-	}
-	
-	
-	/**
-	 * @param user
-	 *           the user to set
-	 */
-	public void setUser(User user) {
-		this.user = user;
+	public void setTopoInteractions(TopoInteractions topoInteractions) {
+		this.topoInteractions = topoInteractions;
 	}
 	
 	

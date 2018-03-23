@@ -55,6 +55,6 @@ public interface UserInteractions {
 	 * @param username
 	 * @return true if there is one or false
 	 */
-	public Boolean verifyUser(int userId, String username);
+	public Boolean verifyUser(Integer userId, String username);
 	
 }
