@@ -1,6 +1,5 @@
 package fr.silvharm.commulade.webapp.action;
 
-import fr.silvharm.commulade.business.contract.UserInteractions;
 import fr.silvharm.commulade.model.pojo.User;
 import fr.silvharm.commulade.webapp.helper.SessionHelper;
 
@@ -8,7 +7,6 @@ public class RegisterAction extends SessionHelper {
 	
 	private String contentJsp = "register", css = "regis-login", js = null, title = "S'inscrire au site";
 	private User user;
-	private UserInteractions userInteractions;
 	
 	
 	public String execute() {
@@ -80,15 +78,6 @@ public class RegisterAction extends SessionHelper {
 	 */
 	public void setUser(User user) {
 		this.user = user;
-	}
-	
-	
-	/**
-	 * @param userInteractions
-	 *           the userInteractions to set
-	 */
-	public void setUserInteractions(UserInteractions userInteractions) {
-		this.userInteractions = userInteractions;
 	}
 	
 }

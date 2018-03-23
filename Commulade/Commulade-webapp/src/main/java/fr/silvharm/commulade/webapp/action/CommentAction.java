@@ -3,7 +3,6 @@ package fr.silvharm.commulade.webapp.action;
 import java.util.List;
 
 import fr.silvharm.commulade.business.contract.CommentInteractions;
-import fr.silvharm.commulade.business.contract.UserInteractions;
 import fr.silvharm.commulade.model.bean.CommentBean;
 import fr.silvharm.commulade.model.bean.CommentFormBean;
 import fr.silvharm.commulade.webapp.helper.SessionHelper;
@@ -14,7 +13,6 @@ public class CommentAction extends SessionHelper {
 	private CommentInteractions commentInteractions;
 	private Integer postId, postType;
 	private List<CommentBean> beanList;
-	private UserInteractions userInteractions;
 	
 	
 	public String execute() {
@@ -99,15 +97,6 @@ public class CommentAction extends SessionHelper {
 	 */
 	public void setPostType(Integer postType) {
 		this.postType = postType;
-	}
-	
-	
-	/**
-	 * @param userInteractions
-	 *           the userInteractions to set
-	 */
-	public void setUserInteractions(UserInteractions userInteractions) {
-		this.userInteractions = userInteractions;
 	}
 	
 }

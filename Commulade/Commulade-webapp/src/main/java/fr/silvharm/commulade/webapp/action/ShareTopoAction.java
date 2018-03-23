@@ -4,7 +4,6 @@ import java.time.LocalDate;
 
 import fr.silvharm.commulade.business.contract.TopoInteractions;
 import fr.silvharm.commulade.business.contract.TopoOwnedInteractions;
-import fr.silvharm.commulade.business.contract.UserInteractions;
 import fr.silvharm.commulade.model.bean.TopoFormBean;
 import fr.silvharm.commulade.webapp.helper.SessionHelper;
 
@@ -18,7 +17,6 @@ public class ShareTopoAction extends SessionHelper {
 	private TopoFormBean topoForm;
 	private TopoInteractions topoInteractions;
 	private TopoOwnedInteractions topoOwnedInteractions;
-	private UserInteractions userInteractions;
 	
 	
 	public String execute() {
@@ -149,15 +147,6 @@ public class ShareTopoAction extends SessionHelper {
 	 */
 	public void setTopoOwnedInteractions(TopoOwnedInteractions topoOwnedInteractions) {
 		this.topoOwnedInteractions = topoOwnedInteractions;
-	}
-	
-	
-	/**
-	 * @param userInteractions
-	 *           the userInteractions to set
-	 */
-	public void setUserInteractions(UserInteractions userInteractions) {
-		this.userInteractions = userInteractions;
 	}
 	
 	

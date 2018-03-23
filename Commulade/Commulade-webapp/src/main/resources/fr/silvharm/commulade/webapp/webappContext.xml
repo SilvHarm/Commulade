@@ -15,26 +15,26 @@
 		<property name="sitePhotoSave" value="#{contextParameters.sitePhotoPathSave}"/>
 	</bean>
 
+	<!-- Helper -->
+
+	<bean id="sessionHelper" class="fr.silvharm.commulade.webapp.helper.SessionHelper" abstract="true">
+		<property name="userInteractions" ref="userInteractionsImpl"/>
+	</bean>
 
 	<!-- Actions -->
 
-	<bean id="commentAction" class="fr.silvharm.commulade.webapp.action.CommentAction" scope="prototype">
+	<bean id="commentAction" class="fr.silvharm.commulade.webapp.action.CommentAction" parent="sessionHelper" scope="prototype">
 		<property name="commentInteractions" ref="commentInteractionsImpl"/>
-		<property name="userInteractions" ref="userInteractionsImpl"/>
 	</bean>
 
-	<bean id="lendTopoAction" class="fr.silvharm.commulade.webapp.action.LendTopoAction" scope="prototype">
+	<bean id="lendTopoAction" class="fr.silvharm.commulade.webapp.action.LendTopoAction" parent="sessionHelper" scope="prototype">
 		<property name="topoInteractions" ref="topoInteractionsImpl"/>
-		<property name="userInteractions" ref="userInteractionsImpl"/>
 	</bean>
 
-	<bean id="loginAction" class="fr.silvharm.commulade.webapp.action.LoginAction" scope="prototype">
-		<property name="userInteractions" ref="userInteractionsImpl"/>
-	</bean>
+	<bean id="loginAction" class="fr.silvharm.commulade.webapp.action.LoginAction" parent="sessionHelper" scope="prototype"/>
 
-	<bean id="messageAction" class="fr.silvharm.commulade.webapp.action.MessageAction" scope="prototype">
+	<bean id="messageAction" class="fr.silvharm.commulade.webapp.action.MessageAction" parent="sessionHelper" scope="prototype">
 		<property name="messageInteractions" ref="messageInteractionsImpl"/>
-		<property name="userInteractions" ref="userInteractionsImpl"/>
 	</bean>
 
 	<bean id="rechercheSiteAction" class="fr.silvharm.commulade.webapp.action.RechercheSiteAction" scope="prototype">
@@ -46,18 +46,15 @@
 		<property name="topoInteractions" ref="topoInteractionsImpl"/>
 	</bean>
 
-	<bean id="registerAction" class="fr.silvharm.commulade.webapp.action.RegisterAction" scope="prototype">
-		<property name="userInteractions" ref="userInteractionsImpl"/>
-	</bean>
+	<bean id="registerAction" class="fr.silvharm.commulade.webapp.action.RegisterAction" parent="sessionHelper" scope="prototype"/>
 
 	<bean id="shareSiteAction" class="fr.silvharm.commulade.webapp.action.ShareSiteAction" scope="prototype">
 		<property name="siteInteractions" ref="siteInteractionsImpl"/>
 	</bean>
 
-	<bean id="shareTopoAction" class="fr.silvharm.commulade.webapp.action.ShareTopoAction" scope="prototype">
+	<bean id="shareTopoAction" class="fr.silvharm.commulade.webapp.action.ShareTopoAction" parent="sessionHelper" scope="prototype">
 		<property name="topoInteractions" ref="topoInteractionsImpl"/>
 		<property name="topoOwnedInteractions" ref="topoOwnedInteractionsImpl"/>
-		<property name="userInteractions" ref="userInteractionsImpl"/>
 	</bean>
 
 	<bean id="viewSiteAction" class="fr.silvharm.commulade.webapp.action.ViewSiteAction">
@@ -65,11 +62,10 @@
 		<property name="siteInteractions" ref="siteInteractionsImpl"/>
 	</bean>
 
-	<bean id="viewTopoAction" class="fr.silvharm.commulade.webapp.action.ViewTopoAction">
+	<bean id="viewTopoAction" class="fr.silvharm.commulade.webapp.action.ViewTopoAction" parent="sessionHelper">
 		<property name="configContainer" ref="configContainer"/>
 		<property name="topoInteractions" ref="topoInteractionsImpl"/>
 		<property name="topoOwnedInteractions" ref="topoOwnedInteractionsImpl"/>
-		<property name="userInteractions" ref="userInteractionsImpl"/>
 	</bean>
 
 </beans>

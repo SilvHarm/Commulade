@@ -6,6 +6,8 @@ import org.apache.struts2.interceptor.SessionAware;
 
 import com.opensymphony.xwork2.ActionSupport;
 
+import fr.silvharm.commulade.business.contract.UserInteractions;
+
 
 public abstract class SessionHelper extends ActionSupport implements SessionAware {
 	
@@ -15,6 +17,7 @@ public abstract class SessionHelper extends ActionSupport implements SessionAwar
 	
 	protected Integer userId;
 	protected String username;
+	protected UserInteractions userInteractions;
 	
 	
 	@Override
@@ -92,6 +95,15 @@ public abstract class SessionHelper extends ActionSupport implements SessionAwar
 	 */
 	public void removeUserId() {
 		session.remove(userIdKey);
+	}
+	
+	
+	/**
+	 * @param userInteractions
+	 *           the userInteractions to set
+	 */
+	public void setUserInteractions(UserInteractions userInteractions) {
+		this.userInteractions = userInteractions;
 	}
 	
 }

@@ -2,7 +2,6 @@ package fr.silvharm.commulade.webapp.action;
 
 import fr.silvharm.commulade.business.contract.TopoInteractions;
 import fr.silvharm.commulade.business.contract.TopoOwnedInteractions;
-import fr.silvharm.commulade.business.contract.UserInteractions;
 import fr.silvharm.commulade.model.pojo.ConfigContainer;
 import fr.silvharm.commulade.model.pojo.Topo;
 import fr.silvharm.commulade.webapp.helper.SessionHelper;
@@ -15,7 +14,6 @@ public class ViewTopoAction extends SessionHelper {
 	private Topo topo;
 	private TopoInteractions topoInteractions;
 	private TopoOwnedInteractions topoOwnedInteractions;
-	private UserInteractions userInteractions;
 	private String contentJsp = "view-topo", css = "view-site-topo", js = "view-site-topo", title = "Topo: ";
 	
 	@SuppressWarnings("unused") // are used by struts in the jsp
@@ -178,15 +176,6 @@ public class ViewTopoAction extends SessionHelper {
 	 */
 	public void setTopoOwnedInteractions(TopoOwnedInteractions topoOwnedInteractions) {
 		this.topoOwnedInteractions = topoOwnedInteractions;
-	}
-	
-	
-	/**
-	 * @param userInteractions
-	 *           the userInteractions to set
-	 */
-	public void setUserInteractions(UserInteractions userInteractions) {
-		this.userInteractions = userInteractions;
 	}
 	
 }

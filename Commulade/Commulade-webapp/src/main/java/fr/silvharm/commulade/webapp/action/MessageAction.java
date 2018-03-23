@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.Map;
 
 import fr.silvharm.commulade.business.contract.MessageInteractions;
-import fr.silvharm.commulade.business.contract.UserInteractions;
 import fr.silvharm.commulade.model.bean.SendMessageFormBean;
 import fr.silvharm.commulade.model.pojo.Message;
 import fr.silvharm.commulade.webapp.helper.SessionHelper;
@@ -21,7 +20,6 @@ public class MessageAction extends SessionHelper {
 	private SendMessageFormBean sendMessageForm;
 	private String contentJsp = "view-messages", css = "view-messages", js = "view-messages", otherName,
 			title = "Messagerie";
-	private UserInteractions userInteractions;
 	
 	
 	public String execute() {
@@ -222,15 +220,6 @@ public class MessageAction extends SessionHelper {
 	 */
 	public String getTitle() {
 		return title;
-	}
-	
-	
-	/**
-	 * @param userInteractions
-	 *           the userInteractions to set
-	 */
-	public void setUserInteractions(UserInteractions userInteractions) {
-		this.userInteractions = userInteractions;
 	}
 	
 	
