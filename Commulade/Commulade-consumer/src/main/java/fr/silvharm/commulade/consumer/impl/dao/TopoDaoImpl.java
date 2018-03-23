@@ -91,6 +91,21 @@ public class TopoDaoImpl extends AbstractDaoImpl implements TopoDao {
 	}
 	
 	
+	public List<Topo> getByIdList(List<Integer> topoIdList) {
+		String vSQL = "SELECT * FROM " + TABLE_NAME + " WHERE " + ID + " = " + topoIdList.get(0);
+		
+		topoIdList.remove(0);
+		
+		for (Integer i : topoIdList) {
+			vSQL += " OR " + ID + " = " + i;
+		}
+		
+		vSQL += ";";
+		
+		return jdbcTemplate.query(vSQL, new BeanPropertyRowMapper<Topo>(Topo.class));
+	}
+	
+	
 	public List<Topo> getByName(String name) {
 		String vSQL = "SELECT * FROM " + TABLE_NAME + " WHERE " + NAME + " LIKE '%" + name + "%';";
 		
