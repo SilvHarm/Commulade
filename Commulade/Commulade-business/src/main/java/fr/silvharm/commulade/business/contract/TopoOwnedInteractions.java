@@ -1,7 +1,39 @@
 package fr.silvharm.commulade.business.contract;
 
+import java.util.List;
+
+import fr.silvharm.commulade.model.pojo.TopoOwnedByUser;
 
 public interface TopoOwnedInteractions {
+	
+	/**
+	 * Get all the TopoOwnedByUser of the database except the ones associated to
+	 * userId
+	 * 
+	 * @param userId
+	 * @return a List containing all the TopoOwnedByUser who aren't associated to
+	 *         userId or null
+	 */
+	List<TopoOwnedByUser> getAllExceptUserTopoOwned(int userId);
+	
+	
+	/**
+	 * Get all the TopoOwnedByUser of the database
+	 * 
+	 * @return a List containing all the TopoOwnedByUser of the database or null
+	 */
+	List<TopoOwnedByUser> getAllTopoOwned();
+	
+	
+	/**
+	 * Get all the TopoOwnedByUser of an User
+	 * 
+	 * @param userId
+	 * @return a List containing all the TopoOwnedByUser associated to userId or
+	 *         null
+	 */
+	List<TopoOwnedByUser> getUserTopoOwned(int userId);
+	
 	
 	/**
 	 * Call the consumer module to know if the User own the Topo

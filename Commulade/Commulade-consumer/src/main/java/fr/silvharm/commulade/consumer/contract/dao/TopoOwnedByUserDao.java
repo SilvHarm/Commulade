@@ -51,25 +51,25 @@ public interface TopoOwnedByUserDao {
 	
 	
 	/**
-	 * Get from the database all the TopoOwnedByUser whom the topoId is equal to the
-	 * one provided
-	 * 
-	 * @param topoId
-	 * @return a List containing all the TopoOwnedByUser associated to the topoId
-	 *         provided
-	 */
-	public List<TopoOwnedByUser> findByOwnerId(int topoId);
-	
-	
-	/**
 	 * Get from the database all the TopoOwnedByUser whom the ownerId is equal to
 	 * the one provided
 	 * 
 	 * @param ownerId
 	 * @return a List containing all the TopoOwnedByUser associated to the ownerId
-	 *         provided
+	 *         provided or null
 	 */
-	public List<TopoOwnedByUser> findByTopoId(int ownerId);
+	public List<TopoOwnedByUser> findByOwnerId(int ownerId);
+	
+	
+	/**
+	 * Get from the database all the TopoOwnedByUser whom the topoId is equal to the
+	 * one provided
+	 * 
+	 * @param topoId
+	 * @return a List containing all the TopoOwnedByUser associated to the topoId
+	 *         provided or null
+	 */
+	public List<TopoOwnedByUser> findByTopoId(int topoId);
 	
 	
 	/**
@@ -87,7 +87,19 @@ public interface TopoOwnedByUserDao {
 	/**
 	 * Get all the TopoOwnedByUser from the database
 	 * 
-	 * @return a List containing all the TopoOwnedByUser of the database
+	 * @return a List containing all the TopoOwnedByUser of the database or null
 	 */
 	public List<TopoOwnedByUser> getAll();
+	
+	
+	/**
+	 * Get all the TopoOwnedByUser from the database except the ones associated with
+	 * ownerId
+	 * 
+	 * @param ownerId
+	 * @return a List containing all the TopoOwnedByUser of the database except the
+	 *         ones associated with ownerId or null
+	 */
+	public List<TopoOwnedByUser> getAllExceptOwnerId(int ownerId);
+	
 }

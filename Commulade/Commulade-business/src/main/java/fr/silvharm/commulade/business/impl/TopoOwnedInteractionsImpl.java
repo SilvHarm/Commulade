@@ -1,5 +1,7 @@
 package fr.silvharm.commulade.business.impl;
 
+import java.util.List;
+
 import fr.silvharm.commulade.business.contract.TopoOwnedInteractions;
 import fr.silvharm.commulade.consumer.contract.dao.TopoOwnedByUserDao;
 import fr.silvharm.commulade.model.pojo.TopoOwnedByUser;
@@ -8,6 +10,21 @@ import fr.silvharm.commulade.model.pojo.TopoOwnedByUser;
 public class TopoOwnedInteractionsImpl implements TopoOwnedInteractions {
 	
 	private TopoOwnedByUserDao topoOwnedByUserDao;
+	
+	
+	public List<TopoOwnedByUser> getAllExceptUserTopoOwned(int userId) {
+		return topoOwnedByUserDao.getAllExceptOwnerId(userId);
+	}
+	
+	
+	public List<TopoOwnedByUser> getAllTopoOwned() {
+		return topoOwnedByUserDao.getAll();
+	}
+	
+	
+	public List<TopoOwnedByUser> getUserTopoOwned(int userId) {
+		return topoOwnedByUserDao.findByOwnerId(userId);
+	}
 	
 	
 	public Boolean isTopoOwned(int topoId, int userId) {

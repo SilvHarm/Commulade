@@ -65,21 +65,21 @@ public class TopoOwnedByUserDaoImpl extends AbstractDaoImpl implements TopoOwned
 	}
 	
 	
-	public List<TopoOwnedByUser> findByOwnerId(int topoId) {
-		String vSQL = "SELECT * FROM " + TABLE_NAME + " WHERE " + TOPO_ID + " = :topoId ;";
+	public List<TopoOwnedByUser> findByOwnerId(int ownerId) {
+		String vSQL = "SELECT * FROM " + TABLE_NAME + " WHERE " + OWNER_ID + " = :ownerId ;";
 		
 		MapSqlParameterSource vParams = new MapSqlParameterSource();
-		vParams.addValue("topoId", topoId);
+		vParams.addValue("ownerId", ownerId);
 		
 		return jdbcTemplate.query(vSQL, new BeanPropertyRowMapper<TopoOwnedByUser>(TopoOwnedByUser.class));
 	}
 	
 	
-	public List<TopoOwnedByUser> findByTopoId(int ownerId) {
-		String vSQL = "SELECT * FROM " + TABLE_NAME + " WHERE " + OWNER_ID + " = :ownerId ;";
+	public List<TopoOwnedByUser> findByTopoId(int topoId) {
+		String vSQL = "SELECT * FROM " + TABLE_NAME + " WHERE " + TOPO_ID + " = :topoId ;";
 		
 		MapSqlParameterSource vParams = new MapSqlParameterSource();
-		vParams.addValue("ownerId", ownerId);
+		vParams.addValue("topoId", topoId);
 		
 		return jdbcTemplate.query(vSQL, new BeanPropertyRowMapper<TopoOwnedByUser>(TopoOwnedByUser.class));
 	}
@@ -108,4 +108,15 @@ public class TopoOwnedByUserDaoImpl extends AbstractDaoImpl implements TopoOwned
 		
 		return jdbcTemplate.query(vSQL, new BeanPropertyRowMapper<TopoOwnedByUser>(TopoOwnedByUser.class));
 	}
+	
+	
+	public List<TopoOwnedByUser> getAllExceptOwnerId(int ownerId) {
+		String vSQL = "SELECT * FROM " + TABLE_NAME + " WHERE " + OWNER_ID + " != :ownerId ;";
+		
+		MapSqlParameterSource vParams = new MapSqlParameterSource();
+		vParams.addValue("ownerId", ownerId);
+		
+		return jdbcTemplate.query(vSQL, new BeanPropertyRowMapper<TopoOwnedByUser>(TopoOwnedByUser.class));
+	}
+	
 }
