@@ -29,6 +29,7 @@
 
 	<bean id="lendTopoAction" class="fr.silvharm.commulade.webapp.action.LendTopoAction" parent="sessionHelper" scope="prototype">
 		<property name="topoInteractions" ref="topoInteractionsImpl"/>
+		<property name="topoOwnedInteractions" ref="topoOwnedInteractionsImpl"/>
 	</bean>
 
 	<bean id="loginAction" class="fr.silvharm.commulade.webapp.action.LoginAction" parent="sessionHelper" scope="prototype"/>

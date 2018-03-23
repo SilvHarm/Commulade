@@ -71,7 +71,7 @@ public class TopoOwnedByUserDaoImpl extends AbstractDaoImpl implements TopoOwned
 		MapSqlParameterSource vParams = new MapSqlParameterSource();
 		vParams.addValue("ownerId", ownerId);
 		
-		return jdbcTemplate.query(vSQL, new BeanPropertyRowMapper<TopoOwnedByUser>(TopoOwnedByUser.class));
+		return namedJdbcTemplate.query(vSQL, vParams, new BeanPropertyRowMapper<TopoOwnedByUser>(TopoOwnedByUser.class));
 	}
 	
 	
@@ -116,7 +116,7 @@ public class TopoOwnedByUserDaoImpl extends AbstractDaoImpl implements TopoOwned
 		MapSqlParameterSource vParams = new MapSqlParameterSource();
 		vParams.addValue("ownerId", ownerId);
 		
-		return jdbcTemplate.query(vSQL, new BeanPropertyRowMapper<TopoOwnedByUser>(TopoOwnedByUser.class));
+		return namedJdbcTemplate.query(vSQL, vParams, new BeanPropertyRowMapper<TopoOwnedByUser>(TopoOwnedByUser.class));
 	}
 	
 }
