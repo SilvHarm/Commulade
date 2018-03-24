@@ -9,12 +9,13 @@ import fr.silvharm.commulade.business.contract.TopoOwnedInteractions;
 import fr.silvharm.commulade.model.pojo.TopoOwnedByUser;
 import fr.silvharm.commulade.webapp.helper.SessionHelper;
 
-public class LendTopoAction extends SessionHelper {
+public class SearchLendTopoAction extends SessionHelper {
 	
 	private List<Integer> topoIdList, userIdList;
 	private List<TopoOwnedByUser> borrowedList, notOwnedList, userOwnedList;
 	private Map<Integer, String> topoMap, userMap;
-	private String contentJsp = "lend-topo", css = "lend-topo", js = null, title = "Espace de partage";
+	private String contentJsp = "search-lend-topo", css = "search-lend-topo", js = "search-lend-topo",
+			title = "Espace de partage";
 	private TopoInteractions topoInteractions;
 	private TopoOwnedInteractions topoOwnedInteractions;
 	

@@ -27,7 +27,7 @@
 		<property name="commentInteractions" ref="commentInteractionsImpl"/>
 	</bean>
 
-	<bean id="lendTopoAction" class="fr.silvharm.commulade.webapp.action.LendTopoAction" parent="sessionHelper" scope="prototype">
+	<bean id="searchLendTopoAction" class="fr.silvharm.commulade.webapp.action.SearchLendTopoAction" parent="sessionHelper" scope="prototype">
 		<property name="topoInteractions" ref="topoInteractionsImpl"/>
 		<property name="topoOwnedInteractions" ref="topoOwnedInteractionsImpl"/>
 	</bean>

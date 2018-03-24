@@ -6,7 +6,7 @@
 
 		<a class="falseButtonHeader" href="recherche-topo">Les Topos</a>
 
-		<a class="falseButtonHeader" href="lend-topo">Espace de Prêt</a>
+		<a class="falseButtonHeader" href="search-lend-topo">Espace de Prêt</a>
 
 
 		<s:if test="#attr['username'] != null">
