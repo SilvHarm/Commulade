@@ -1,5 +1,8 @@
 package fr.silvharm.commulade.consumer.impl.dao;
 
+import java.time.LocalDate;
+import java.util.List;
+
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 
@@ -40,6 +43,17 @@ public class LendingTopoDaoImpl extends AbstractDaoImpl implements LendingTopoDa
 		vParams.addValue("id", id);
 		
 		return namedJdbcTemplate.queryForObject(vSQL, vParams, new BeanPropertyRowMapper<LendingTopo>(LendingTopo.class));
+	}
+	
+	
+	public List<LendingTopo> findByIdAfterToday(int topoOwnedId) {
+		String vSQL = "SELECT * FROM " + TABLE_NAME + " WHERE " + TOPO_OWNED_ID + " = :topoOwnedId AND " + LENDING_END
+				+ " > " + LocalDate.now() + " ;";
+		
+		MapSqlParameterSource vParams = new MapSqlParameterSource();
+		vParams.addValue("topoOwnedId", topoOwnedId);
+		
+		return namedJdbcTemplate.query(vSQL, vParams, new BeanPropertyRowMapper<LendingTopo>(LendingTopo.class));
 	}
 	
 	
