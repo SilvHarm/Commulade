@@ -1,3 +1,11 @@
+.cancelLending {
+	color: crimson;
+}
+
+.confirmCancelLending {
+	color: green;
+}
+
 .item {
 	color: steelblue;
 	font-size: 130%;

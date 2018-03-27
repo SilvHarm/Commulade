@@ -6,9 +6,38 @@ $('#borrowButton').click(function() {
 	submitBorrow();
 });
 
+$('.cancelLending').click(function() {
+	cancelLending(this);
+});
+
 /*******************************************************************************
  * Functions
  ******************************************************************************/
+function cancelLending(element) {
+	$(element).unbind();
+
+	$(element).addClass('confirmCancelLending');
+	$(element).text('Confirmer annulation');
+
+	$(element).click(function() {
+		confirmCancelLending(this);
+	});
+}
+
+function confirmCancelLending(element) {
+	var i = parseInt($(element).attr('data-lendingId'));
+
+	if (Number.isInteger(i)) {
+		$.ajax({
+			type : 'POST',
+			url : 'cancel-lending?lendingId=' + i,
+			success : function(data) {
+				$(element).parent().parent().remove();
+			}
+		});
+	}
+}
+
 function setMinMaxOfEndDate() {
 	var startDate = new Date($('#startDate').val());
 

@@ -6,12 +6,14 @@ import java.util.List;
 
 import fr.silvharm.commulade.business.contract.LendTopoInteractions;
 import fr.silvharm.commulade.consumer.contract.dao.LendingTopoDao;
+import fr.silvharm.commulade.consumer.contract.dao.TopoOwnedByUserDao;
 import fr.silvharm.commulade.model.pojo.LendingTopo;
 
 
 public class LendTopoInteractionsImpl implements LendTopoInteractions {
 	
 	private LendingTopoDao lendingTopoDao;
+	private TopoOwnedByUserDao topoOwnedByUserDao;
 	
 	
 	public Boolean borrowTopoOwned(LendingTopo lendingTopoToAdd) {
@@ -25,6 +27,19 @@ public class LendTopoInteractionsImpl implements LendTopoInteractions {
 				
 				return true;
 			}
+		}
+		
+		return false;
+	}
+	
+	
+	public Boolean cancelLending(int lendingId, int ownerId) {
+		LendingTopo lendingTopo = lendingTopoDao.findById(lendingId);
+		
+		if (topoOwnedByUserDao.findById(lendingTopo.getTopoOwnedId()).getOwnerId() == ownerId) {
+			lendingTopoDao.deleteById(lendingId);
+			
+			return true;
 		}
 		
 		return false;
@@ -140,6 +155,15 @@ public class LendTopoInteractionsImpl implements LendTopoInteractions {
 	 */
 	public void setLendingTopoDao(LendingTopoDao lendingTopoDao) {
 		this.lendingTopoDao = lendingTopoDao;
+	}
+	
+	
+	/**
+	 * @param topoOwnedByUserDao
+	 *           the topoOwnedByUserDao to set
+	 */
+	public void setTopoOwnedByUserDao(TopoOwnedByUserDao topoOwnedByUserDao) {
+		this.topoOwnedByUserDao = topoOwnedByUserDao;
 	}
 	
 }

@@ -50,10 +50,11 @@
 		<table class="autoMar">
 			<tbody>
 				<s:iterator value="lendingList" var="var">
-					<tr data-lendingId="<s:property value="#var.id" />">
+					<tr>
 						<td>par <span class="item"><s:property value="usernameMap[#var.borrowerId]" /></span></td>
 						<td>du <span class="item"><s:property value="#var.lendingStart" /></span></td>
 						<td>au <span class="item"><s:property value="#var.lendingEnd" /></span></td>
+						<td><button class="cancelLending seShaButtons" data-lendingId="<s:property value="#var.id" />">X</button></td>
 					</tr>
 				</s:iterator>
 			</tbody>

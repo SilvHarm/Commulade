@@ -18,6 +18,15 @@ public interface LendTopoInteractions {
 	
 	
 	/**
+	 * Delete the LendingTopo associated to lendingId
+	 * 
+	 * @param lendingId
+	 * @return true if the LendingTopo was deleted or false
+	 */
+	Boolean cancelLending(int lendingId, int ownerId);
+	
+	
+	/**
 	 * Get all LendingTopo that the User associated with the borrowerId provided has
 	 * borrowed for the TopoOwned associated to topoOwnedId
 	 * 

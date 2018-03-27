@@ -27,7 +27,8 @@ public class ViewLendTopoAction extends SessionHelper {
 	private List<LocalDate[]> freeLendingList;
 	private LocalDate todayPlus = LocalDate.now().plusDays(1), todayPlusMonth = LocalDate.now().plusMonths(2);
 	private int topoOwnedId;
-	Map<Integer, String> usernameMap;
+	private Integer lendingId;
+	private Map<Integer, String> usernameMap;
 	private String contentJsp = "view-lend-topo", css = "view-lend-topo", endDate, js = "view-lend-topo", startDate,
 			title = "Espace de partage";
 	private TopoOwnedByUser topoOwned;
@@ -113,6 +114,18 @@ public class ViewLendTopoAction extends SessionHelper {
 	}
 	
 	
+	public String cancelLending() {
+		setUserId();
+		
+		if (userInteractions.verifyUser(userId, getUsername())) {
+			if (lendTopoInteractions.cancelLending(lendingId, userId)) {
+				return NONE;
+			}
+		}
+		return ERROR;
+	}
+	
+	
 	/********************************
 	 * Getters & Setters
 	 *******************************/
@@ -156,6 +169,15 @@ public class ViewLendTopoAction extends SessionHelper {
 	 */
 	public String getJs() {
 		return js;
+	}
+	
+	
+	/**
+	 * @param lendingId
+	 *           the lendingId to set
+	 */
+	public void setLendingId(Integer lendingId) {
+		this.lendingId = lendingId;
 	}
 	
 	
