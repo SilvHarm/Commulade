@@ -44,9 +44,20 @@ public interface LendingTopoDao {
 	 * 
 	 * @param id
 	 * @return a List of LendingTopo associated to the topoOwnedId provided and who
-	 *         end after today, or null
+	 *         end after today
 	 */
 	public List<LendingTopo> findByIdAfterToday(int topoOwnedId);
+	
+	
+	/**
+	 * Get from the database all the LendingTopo whom the topoOwnedId and borrowerId
+	 * are equals to the ones provided
+	 * 
+	 * @param id
+	 * @return a List of LendingTopo associated to the topoOwnedId and borrowerId
+	 *         provided
+	 */
+	public List<LendingTopo> findByIdBorrowerId(int topoOwnedId, int borrowerId);
 	
 	
 	/**
@@ -55,7 +66,7 @@ public interface LendingTopoDao {
 	 * 
 	 * @param topoOwnedId
 	 * @return a List of LendingTopo associated to the topoOwnedId provided and who
-	 *         ended after a month ago, or null
+	 *         ended after a month ago
 	 */
 	public List<LendingTopo> findByIdSincePreviousMonth(int topoOwnedId);
 	

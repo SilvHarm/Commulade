@@ -13,7 +13,7 @@
 <div class="hundWid">
 	<s:if test="borrowedList != null">
 		<div class="hundWid listTopoOwned">
-			<s:iterator value="list" var="topoOwned">
+			<s:iterator value="borrowedList" var="topoOwned">
 				<s:include value="/WEB-INF/content/jsp/parts/topo-owned-search-view.jsp" />
 			</s:iterator>
 		</div>

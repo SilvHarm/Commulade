@@ -23,7 +23,7 @@ public class ViewLendTopoAction extends SessionHelper {
 	private static final Logger logger = LogManager.getLogger();
 	
 	private LendTopoInteractions lendTopoInteractions;
-	private List<LendingTopo> lendingList;
+	private List<LendingTopo> borrowedList, lendingList;
 	private List<LocalDate[]> freeLendingList;
 	private LocalDate todayPlus = LocalDate.now().plusDays(1), todayPlusMonth = LocalDate.now().plusMonths(2);
 	private int topoOwnedId;
@@ -35,28 +35,41 @@ public class ViewLendTopoAction extends SessionHelper {
 	
 	
 	public String execute() {
+		setUserId();
+		setUsername();
+		
 		topoOwned = topoOwnedInteractions.doesTopoOwnedExist(topoOwnedId);
 		
 		if (topoOwned != null) {
-			if (topoOwned.getOwnerId() == getUserId()) {
-				lendingList = lendTopoInteractions.getMoreLendDateOfTopoOwned(topoOwnedId);
-				
-				List<Integer> userIdList = new ArrayList<Integer>();
-				for (LendingTopo lendingTopo : lendingList) {
-					if (!userIdList.contains(lendingTopo.getBorrowerId())) {
-						userIdList.add(lendingTopo.getBorrowerId());
+			if (topoOwned.getOwnerId() == userId) {
+				if (userInteractions.verifyUser(userId, username)) {
+					lendingList = lendTopoInteractions.getMoreLendDateOfTopoOwned(topoOwnedId);
+					
+					List<Integer> userIdList = new ArrayList<Integer>();
+					for (LendingTopo lendingTopo : lendingList) {
+						if (!userIdList.contains(lendingTopo.getBorrowerId())) {
+							userIdList.add(lendingTopo.getBorrowerId());
+						}
 					}
-				}
-				
-				if (userIdList.size() > 0) {
-					usernameMap = userInteractions.getUsernameMapByIdList(userIdList);
-				}
-				
-				if (lendingList.isEmpty()) {
-					lendingList = null;
+					
+					if (userIdList.size() > 0) {
+						usernameMap = userInteractions.getUsernameMapByIdList(userIdList);
+					}
+					
+					if (lendingList.isEmpty()) {
+						lendingList = null;
+					}
 				}
 			}
 			else {
+				if (userInteractions.verifyUser(userId, username)) {
+					borrowedList = lendTopoInteractions.getBorrowedByUserTopoOwned(topoOwnedId, userId);
+					
+					if (borrowedList.isEmpty()) {
+						borrowedList = null;
+					}
+				}
+				
 				freeLendingList = lendTopoInteractions.getFreeDateOfTopoOwned(topoOwnedId);
 			}
 			
@@ -103,6 +116,15 @@ public class ViewLendTopoAction extends SessionHelper {
 	/********************************
 	 * Getters & Setters
 	 *******************************/
+	
+	
+	/**
+	 * @return the borrowedList
+	 */
+	public List<LendingTopo> getBorrowedList() {
+		return borrowedList;
+	}
+	
 	
 	/**
 	 * @return the contentJsp

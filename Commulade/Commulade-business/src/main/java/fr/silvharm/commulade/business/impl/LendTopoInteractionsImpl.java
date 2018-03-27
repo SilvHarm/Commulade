@@ -31,6 +31,11 @@ public class LendTopoInteractionsImpl implements LendTopoInteractions {
 	}
 	
 	
+	public List<LendingTopo> getBorrowedByUserTopoOwned(int topoOwnedId, int borrowerId) {
+		return lendingTopoDao.findByIdBorrowerId(topoOwnedId, borrowerId);
+	}
+	
+	
 	public List<LocalDate[]> getFreeDateOfTopoOwned(int topoOwnedId) {
 		List<LocalDate[]> dateList = new ArrayList<LocalDate[]>();
 		

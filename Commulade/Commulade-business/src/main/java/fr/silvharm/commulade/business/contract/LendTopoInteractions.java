@@ -18,6 +18,16 @@ public interface LendTopoInteractions {
 	
 	
 	/**
+	 * Get all LendingTopo that the User associated with the borrowerId provided has
+	 * borrowed for the TopoOwned associated to topoOwnedId
+	 * 
+	 * @param borrowerId
+	 * @return a List of LendingTopo representing what the User borrowed
+	 */
+	List<LendingTopo> getBorrowedByUserTopoOwned(int topoOwnedId, int borrowerId);
+	
+	
+	/**
 	 * Make a List of the Date who are free for the User to borrow the Topo
 	 * 
 	 * @param topoOwnedId
