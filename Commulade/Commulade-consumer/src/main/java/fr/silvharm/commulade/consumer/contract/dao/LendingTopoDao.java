@@ -50,6 +50,17 @@ public interface LendingTopoDao {
 	
 	
 	/**
+	 * Get from the database all the LendingTopo whom the topoOwnedId is equal to
+	 * the one provided and have lending_end who is after a month ago
+	 * 
+	 * @param topoOwnedId
+	 * @return a List of LendingTopo associated to the topoOwnedId provided and who
+	 *         ended after a month ago, or null
+	 */
+	public List<LendingTopo> findByIdSincePreviousMonth(int topoOwnedId);
+	
+	
+	/**
 	 * Update the properties of the LendingTopo from the database, whom the id is
 	 * equal to the id of the LendingTopo provided, by the ones of the LendingTopo
 	 * provided

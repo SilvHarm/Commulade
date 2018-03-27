@@ -8,8 +8,7 @@ public class LendingTopo {
 	private LocalDate lendingEnd, lendingStart;
 	
 	
-	public LendingTopo() {
-	}
+	public LendingTopo() {}
 	
 	
 	/**
@@ -28,6 +27,24 @@ public class LendingTopo {
 		this.lendingEnd = lendingEnd;
 	}
 	
+	
+	/**
+	 * @param topoOwnedId
+	 * @param borrowerId
+	 * @param lendingStart
+	 * @param lendingEnd
+	 */
+	public LendingTopo(Integer topoOwnedId, Integer borrowerId, LocalDate lendingStart, LocalDate lendingEnd) {
+		this.topoOwnedId = topoOwnedId;
+		this.borrowerId = borrowerId;
+		this.lendingStart = lendingStart;
+		this.lendingEnd = lendingEnd;
+	}
+	
+	
+	/********************************
+	 * Getters & Setters
+	 *******************************/
 	
 	/**
 	 * @return the borrowerId

@@ -48,7 +48,18 @@ public class LendingTopoDaoImpl extends AbstractDaoImpl implements LendingTopoDa
 	
 	public List<LendingTopo> findByIdAfterToday(int topoOwnedId) {
 		String vSQL = "SELECT * FROM " + TABLE_NAME + " WHERE " + TOPO_OWNED_ID + " = :topoOwnedId AND " + LENDING_END
-				+ " > " + LocalDate.now() + " ;";
+				+ " > '" + LocalDate.now() + "' ;";
+		
+		MapSqlParameterSource vParams = new MapSqlParameterSource();
+		vParams.addValue("topoOwnedId", topoOwnedId);
+		
+		return namedJdbcTemplate.query(vSQL, vParams, new BeanPropertyRowMapper<LendingTopo>(LendingTopo.class));
+	}
+	
+	
+	public List<LendingTopo> findByIdSincePreviousMonth(int topoOwnedId) {
+		String vSQL = "SELECT * FROM " + TABLE_NAME + " WHERE " + TOPO_OWNED_ID + " = :topoOwnedId AND " + LENDING_END
+				+ " > '" + LocalDate.now().minusMonths(1) + "' ;";
 		
 		MapSqlParameterSource vParams = new MapSqlParameterSource();
 		vParams.addValue("topoOwnedId", topoOwnedId);
