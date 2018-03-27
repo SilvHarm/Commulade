@@ -12,6 +12,11 @@ public class TopoOwnedInteractionsImpl implements TopoOwnedInteractions {
 	private TopoOwnedByUserDao topoOwnedByUserDao;
 	
 	
+	public TopoOwnedByUser doesTopoOwnedExist(int topoOwnedId) {
+		return topoOwnedByUserDao.findById(topoOwnedId);
+	}
+	
+	
 	public List<TopoOwnedByUser> getAllExceptUserTopoOwned(int userId) {
 		return topoOwnedByUserDao.getAllExceptOwnerId(userId);
 	}

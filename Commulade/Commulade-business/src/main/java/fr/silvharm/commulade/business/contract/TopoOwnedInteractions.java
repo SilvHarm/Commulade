@@ -7,6 +7,16 @@ import fr.silvharm.commulade.model.pojo.TopoOwnedByUser;
 public interface TopoOwnedInteractions {
 	
 	/**
+	 * Verify if the TopoOwnedByUser associated to the topoOwnedId provided do exist
+	 * in the database and return it if it does
+	 * 
+	 * @param topoOwnedId
+	 * @return the TopoOwnedByUser associated to topoOwnedId or null
+	 */
+	TopoOwnedByUser doesTopoOwnedExist(int topoOwnedId);
+	
+	
+	/**
 	 * Get all the TopoOwnedByUser of the database except the ones associated to
 	 * userId
 	 * 

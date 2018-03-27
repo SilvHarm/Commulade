@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.dao.DataAccessException;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 
@@ -60,8 +61,15 @@ public class TopoOwnedByUserDaoImpl extends AbstractDaoImpl implements TopoOwned
 		MapSqlParameterSource vParams = new MapSqlParameterSource();
 		vParams.addValue("id", id);
 		
-		return namedJdbcTemplate.queryForObject(vSQL, vParams,
-				new BeanPropertyRowMapper<TopoOwnedByUser>(TopoOwnedByUser.class));
+		try {
+			return namedJdbcTemplate.queryForObject(vSQL, vParams,
+					new BeanPropertyRowMapper<TopoOwnedByUser>(TopoOwnedByUser.class));
+		}
+		catch (EmptyResultDataAccessException e) {
+			// just mean there is no TopoOwnedByUser with the id provided
+			
+			return null;
+		}
 	}
 	
 	
