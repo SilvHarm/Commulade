@@ -48,4 +48,14 @@ public interface LendTopoInteractions {
 	 */
 	List<LendingTopo> getMoreLendDateOfTopoOwned(int topoOwnedId);
 	
+	
+	/**
+	 * Verify in the database if it is possible to add lendingTopo or if the Dates
+	 * are already taken
+	 * 
+	 * @param lendingTopo
+	 * @return true if it isn't already lent or false
+	 */
+	Boolean isAlreadyLend(LendingTopo lendingTopo);
+	
 }

@@ -18,10 +18,12 @@ public class LendTopoInteractionsImpl implements LendTopoInteractions {
 		LocalDate endDate = lendingTopoToAdd.getLendingEnd();
 		LocalDate startDate = lendingTopoToAdd.getLendingStart();
 		
-		if (startDate.isBefore(endDate) && startDate.plusDays(7).isAfter(endDate)) {
-			lendingTopoDao.create(lendingTopoToAdd);
-			
-			return true;
+		if (startDate.isAfter(LocalDate.now()) && startDate.isBefore(endDate) && startDate.plusDays(7).isAfter(endDate)) {
+			if (isAlreadyLend(lendingTopoToAdd)) {
+				lendingTopoDao.create(lendingTopoToAdd);
+				
+				return true;
+			}
 		}
 		
 		return false;
@@ -87,6 +89,32 @@ public class LendTopoInteractionsImpl implements LendTopoInteractions {
 	
 	public List<LendingTopo> getMoreLendDateOfTopoOwned(int topoOwnedId) {
 		return lendingTopoDao.findByIdSincePreviousMonth(topoOwnedId);
+	}
+	
+	
+	public Boolean isAlreadyLend(LendingTopo lendingTopo) {
+		List<LendingTopo> borrowedList = getLendDateOfTopoOwned(lendingTopo.getTopoOwnedId());
+		
+		LocalDate start = lendingTopo.getLendingStart();
+		LocalDate end = lendingTopo.getLendingEnd();
+		
+		int i = 0;
+		LendingTopo temp;
+		LocalDate tempEnd, tempStart;
+		while (i < borrowedList.size()) {
+			temp = borrowedList.get(0);
+			tempStart = temp.getLendingStart();
+			tempEnd = temp.getLendingEnd();
+			
+			if ((start.isAfter(tempStart) && start.isBefore(tempEnd))
+					|| (end.isAfter(tempStart) && end.isBefore(tempEnd))) {
+				return false;
+			}
+			
+			i++;
+		}
+		
+		return true;
 	}
 	
 	

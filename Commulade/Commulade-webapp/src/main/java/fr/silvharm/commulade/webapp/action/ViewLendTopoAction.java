@@ -25,6 +25,7 @@ public class ViewLendTopoAction extends SessionHelper {
 	private LendTopoInteractions lendTopoInteractions;
 	private List<LendingTopo> lendingList;
 	private List<LocalDate[]> freeLendingList;
+	private LocalDate todayPlus = LocalDate.now().plusDays(1), todayPlusMonth = LocalDate.now().plusMonths(2);
 	private int topoOwnedId;
 	Map<Integer, String> usernameMap;
 	private String contentJsp = "view-lend-topo", css = "view-lend-topo", endDate, js = "view-lend-topo", startDate,
@@ -171,6 +172,22 @@ public class ViewLendTopoAction extends SessionHelper {
 	 */
 	public String getTitle() {
 		return title;
+	}
+	
+	
+	/**
+	 * @return the todayPlus
+	 */
+	public LocalDate getTodayPlus() {
+		return todayPlus;
+	}
+	
+	
+	/**
+	 * @return the todayPlusMonth
+	 */
+	public LocalDate getTodayPlusMonth() {
+		return todayPlusMonth;
 	}
 	
 	

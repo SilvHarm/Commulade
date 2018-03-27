@@ -1,7 +1,9 @@
 <s:if test="#attr['userId'] != topoOwned.ownerId">
 	<s:if test="#attr['userId'] != null">
 		<div id="borrowDiv">
-			<label>Emprunter du </label><input id="startDate" type="date"> <label> au </label> <input id="endDate" type="date">
+			<label>Emprunter du </label><input id="startDate" type="date" min="<s:property value="todayPlus" />"
+				max="<s:property value="todayPlusMonth" />" autocomplete="off"> <label> au </label> <input id="endDate" type="date"
+				autocomplete="off">
 			<button id="borrowButton" class="seShaButtons">Emprunter</button>
 		</div>
 	</s:if>
