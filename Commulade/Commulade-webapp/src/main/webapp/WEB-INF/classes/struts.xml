@@ -22,6 +22,7 @@
 
 
 		<!-- Comment -->
+
 		<action name="add-comment" class="commentAction" method="addComment">
 			<result name="error" type="redirect">error</result>
 			<result name="success" type="redirect">welcome</result>
@@ -59,6 +60,7 @@
 
 
 		<!-- Message -->
+
 		<action name="get-message-form" class="messageAction" method="getSendMessageJsp">
 			<result name="success" type="dispatcher">/WEB-INF/content/jsp/parts/send-message.jsp</result>
 		</action>
@@ -113,10 +115,6 @@
 			<result name="success" type="dispatcher">/WEB-INF/content/jsp/parts/own-it-topo.jsp</result>
 		</action>
 
-		<action name="search-lend-topo" class="searchLendTopoAction" method="execute">
-			<result name="success">/WEB-INF/content/jsp/template/main-template.jsp</result>
-		</action>
-
 		<action name="recherche-topo" class="rechercheTopoAction" method="execute">
 			<result name="success">/WEB-INF/content/jsp/template/main-template.jsp</result>
 		</action>
@@ -133,6 +131,24 @@
 		<action name="topo/*" class="viewTopoAction" method="execute">
 			<param name="topoId">{1}</param>
 
+			<result name="success">/WEB-INF/content/jsp/template/main-template.jsp</result>
+		</action>
+
+
+		<!-- Topo Owned -->
+
+		<action name="borrow-topo-owned" class="viewLendTopoAction" method="borrowTopoOwned">
+			<result name="error" type="dispatcher">/WEB-INF/content/jsp/error.jsp</result>
+		</action>
+
+		<action name="search-lend-topo" class="searchLendTopoAction" method="execute">
+			<result name="success">/WEB-INF/content/jsp/template/main-template.jsp</result>
+		</action>
+
+		<action name="topo-owned/*" class="viewLendTopoAction" method="execute">
+			<param name="topoOwnedId">{1}</param>
+
+			<result name="error" type="redirect">error</result>
 			<result name="success">/WEB-INF/content/jsp/template/main-template.jsp</result>
 		</action>
 
