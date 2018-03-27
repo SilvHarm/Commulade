@@ -1,6 +1,7 @@
 package fr.silvharm.commulade.business.contract;
 
 import java.util.List;
+import java.util.Map;
 
 import fr.silvharm.commulade.model.bean.TopoFormBean;
 import fr.silvharm.commulade.model.pojo.Topo;
@@ -36,6 +37,16 @@ public interface TopoInteractions {
 	 *         if topoName isn't valid
 	 */
 	public List<Topo> getTopoByName(String topoName);
+	
+	
+	/**
+	 * Get all Topo associated to the id provided from the database and put their
+	 * name in a Map using their id as key
+	 * 
+	 * @param topoIdList
+	 * @return a Map containing all {id, name} pair associated to the id in the List
+	 */
+	public Map<Integer, String> getTopoNameMapByIdList(List<Integer> topoIdList);
 	
 	
 	/**

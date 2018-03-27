@@ -1,5 +1,7 @@
 package fr.silvharm.commulade.consumer.contract.dao;
 
+import java.util.List;
+
 import fr.silvharm.commulade.model.pojo.LendingTopo;
 
 public interface LendingTopoDao {
@@ -34,6 +36,39 @@ public interface LendingTopoDao {
 	 * @return the LendingTopo associated to the id provided
 	 */
 	public LendingTopo findById(int id);
+	
+	
+	/**
+	 * Get from the database all the LendingTopo whom the topoOwnedId is equal to
+	 * the one provided and have lending_end who is after today
+	 * 
+	 * @param id
+	 * @return a List of LendingTopo associated to the topoOwnedId provided and who
+	 *         end after today
+	 */
+	public List<LendingTopo> findByIdAfterToday(int topoOwnedId);
+	
+	
+	/**
+	 * Get from the database all the LendingTopo whom the topoOwnedId and borrowerId
+	 * are equals to the ones provided
+	 * 
+	 * @param id
+	 * @return a List of LendingTopo associated to the topoOwnedId and borrowerId
+	 *         provided
+	 */
+	public List<LendingTopo> findByIdBorrowerId(int topoOwnedId, int borrowerId);
+	
+	
+	/**
+	 * Get from the database all the LendingTopo whom the topoOwnedId is equal to
+	 * the one provided and have lending_end who is after a month ago
+	 * 
+	 * @param topoOwnedId
+	 * @return a List of LendingTopo associated to the topoOwnedId provided and who
+	 *         ended after a month ago
+	 */
+	public List<LendingTopo> findByIdSincePreviousMonth(int topoOwnedId);
 	
 	
 	/**

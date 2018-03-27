@@ -31,7 +31,7 @@ public interface UserInteractions {
 	 * Get all User associated to the id provided from the database and put their
 	 * username in a Map using their id as key
 	 * 
-	 * @param userId
+	 * @param userIdList
 	 * @return a Map containing all {id, username} pair associated to the id in the
 	 *         List
 	 */

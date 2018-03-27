@@ -40,6 +40,17 @@ public interface TopoOwnedByUserDao {
 	
 	
 	/**
+	 * Get from the database all the TopoOwnedByUser whom the User associated to the
+	 * borrowerid provided have asked to borrox in the future
+	 * 
+	 * @param ownerId
+	 * @return a List containing all the TopoOwnedByUser that will be borrowed by
+	 *         the User associated to borrowerid
+	 */
+	public List<TopoOwnedByUser> findByBorrowerIdAfterToday(int borrowerid);
+	
+	
+	/**
 	 * Get from the database the TopoOwnedByUser whom the id is equal to the one
 	 * provided
 	 * 
@@ -51,17 +62,6 @@ public interface TopoOwnedByUserDao {
 	
 	
 	/**
-	 * Get from the database all the TopoOwnedByUser whom the topoId is equal to the
-	 * one provided
-	 * 
-	 * @param topoId
-	 * @return a List containing all the TopoOwnedByUser associated to the topoId
-	 *         provided
-	 */
-	public List<TopoOwnedByUser> findByOwnerId(int topoId);
-	
-	
-	/**
 	 * Get from the database all the TopoOwnedByUser whom the ownerId is equal to
 	 * the one provided
 	 * 
@@ -69,7 +69,18 @@ public interface TopoOwnedByUserDao {
 	 * @return a List containing all the TopoOwnedByUser associated to the ownerId
 	 *         provided
 	 */
-	public List<TopoOwnedByUser> findByTopoId(int ownerId);
+	public List<TopoOwnedByUser> findByOwnerId(int ownerId);
+	
+	
+	/**
+	 * Get from the database all the TopoOwnedByUser whom the topoId is equal to the
+	 * one provided
+	 * 
+	 * @param topoId
+	 * @return a List containing all the TopoOwnedByUser associated to the topoId
+	 *         provided
+	 */
+	public List<TopoOwnedByUser> findByTopoId(int topoId);
 	
 	
 	/**
@@ -90,4 +101,16 @@ public interface TopoOwnedByUserDao {
 	 * @return a List containing all the TopoOwnedByUser of the database
 	 */
 	public List<TopoOwnedByUser> getAll();
+	
+	
+	/**
+	 * Get all the TopoOwnedByUser from the database except the ones associated with
+	 * ownerId
+	 * 
+	 * @param ownerId
+	 * @return a List containing all the TopoOwnedByUser of the database except the
+	 *         ones associated with ownerId or null
+	 */
+	public List<TopoOwnedByUser> getAllExceptOwnerId(int ownerId);
+	
 }

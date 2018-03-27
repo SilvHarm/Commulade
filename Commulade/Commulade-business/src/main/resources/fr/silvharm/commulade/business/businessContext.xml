@@ -9,6 +9,11 @@
 		<property name="userInteractions" ref="userInteractionsImpl"/>
 	</bean>
 
+	<bean id="lendTopoInteractionsImpl" class="fr.silvharm.commulade.business.impl.LendTopoInteractionsImpl">
+		<property name="lendingTopoDao" ref="lendingTopoDaoImpl"/>
+		<property name="topoOwnedByUserDao" ref="topoOwnedByUserDaoImpl"/>
+	</bean>
+
 	<bean id="messageInteractionsImpl" class="fr.silvharm.commulade.business.impl.MessageInteractionsImpl">
 		<property name="messageDao" ref="messageDaoImpl"/>
 		<property name="userDao" ref="userDaoImpl"/>

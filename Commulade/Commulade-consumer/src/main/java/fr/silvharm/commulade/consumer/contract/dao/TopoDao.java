@@ -64,6 +64,16 @@ public interface TopoDao {
 	
 	
 	/**
+	 * Get from the database all the Topo whom the id are equals to the ones
+	 * provided
+	 * 
+	 * @param idList
+	 * @return a List of Topo associated to the id provided
+	 */
+	public List<Topo> getByIdList(List<Integer> idList);
+	
+	
+	/**
 	 * Update the properties of the Topo from the database, whom the id is equal to
 	 * the id of the Topo provided, by the ones of the Topo provided
 	 * 

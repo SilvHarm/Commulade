@@ -15,3 +15,7 @@ No pictures are provided to go with the demoData for the database, either add so
 You can find the configuration files under the "config" folder.
 
 For Tomcat, just add the content of "context.xml" to your own setup however you want it.
+
+To use a custom log4j2 configuration file, add this to your VM arguments: -Dlog4j.configurationFile="path/to/your/file"
+See the file "AutoStart_tomcat.bat" in "Tomcat/example" folder for a Windows example
+You can find the file used for testing in "Log4j2" folder

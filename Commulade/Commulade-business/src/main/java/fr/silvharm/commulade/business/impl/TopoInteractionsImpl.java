@@ -1,7 +1,9 @@
 package fr.silvharm.commulade.business.impl;
 
 import java.time.LocalDate;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -41,6 +43,18 @@ public class TopoInteractionsImpl implements TopoInteractions {
 		topo.setListSite(siteInteractions.getListSiteByTopoId(id));
 		
 		return topo;
+	}
+	
+	
+	public Map<Integer, String> getTopoNameMapByIdList(List<Integer> topoIdList) {
+		Map<Integer, String> map = new HashMap<Integer, String>();
+		List<Topo> list = topoDao.getByIdList(topoIdList);
+		
+		for (Topo topo : list) {
+			map.put(topo.getId(), topo.getName());
+		}
+		
+		return map;
 	}
 	
 	

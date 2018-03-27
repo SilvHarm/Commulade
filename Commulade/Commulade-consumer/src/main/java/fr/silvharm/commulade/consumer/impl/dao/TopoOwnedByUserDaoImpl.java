@@ -1,13 +1,16 @@
 package fr.silvharm.commulade.consumer.impl.dao;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 import org.springframework.dao.DataAccessException;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 
+import fr.silvharm.commulade.consumer.contract.dao.LendingTopoDao;
 import fr.silvharm.commulade.consumer.contract.dao.TopoOwnedByUserDao;
 import fr.silvharm.commulade.model.pojo.TopoOwnedByUser;
 
@@ -54,32 +57,52 @@ public class TopoOwnedByUserDaoImpl extends AbstractDaoImpl implements TopoOwned
 	}
 	
 	
+	public List<TopoOwnedByUser> findByBorrowerIdAfterToday(int borrowerId) {
+		String vSQL = "SELECT * FROM " + TABLE_NAME + " WHERE " + ID + " = ANY ( SELECT " + LendingTopoDao.TOPO_OWNED_ID
+				+ " FROM " + LendingTopoDao.TABLE_NAME + " WHERE " + LendingTopoDao.BORROWER_ID + " = :borrowerId AND "
+				+ LendingTopoDao.LENDING_END + " > '" + LocalDate.now() + "' GROUP BY " + LendingTopoDao.TOPO_OWNED_ID
+				+ " );";
+		
+		MapSqlParameterSource vParams = new MapSqlParameterSource();
+		vParams.addValue("borrowerId", borrowerId);
+		
+		return namedJdbcTemplate.query(vSQL, vParams, new BeanPropertyRowMapper<TopoOwnedByUser>(TopoOwnedByUser.class));
+	}
+	
+	
 	public TopoOwnedByUser findById(int id) {
 		String vSQL = "SELECT * FROM " + TABLE_NAME + " WHERE " + ID + " = :id ;";
 		
 		MapSqlParameterSource vParams = new MapSqlParameterSource();
 		vParams.addValue("id", id);
 		
-		return namedJdbcTemplate.queryForObject(vSQL, vParams,
-				new BeanPropertyRowMapper<TopoOwnedByUser>(TopoOwnedByUser.class));
+		try {
+			return namedJdbcTemplate.queryForObject(vSQL, vParams,
+					new BeanPropertyRowMapper<TopoOwnedByUser>(TopoOwnedByUser.class));
+		}
+		catch (EmptyResultDataAccessException e) {
+			// just mean there is no TopoOwnedByUser with the id provided
+			
+			return null;
+		}
 	}
 	
 	
-	public List<TopoOwnedByUser> findByOwnerId(int topoId) {
-		String vSQL = "SELECT * FROM " + TABLE_NAME + " WHERE " + TOPO_ID + " = :topoId ;";
-		
-		MapSqlParameterSource vParams = new MapSqlParameterSource();
-		vParams.addValue("topoId", topoId);
-		
-		return jdbcTemplate.query(vSQL, new BeanPropertyRowMapper<TopoOwnedByUser>(TopoOwnedByUser.class));
-	}
-	
-	
-	public List<TopoOwnedByUser> findByTopoId(int ownerId) {
+	public List<TopoOwnedByUser> findByOwnerId(int ownerId) {
 		String vSQL = "SELECT * FROM " + TABLE_NAME + " WHERE " + OWNER_ID + " = :ownerId ;";
 		
 		MapSqlParameterSource vParams = new MapSqlParameterSource();
 		vParams.addValue("ownerId", ownerId);
+		
+		return namedJdbcTemplate.query(vSQL, vParams, new BeanPropertyRowMapper<TopoOwnedByUser>(TopoOwnedByUser.class));
+	}
+	
+	
+	public List<TopoOwnedByUser> findByTopoId(int topoId) {
+		String vSQL = "SELECT * FROM " + TABLE_NAME + " WHERE " + TOPO_ID + " = :topoId ;";
+		
+		MapSqlParameterSource vParams = new MapSqlParameterSource();
+		vParams.addValue("topoId", topoId);
 		
 		return jdbcTemplate.query(vSQL, new BeanPropertyRowMapper<TopoOwnedByUser>(TopoOwnedByUser.class));
 	}
@@ -108,4 +131,15 @@ public class TopoOwnedByUserDaoImpl extends AbstractDaoImpl implements TopoOwned
 		
 		return jdbcTemplate.query(vSQL, new BeanPropertyRowMapper<TopoOwnedByUser>(TopoOwnedByUser.class));
 	}
+	
+	
+	public List<TopoOwnedByUser> getAllExceptOwnerId(int ownerId) {
+		String vSQL = "SELECT * FROM " + TABLE_NAME + " WHERE " + OWNER_ID + " != :ownerId ;";
+		
+		MapSqlParameterSource vParams = new MapSqlParameterSource();
+		vParams.addValue("ownerId", ownerId);
+		
+		return namedJdbcTemplate.query(vSQL, vParams, new BeanPropertyRowMapper<TopoOwnedByUser>(TopoOwnedByUser.class));
+	}
+	
 }
