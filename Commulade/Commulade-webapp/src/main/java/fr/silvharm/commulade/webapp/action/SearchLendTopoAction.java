@@ -30,22 +30,26 @@ public class SearchLendTopoAction extends SessionHelper {
 			notOwnedList = topoOwnedInteractions.getAllExceptUserTopoOwned(userId);
 			
 			userOwnedList = topoOwnedInteractions.getUserTopoOwned(userId);
-			if (userOwnedList != null) {
+			if (!userOwnedList.isEmpty()) {
 				for (TopoOwnedByUser topoOwned : userOwnedList) {
 					if (!topoIdList.contains(topoOwned.getTopoId())) {
 						topoIdList.add(topoOwned.getTopoId());
 					}
 				}
-				
-				topoMap = topoInteractions.getTopoNameMapByIdList(topoIdList);
-				
-				for (TopoOwnedByUser topoOwned : userOwnedList) {
-					topoOwned.setTopoName(topoMap.get(topoOwned.getTopoId()));
-					topoOwned.setUsername("#Vous#");
-				}
 			}
 			
-			// TODO borrowedList
+			borrowedList = topoOwnedInteractions.getBorrowedTopoOwned(userId);
+			if (!borrowedList.isEmpty()) {
+				for (TopoOwnedByUser topoOwned : borrowedList) {
+					if (!topoIdList.contains(topoOwned.getTopoId())) {
+						topoIdList.add(topoOwned.getTopoId());
+					}
+					
+					if (!userIdList.contains(topoOwned.getOwnerId())) {
+						userIdList.add(topoOwned.getOwnerId());
+					}
+				}
+			}
 		}
 		else {
 			notOwnedList = topoOwnedInteractions.getAllTopoOwned();
@@ -53,9 +57,6 @@ public class SearchLendTopoAction extends SessionHelper {
 		
 		
 		if (notOwnedList != null) {
-			topoIdList.clear();
-			userIdList.clear();
-			
 			for (TopoOwnedByUser topoOwned : notOwnedList) {
 				if (!topoIdList.contains(topoOwned.getTopoId())) {
 					topoIdList.add(topoOwned.getTopoId());
@@ -74,11 +75,24 @@ public class SearchLendTopoAction extends SessionHelper {
 				topoOwned.setUsername(userMap.get(topoOwned.getOwnerId()));
 			}
 			
-			if (borrowedList != null) {
+			if (userOwnedList != null && !userOwnedList.isEmpty()) {
+				for (TopoOwnedByUser topoOwned : userOwnedList) {
+					topoOwned.setTopoName(topoMap.get(topoOwned.getTopoId()));
+					topoOwned.setUsername("#Vous#");
+				}
+			}
+			else {
+				userOwnedList = null;
+			}
+			
+			if (borrowedList != null && !borrowedList.isEmpty()) {
 				for (TopoOwnedByUser topoOwned : borrowedList) {
 					topoOwned.setTopoName(topoMap.get(topoOwned.getTopoId()));
 					topoOwned.setUsername(userMap.get(topoOwned.getOwnerId()));
 				}
+			}
+			else {
+				borrowedList = null;
 			}
 		}
 		

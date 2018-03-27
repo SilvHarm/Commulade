@@ -26,6 +26,10 @@ public class TopoOwnedInteractionsImpl implements TopoOwnedInteractions {
 		return topoOwnedByUserDao.getAll();
 	}
 	
+	public List<TopoOwnedByUser> getBorrowedTopoOwned(int userId)	{
+		return topoOwnedByUserDao.findByBorrowerIdAfterToday(userId);
+	}
+	
 	
 	public List<TopoOwnedByUser> getUserTopoOwned(int userId) {
 		return topoOwnedByUserDao.findByOwnerId(userId);

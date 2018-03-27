@@ -36,6 +36,17 @@ public interface TopoOwnedInteractions {
 	
 	
 	/**
+	 * Get all the TopoOwnedByUser borrowed by the User associated to the userId
+	 * provided
+	 * 
+	 * @param userId
+	 * @return a List containing all the TopoOwnedByUser whom the User associated to
+	 *         userId have asked to borrow in the future
+	 */
+	List<TopoOwnedByUser> getBorrowedTopoOwned(int userId);
+	
+	
+	/**
 	 * Get all the TopoOwnedByUser of an User
 	 * 
 	 * @param userId

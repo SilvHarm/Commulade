@@ -40,6 +40,17 @@ public interface TopoOwnedByUserDao {
 	
 	
 	/**
+	 * Get from the database all the TopoOwnedByUser whom the User associated to the
+	 * borrowerid provided have asked to borrox in the future
+	 * 
+	 * @param ownerId
+	 * @return a List containing all the TopoOwnedByUser that will be borrowed by
+	 *         the User associated to borrowerid
+	 */
+	public List<TopoOwnedByUser> findByBorrowerIdAfterToday(int borrowerid);
+	
+	
+	/**
 	 * Get from the database the TopoOwnedByUser whom the id is equal to the one
 	 * provided
 	 * 
@@ -56,7 +67,7 @@ public interface TopoOwnedByUserDao {
 	 * 
 	 * @param ownerId
 	 * @return a List containing all the TopoOwnedByUser associated to the ownerId
-	 *         provided or null
+	 *         provided
 	 */
 	public List<TopoOwnedByUser> findByOwnerId(int ownerId);
 	
@@ -67,7 +78,7 @@ public interface TopoOwnedByUserDao {
 	 * 
 	 * @param topoId
 	 * @return a List containing all the TopoOwnedByUser associated to the topoId
-	 *         provided or null
+	 *         provided
 	 */
 	public List<TopoOwnedByUser> findByTopoId(int topoId);
 	
@@ -87,7 +98,7 @@ public interface TopoOwnedByUserDao {
 	/**
 	 * Get all the TopoOwnedByUser from the database
 	 * 
-	 * @return a List containing all the TopoOwnedByUser of the database or null
+	 * @return a List containing all the TopoOwnedByUser of the database
 	 */
 	public List<TopoOwnedByUser> getAll();
 	
