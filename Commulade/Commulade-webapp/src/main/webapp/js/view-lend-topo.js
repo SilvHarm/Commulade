@@ -12,8 +12,6 @@ $('#borrowButton').click(function() {
 function setMinMaxOfEndDate() {
 	var startDate = new Date($('#startDate').val());
 
-	startDate.setDate(startDate.getDate() + 1);
-
 	var minDay = startDate.getDate();
 	if (minDay < 10) {
 		minDay = '0' + minDay;

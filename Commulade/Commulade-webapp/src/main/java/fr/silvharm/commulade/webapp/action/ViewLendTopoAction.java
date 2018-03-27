@@ -51,6 +51,10 @@ public class ViewLendTopoAction extends SessionHelper {
 				if (userIdList.size() > 0) {
 					usernameMap = userInteractions.getUsernameMapByIdList(userIdList);
 				}
+				
+				if (lendingList.isEmpty()) {
+					lendingList = null;
+				}
 			}
 			else {
 				freeLendingList = lendTopoInteractions.getFreeDateOfTopoOwned(topoOwnedId);

@@ -18,7 +18,8 @@ public class LendTopoInteractionsImpl implements LendTopoInteractions {
 		LocalDate endDate = lendingTopoToAdd.getLendingEnd();
 		LocalDate startDate = lendingTopoToAdd.getLendingStart();
 		
-		if (startDate.isAfter(LocalDate.now()) && startDate.isBefore(endDate) && startDate.plusDays(7).isAfter(endDate)) {
+		if (startDate.isAfter(LocalDate.now()) && (startDate.isBefore(endDate) || startDate.isEqual(endDate))
+				&& startDate.plusDays(7).isAfter(endDate)) {
 			if (isAlreadyLend(lendingTopoToAdd)) {
 				lendingTopoDao.create(lendingTopoToAdd);
 				
@@ -37,45 +38,51 @@ public class LendTopoInteractionsImpl implements LendTopoInteractions {
 		
 		
 		LendingTopo tempLendTopo;
-		LocalDate lastDate = LocalDate.now().plusDays(1), tempDate;
-		LocalDate[] toAdd = new LocalDate[2];
+		LocalDate lastDate = LocalDate.now().plusDays(1), monthsLater = LocalDate.now().plusMonths(2), tempEnd, tempStart;
 		
 		if (lendingList.size() != 0) {
-			tempDate = lendingList.get(0).getLendingStart();
+			tempStart = lendingList.get(0).getLendingStart();
+			tempEnd = lendingList.get(0).getLendingEnd();
 			
 			// if the first LendingTopo as already started
-			if (tempDate.isBefore(lastDate) || tempDate.isEqual(lastDate)) {
-				lastDate = lendingList.get(0).getLendingEnd().plusDays(1);
+			if (tempStart.isBefore(lastDate) || tempStart.isEqual(lastDate)) {
+				lastDate = tempEnd.plusDays(1);
 				
 				lendingList.remove(0);
 				
 				// if there is no more LendingTopo after the first one that was deleted
 				if (lendingList.size() == 0) {
-					toAdd[0] = lastDate;
-					toAdd[1] = LocalDate.now().plusMonths(2);
-					
-					dateList.add(toAdd);
+					dateList.add(new LocalDate[] { lastDate, monthsLater });
 					
 					return dateList;
 				}
 			}
 			
 			for (int i = 0; i < lendingList.size(); i++) {
-				// TODO
-				
 				tempLendTopo = lendingList.get(i);
+				tempStart = tempLendTopo.getLendingStart();
+				tempEnd = tempLendTopo.getLendingEnd();
 				
-				toAdd[0] = lastDate;
-				toAdd[1] = tempLendTopo.getLendingStart().minusDays(1);
+				if (lastDate.isBefore(tempStart)) {
+					dateList.add(new LocalDate[] { lastDate, tempStart.minusDays(1) });
+					
+					lastDate = tempEnd.plusDays(1);
+				}
+				else if (lastDate.equals(tempStart)) {
+					lastDate = tempEnd.plusDays(1);
+				}
 				
-				dateList.add(toAdd);
+				if (lastDate.isAfter(monthsLater)) {
+					break;
+				}
+				
+				if ((i + 1) >= lendingList.size()) {
+					dateList.add(new LocalDate[] { lastDate, monthsLater });
+				}
 			}
 		}
 		else {
-			toAdd[0] = LocalDate.now().plusDays(1);
-			toAdd[1] = LocalDate.now().plusMonths(2);
-			
-			dateList.add(toAdd);
+			dateList.add(new LocalDate[] { lastDate, monthsLater });
 		}
 		
 		return dateList;

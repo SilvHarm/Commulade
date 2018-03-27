@@ -22,7 +22,7 @@ public interface TopoOwnedInteractions {
 	 * 
 	 * @param userId
 	 * @return a List containing all the TopoOwnedByUser who aren't associated to
-	 *         userId or null
+	 *         userId
 	 */
 	List<TopoOwnedByUser> getAllExceptUserTopoOwned(int userId);
 	
@@ -30,7 +30,7 @@ public interface TopoOwnedInteractions {
 	/**
 	 * Get all the TopoOwnedByUser of the database
 	 * 
-	 * @return a List containing all the TopoOwnedByUser of the database or null
+	 * @return a List containing all the TopoOwnedByUser of the database
 	 */
 	List<TopoOwnedByUser> getAllTopoOwned();
 	
@@ -39,8 +39,7 @@ public interface TopoOwnedInteractions {
 	 * Get all the TopoOwnedByUser of an User
 	 * 
 	 * @param userId
-	 * @return a List containing all the TopoOwnedByUser associated to userId or
-	 *         null
+	 * @return a List containing all the TopoOwnedByUser associated to userId
 	 */
 	List<TopoOwnedByUser> getUserTopoOwned(int userId);
 	
