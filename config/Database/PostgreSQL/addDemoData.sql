@@ -48,7 +48,6 @@ INSERT INTO topo_ownedby_user (
 	(3, 1),
 	(4, 1),
 	(11, 1),
-	(11, 2),
 	(11, 2);
 
 INSERT INTO lending_topo (

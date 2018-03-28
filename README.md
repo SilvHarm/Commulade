@@ -1,5 +1,5 @@
 # Commulade
-Le 6ème projet du parcours "Développeur d'Application - Java" de OpenClassrooms
+The project number 6 of the "Application Developer - Java" course from OpenClassrooms
 
 
 ## Informations
