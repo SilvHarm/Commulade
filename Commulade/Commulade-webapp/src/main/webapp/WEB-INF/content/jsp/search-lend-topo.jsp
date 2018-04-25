@@ -1,3 +1,4 @@
+<%-- 
 <aside id="searchCriteria">
 	<form class="flexCol" action="search-topo-owned" method="post" onsubmit="return validateForm();">
 		<p>
@@ -8,6 +9,7 @@
 		<button class="seShaButtons someButton">Rechercher</button>
 	</form>
 </aside>
+--%>
 
 
 <div class="hundWid">

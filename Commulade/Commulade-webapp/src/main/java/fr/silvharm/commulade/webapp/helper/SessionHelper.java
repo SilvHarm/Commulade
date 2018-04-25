@@ -13,7 +13,7 @@ public abstract class SessionHelper extends ActionSupport implements SessionAwar
 	
 	protected Map<String, Object> session;
 	
-	protected String usernameKey = "username", userIdKey = "userId";
+	public static final String USERNAME_KEY = "username", USER_ID_KEY = "userId";
 	
 	protected Integer userId;
 	protected String username;
@@ -32,7 +32,7 @@ public abstract class SessionHelper extends ActionSupport implements SessionAwar
 	 * @param username
 	 */
 	public void addUsername(String username) {
-		session.put(usernameKey, username);
+		session.put(USERNAME_KEY, username);
 	}
 	
 	
@@ -42,7 +42,7 @@ public abstract class SessionHelper extends ActionSupport implements SessionAwar
 	 * @return the username of the User or null
 	 */
 	public String getUsername() {
-		return (String) session.get(usernameKey);
+		return (String) session.get(USERNAME_KEY);
 	}
 	
 	
@@ -58,7 +58,7 @@ public abstract class SessionHelper extends ActionSupport implements SessionAwar
 	 * remove the username property in session
 	 */
 	public void removeUsername() {
-		session.remove(usernameKey);
+		session.remove(USERNAME_KEY);
 	}
 	
 	
@@ -68,7 +68,7 @@ public abstract class SessionHelper extends ActionSupport implements SessionAwar
 	 * @param userId
 	 */
 	public void addUserId(Integer userId) {
-		session.put(userIdKey, userId);
+		session.put(USER_ID_KEY, userId);
 	}
 	
 	
@@ -78,7 +78,7 @@ public abstract class SessionHelper extends ActionSupport implements SessionAwar
 	 * @return the userId of the User or null
 	 */
 	public Integer getUserId() {
-		return (Integer) session.get(userIdKey);
+		return (Integer) session.get(USER_ID_KEY);
 	}
 	
 	
@@ -94,7 +94,7 @@ public abstract class SessionHelper extends ActionSupport implements SessionAwar
 	 * remove the userId property in session
 	 */
 	public void removeUserId() {
-		session.remove(userIdKey);
+		session.remove(USER_ID_KEY);
 	}
 	
 	
